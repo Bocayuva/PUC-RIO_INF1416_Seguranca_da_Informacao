@@ -37,26 +37,23 @@ class OurUseSignature {
 
 
             /* Now we start to use our class MySignature */
-            System.out.println("Iniciando o uso da classe criada pelo grupo");
+            System.out.println("\n\n\nIniciando o uso da classe criada pelo grupo");
+            System.out.println("\nUsamos o algoritmo SHA1 de hash + RSA para criptografia\n");
             MySignature sign = MySignature.getInstance("SHA1withRSA");
-            sign.initSign(priv);
-            sign.update(plainText);
+            sign.initSign(priv);    /* defino a chave privada */
+            sign.update(plainText); /* mensagem enviada para classe de assinatura */
 
             byte[] signature = sign.sign();
-            //System.out.println( sign.getProvider().getInfo() );
-
             System.out.println( "\nAssinatura:" );
-
             
             StringBuffer buf = new StringBuffer();
             for(int i = 0; i < signature.length; i++) {
                String hex = Integer.toHexString(0x0100 + (signature[i] & 0x00FF)).substring(1);
                buf.append((hex.length() < 2 ? "0" : "") + hex);
             }
-
             System.out.println( buf.toString() );
 
-            System.out.println( "\nInicia verificação da assinatura" );
+            System.out.println( "\n\n\nInicia verificação da assinatura: \n" );
             sign.initVerify(pub);
             sign.update(plainText);
 

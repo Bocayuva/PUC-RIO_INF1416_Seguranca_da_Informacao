@@ -5,3 +5,6 @@ https://docs.oracle.com/javase/tutorial/security/apisign/step2.html
 
 // How implement the signature class
 http://www.cs.ait.ac.th/~on/O/oreilly/java-ent/security/ch12_03.htm
+
+// Assinatura digital + criptografia
+http://www.di.ufpe.br/~flash/ais98/cripto/criptografia.htm
