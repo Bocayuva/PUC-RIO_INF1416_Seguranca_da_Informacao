@@ -7,7 +7,6 @@
 */
 import java.io.*;
 import java.security.*;
-import javax.crypto.*;
 
 class OurUseSignature {
 
@@ -17,6 +16,7 @@ class OurUseSignature {
 
         if (args.length != 1) {
             System.out.println("Usage: GenSig nameOfFileToSign");
+            System.exit(1);
         }
         else try {
             byte[] plainText = args[0].getBytes("UTF8");
@@ -43,6 +43,9 @@ class OurUseSignature {
             sign.initSign(priv);    /* defino a chave privada */
             sign.update(plainText); /* mensagem enviada para classe de assinatura */
 
+            /* Print the digest */
+            System.out.println( "\nDigest: " + sign.getDigest() );
+
             byte[] signature = sign.sign();
             System.out.println( "\nAssinatura:" );
             
@@ -53,14 +56,17 @@ class OurUseSignature {
             }
             System.out.println( buf.toString() );
 
-            System.out.println( "\n\n\nInicia verificação da assinatura: \n" );
+            System.out.println( "\n\nInicia verificação da assinatura: \n" );
             sign.initVerify(pub);
             sign.update(plainText);
+
+            /* Print the digest */
+            System.out.println( "\nDigest: " + sign.getDigest() );
 
             /* Final verification */
             try {
               if (sign.verify(signature)) {
-                System.out.println( "Assinatura verificada" );
+                System.out.println( "\nAssinatura verificada" );
               } else{
                 System.out.println( "Assinatura falhou" );
               } 
