@@ -7,7 +7,7 @@ public class MySignature {
     * @pubi - armazena na instancia da classe a chave pública
     * @priv - armazena na instancia da classe a chave privada
     * @md   - armazena uma instancia da classe MessageDigest
-    * @cipher - armazena uma instancia da classe Cipher
+    * @cipher - armazena uma instancia da classe Cipher - criptografia
     */
     private PublicKey pubi;
     private PrivateKey priv;
@@ -16,7 +16,7 @@ public class MySignature {
     private byte[] digest;
 
     /*
-    * Static method to initialize the MySignature class
+    * Metodo estatico que inicializa minha classe MySignature
     * params:
     * @algo - string contendo algoritmo de hash, passado como parametro para o MD
               concatenado com with
@@ -42,39 +42,73 @@ public class MySignature {
         return mySig;
     }
 
+    /*
+    * Metodo para setar a chave privada no objeto de MySignature
+    * params:
+    * @pri  - Privatekey - gerado pelo generateparkey
+    */
     public void initSign(PrivateKey pri){
-        /* seto a chave privada na classe */
         priv = pri;
     }
 
+    /*
+    * Metodo para inputar o texto no messagedigest
+    * para geração do hash
+    * Armazena no atributo digest no objeto de MySignature
+    * params:
+    * @b  - Array de bytes da palavra fornecida
+    */
     public void update(byte b[]){
-        /* texto fornecido para o message digest */
         md.update(b);
-        digest = md.digest();
+        digest = md.digest(); /* geracao do hash pelo message digest */
     }
 
+    /*
+    * Metodo para geração da assinatura
+    * no params
+    * Retorna arrray de bytes da assinatura gerada
+    */
     public byte[] sign(){
         byte ret[] = null;
-        ret = digest;            /* geracao do hash pelo message digest */
+        ret = digest;            
         ret = cripto(ret, true); /* criptografia do hash gerado + chave privada */      
         return ret;
     }
 
+    /*
+    * Metodo para setar a chave publica no objeto de MySignature
+    * params:
+    * @pub  - PublicKey - gerado pelo generateparkey
+    */
     public void initVerify(PublicKey pub){
-        /* seto a chave publica na classe para verificação */
         pubi = pub;
     }
 
+    /*
+    * Metodo que verifica a autenticidade da assinatura
+    * São comparados hash da mensagem com a assinatura
+    * decriptografada com a chave publica
+    * params:
+    * @signature  - array de bytes da assinatura
+    * return:
+    * true - assinatura verificada
+    * false - assinatura não confere
+    */
     public boolean verify(byte[] signature){
 
         byte hash_msg[] = null;
         byte hash_pub[] = null;
-        hash_msg = digest;                  /* geracao do hash pelo message digest */
+        hash_msg = digest;                  
         hash_pub = cripto(signature, false); /* criptografia do hash gerado + chave privada */  
 
         return MessageDigest.isEqual(hash_msg, hash_pub);
     }
 
+    /*
+    * Metodo para retornar o digest como string
+    * no params
+    * Retorna o digest como string
+    */
     public String getDigest(){
         StringBuffer buf = new StringBuffer();
         for(int i = 0; i < digest.length; i++) {
@@ -84,6 +118,14 @@ public class MySignature {
         return buf.toString();
     }
 
+    /*
+    * Metodo para criptografar e decriptografar
+    * params:
+    * @b - array de bytes
+    * @sign - true para chave privada + criptografia
+    *         false para chave publica + decriptografia
+    * Retorna o array de bytes criptografado ou decriptografado
+    */
     private byte[] cripto(byte[] b, boolean sign){
         byte[] ret       = null;
         try{
