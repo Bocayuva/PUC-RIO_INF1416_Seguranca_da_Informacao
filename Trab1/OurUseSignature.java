@@ -12,7 +12,7 @@ class OurUseSignature {
 
     public static void main(String[] args) {
 
-        /* Generate a OUR signature */
+        /* Geração e verificação da assinatura */
 
         if (args.length != 1) {
             System.out.println("Falta de argumento: É necessário fornecer um argumento para a assinatura!");
@@ -32,8 +32,6 @@ class OurUseSignature {
             PrivateKey priv = pair.getPrivate();
             PublicKey  pub  = pair.getPublic(); 
 
-
-            /* Now we start to use our class MySignature */
             System.out.println("\n\nIniciando o uso da classe - MySignature");
             System.out.println("\nUsamos o algoritmo SHA1 de hash + RSA para criptografia\n");
             MySignature sign = MySignature.getInstance("SHA1withRSA");
