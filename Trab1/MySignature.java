@@ -1,3 +1,10 @@
+/*
+* INF1416 - Segurança da Informação
+* GRUPO 1
+* Autores - 1320614 - Alexandre Werneck
+*           1111060 - Carlos Fernando Bocayuva
+*
+*/
 import java.security.*;
 import javax.crypto.*;
 
@@ -16,7 +23,7 @@ public class MySignature {
     private byte[] digest;
 
     /*
-    * Metodo estatico que inicializa minha classe MySignature
+    * Metodo estatico que inicializa classe MySignature
     * params:
     * @algo - string contendo algoritmo de hash, passado como parametro para o MD
               concatenado com with
@@ -28,8 +35,8 @@ public class MySignature {
         String[]   crypts    = algo.split("with");
         Provider[] providers = Security.getProviders();
         
-        MySignature mySig = new MySignature();
-        mySig.md          = MessageDigest.getInstance(crypts[0]);   
+        MySignature mySig    = new MySignature();
+        mySig.md             = MessageDigest.getInstance(crypts[0]);   
 
         try{
             mySig.cipher      = Cipher.getInstance(crypts[1]);
@@ -48,7 +55,11 @@ public class MySignature {
     * @pri  - Privatekey - gerado pelo generateparkey
     */
     public void initSign(PrivateKey pri){
-        priv = pri;
+        try{
+            priv = pri;
+        }catch(Exception e){
+            System.out.println("Erro ao atribuir chave privada: " + e.toString());
+        }        
     }
 
     /*
@@ -81,7 +92,12 @@ public class MySignature {
     * @pub  - PublicKey - gerado pelo generateparkey
     */
     public void initVerify(PublicKey pub){
-        pubi = pub;
+        try{
+            pubi = pub;
+        }catch(Exception e){
+            System.out.println("Erro ao atribuir chave publica: " + e.toString());
+        }
+        
     }
 
     /*
