@@ -1,4 +1,6 @@
 /*
+* @Classe ArquivoDigest
+			Contém informações dos digests presentes no arquivo da lista
 * INF1416 - Segurança da Informação
 * GRUPO 1
 * Autores - 1320614 - Alexandre Werneck

@@ -1,0 +1,45 @@
+#!/bin/bash
+clear
+> ListDigests
+java DigestCalculator SHA1 arquivos/file1 arquivos/file1 ListDigests
+echo "Não deve execcutar o programa"
+java DigestCalculator SHA1 ListDigests
+echo "Falta de parametros para executar o programa"
+java DigestCalculator SHA1 arquivos/file1 arquivos/file2
+echo "O arquivo ListDigests não foi informado"
+java DigestCalculator SHA1 arquivos/file1 arquivos/file2 arquivos/file3 ListDigests
+echo "NOT FOUND para todos os casos"
+java DigestCalculator SHA1 arquivos/file1 arquivos/file4 ListDigests
+echo "COLISION nos casos"
+java DigestCalculator MD5 arquivos/file1 arquivos/file4 ListDigests
+echo "COLISION nos casos"
+java DigestCalculator SHA1 arquivos/file1 ListDigests
+echo "OK para este caso"
+java DigestCalculator MD5 arquivos/file1 ListDigests
+echo "NOT FOUND para este caso"
+java DigestCalculator SHA1 arquivos/file1 arquivos/file2 arquivos/file3 ListDigests
+echo "OK para estes casos"
+java DigestCalculator SSS arquivos/file1 arquivos/file2 arquivos/file3 ListDigests
+echo "Tipo inválido"
+java DigestCalculator SHA1 arquivos/file6 ListDigests
+echo "Arquivo não encontrado, o sistema não deve executar"
+> ListDigests
+java DigestCalculator SHA1 arquivos/file1 arquivos/file2 arquivos/file3 ListDigests
+echo "NOT FOUND para todos os casos"
+echo "ListDigests inseridos no arquivo ListDigests"
+java DigestCalculator MD5 arquivos/file1 arquivos/file2 arquivos/file3 ListDigests
+echo "NOT FOUND para todos os casos"
+echo "ListDigests inseridos no arquivo ListDigests"
+echo "--- ARQUIVO ListDigests DEVE CONTER ---"
+echo "file1 SHA1 8ba618434b078b936a99162d372794d5636c946a MD5 884633ddef6632383e9b1e8647a4ab0b"
+echo "file2 SHA1 d4a1317f47397d4834fd74fa7680c90082be3066 MD5 52dc17b2d1945cfba9b4a5fa67cce5bb"
+echo "file3 SHA1 22bc663f0af1f013a7e123f78cc5f9b3a8d19684 MD5 c7812cad16bdd3337d44060c0c400333"
+cp arquivos/file1 arquivos/tmp
+> arquivos/file1 help
+java DigestCalculator SHA1 arquivos/file1 ListDigests
+echo "NOT OK para file1"
+cp arquivos/tmp arquivos/file1
+rm arquivos/tmp
+echo "--- O ARQUIVO file1 FOI RESTAURADO ---"
+
+

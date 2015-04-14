@@ -1,3 +1,52 @@
-Fontes:
+---- GRUPO 1 - SEGURANÇA DA INFORMAÇÃO ----
+Informações sobre os arquivos do trabalho
+Autores - Alexandre Werneck
+          Carlos Fernando Bocayuva
+-------------------------------------------
+1 - DigestCalculator.java
+Este programa é responsável pela execução
+de toda verificação dos digests presentes
+no arquivo ListDigests com os digests gerados
+a partir dos arquivos fornecidos via linha
+de comando
 
+2 - ArquivoDigest.java
+Esta é uma classe auxiliar que armazena
+em suas instâncias informações dos digests
+fornecidos em cada linha do arquivo
+ListDigests, são salvos:
+Nome
+Digest1
+Digest2
+TipoDigest1
+TipoDigest2
+* Digest2 e TipoDigest2 podem estar vazios
+quando a linha correspondente no arquivo
+só possui um digest
+
+3 - ListCommandDigest
+Esta é uma classe auxiliar responsável por 
+acumular informações sobre os digests gerados
+a partir dos arquivos fornecidos via linha de
+comando, são salvos:
+Nome
+Digest
+TipoDigest
+
+4 - ListDigests
+É o arquivo que contém todos os digests conhecidos
+e que será usado na verificação com os arquivos
+fornecidos via linha de comando
+* Este arquivo pode sofrer alterações ao longo
+da execução do programa
+
+5 - tests_script
+Script utilizado para testes na classe DigestCalculator,
+para executar no Linux, execute os seguintes passos:
+> chmod 755 tests_script
+> ./tests_script
+
+---------------------------------------------------------
+GERADO EM 14/04/2015
+---------------------------------------------------------
 

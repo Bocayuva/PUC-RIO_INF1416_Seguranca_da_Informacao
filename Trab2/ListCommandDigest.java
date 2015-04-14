@@ -1,4 +1,6 @@
 /*
+* @Classe ListCommandDigest
+		  Contém informações dos digests fornecidos via linha de comando
 * INF1416 - Segurança da Informação
 * GRUPO 1
 * Autores - 1320614 - Alexandre Werneck

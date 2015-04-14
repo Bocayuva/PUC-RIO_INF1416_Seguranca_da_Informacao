@@ -32,6 +32,10 @@ class DigestCalculator {
 
           /* Caminho do arquivo com a lista de digest salvo */
           String caminho_lista = args[args.length - 1];
+          if (!caminho_lista.equals("ListDigests")) {
+            System.out.println("Arquivo com a lista de digests conhecido não informado, ListDigests!");
+            System.exit(1);
+          }
 
           DigestCalculator digCalc    = new DigestCalculator();
           digCalc.lista_arquivos      = new ArrayList<ArquivoDigest>();          
@@ -61,14 +65,35 @@ class DigestCalculator {
           try{
             digCalc.digest_command      = new ArrayList<ListCommandDigest>();
             for(int i=1; i<args.length -1; i++){
+                File f = new File(args[i]);
 
-                byte[] dig                 = digCalc.geraDigest(tipo_digest, new File(args[i]));
+                if (!f.isFile()) {
+                  System.out.println("Arquivo fornecido não existe : " + args[i]);
+                  System.exit(1);
+                }
+
+                byte[] dig                 = digCalc.geraDigest(tipo_digest, f);
                 String result              = digCalc.getDigest(dig);
-                ListCommandDigest list_dig = ListCommandDigest.getInstance(
-                                                                digCalc.getFileName(args[i]) + " " +
+                String f_name_file         = digCalc.getFileName(args[i]);
+
+                
+
+                if (digCalc.verificaDuplicidadeLinhaComando(f_name_file
+                                                            , digCalc.digest_command)) {
+            
+                    System.out.println("O seguinte arquivo foi fornecido em duplicidade via linha de comando : " + f_name_file);
+                    System.exit(1);
+
+                }else{
+
+                    ListCommandDigest list_dig = ListCommandDigest.getInstance(
+                                                                f_name_file + " " +
                                                                 result + " " + tipo_digest
-                                                                );
-                digCalc.digest_command.add(list_dig);
+                                                                  );
+                    digCalc.digest_command.add(list_dig);
+
+                }
+                
 
             }
           }catch(Exception e){
@@ -179,6 +204,14 @@ class DigestCalculator {
 
     }
 
+    /*
+    * @GeraDigest
+    * @params
+    *         tipo - tipo de digest (SHA1 / MD5)
+    *         file - arquivo para geração do digest
+    * @return byte[] - array de bytes com o digest gerado
+    *
+    */  
     private byte[] geraDigest(String tipo, File file){
 
       int file_len = (int) file.length();
@@ -209,6 +242,13 @@ class DigestCalculator {
       
     }
 
+    /*
+    * @getDigest
+    * @params
+    *         byte[] - digest gerado
+    * @return digest - Digest em HEX
+    *
+    */  
     private String getDigest(byte[] digest){
         StringBuffer buf = new StringBuffer();
         for(int i = 0; i < digest.length; i++) {
@@ -218,6 +258,16 @@ class DigestCalculator {
         return buf.toString();
     }
 
+    /*
+    * @getFileName
+    * @params
+    *         f_name - String do nome do arquivo 
+                       fornecido via linha de comando
+                       Ex: arquivos/file1
+    * @return name   - String com o nome do arquivo
+                       Ex: file1
+    *
+    */  
     private String getFileName(String f_name){
 
       String[] full_name = f_name.split("/");
@@ -225,6 +275,14 @@ class DigestCalculator {
       return name;
     }
 
+    /*
+    * @recuperaArquivoDigest
+    * @params
+    *         file_name - String do nome do arquivo 
+              lista     - lista com os digests do arquivo digests
+    * @return ArqDigest   - objeto do tipo Arquivo digest
+    *
+    */ 
     private ArquivoDigest recuperaArquivoDigest(String file_name, List<ArquivoDigest> lista){
 
       for(int i = 0; i < lista.size(); i++) {
@@ -236,47 +294,15 @@ class DigestCalculator {
         return null;
 
     }
-/*
-    private boolean checaColisao(ListCommandDigest digest, List<ListCommandDigest> list_dig, List<ArquivoDigest> lista, String filename){
-
-        for(int i = 0; i < lista.size(); i++) {
-           ArquivoDigest dig = lista.get(i);
-
-           if (!digest.getNome().equals(dig.getNome())) {  
-              
-             if (digest.getDigest().equals(dig.getDigest())) {
-                return true;
-             }
-             if (digest.getDigest().equals(dig.getDigest2())) {
-                return true;
-             } 
-           }
-        }
-        for(int i = 0; i < list_dig.size(); i++) {
-            ListCommandDigest item_dig = list_dig.get(i); 
-
-            for(int j = 0; j < lista.size(); j++) {
-               ArquivoDigest dig = lista.get(j);
-
-               if (!item_dig.getNome().equals(dig.getNome())) {  
-                  
-                 if (item_dig.getDigest().equals(dig.getDigest())) {
-                    return true;
-                 }
-                 if (item_dig.getDigest().equals(dig.getDigest2())) {
-                    return true;
-                 } 
-               }
-            }
-          
-        }
-
-        return false;
-
-    }
-
-*/
     
+    /*
+    * @adicionaFinalArquivo
+    * @params
+    *         filename  - String do nome do arquivo 
+              nem_line  - String com a linha a ser inserida ao final do arquivo
+    * @return 
+    *
+    */ 
     private void adicionaFinalArquivo(String filename, String new_line){
       try{
         FileWriter fw = new FileWriter(filename,true);
@@ -288,6 +314,18 @@ class DigestCalculator {
 
     }
 
+    /*
+    * @adicionaDentroArquivo
+    * @params
+    *         file      - String do nome do arquivo 
+              filename  - String da linha do arquivo para adicionar 
+                          Ex: input => file1 MD5 aaa
+                              output => file1 MD5 aaa SHA1 bbb 
+              add_line  - String para ser acrescida a filename
+                          Ex: SHA1 bbb
+    * @return 
+    *
+    */ 
     private void adicionaDentroArquivo(String file, String filename, String add_line){
 
       File inputFile = null;
@@ -320,8 +358,16 @@ class DigestCalculator {
 
     }
 
-    
-
+    /*
+    * @checaColisaoOk
+    * @params
+    *         digest      - Digest presente no arquivo
+              list_dig    - Lista dos digests da linha de comando
+    * @return 
+              true/false  - true = caso existe colisao entre digest no arquivo
+                            e na lista de comando
+    *
+    */ 
     private boolean checaColisaoOk( ArquivoDigest digest, List<ListCommandDigest> list_dig){
         for(int i = 0; i < list_dig.size(); i++) {
             ListCommandDigest item_dig = list_dig.get(i); 
@@ -341,6 +387,16 @@ class DigestCalculator {
         return false;
     }
 
+    /*
+    * @checaColisaoNotFound
+    * @params
+    *         digest      - Digest da linha de comando
+              list_dig    - Lista dos digests da linha de comando
+    * @return 
+              true/false  - true = caso existe colisao entre digest na linha de comando
+                            e na lista de comando
+    *
+    */ 
     private boolean checaColisaoNotFound( ListCommandDigest digest, List<ListCommandDigest> list_dig){
         for(int i = 0; i < list_dig.size(); i++) {
             ListCommandDigest item_dig = list_dig.get(i); 
@@ -357,6 +413,16 @@ class DigestCalculator {
         return false;
     }
 
+    /*
+    * @checaColisaoNotFoundFile
+    * @params
+    *         digest      - Digest da linha de comando
+              list_dig    - Lista dos digests do arquivo
+    * @return 
+              true/false  - true = caso existe colisao entre digest na linha de comando
+                            e na lista de arquivo
+    *
+    */ 
     private boolean checaColisaoNotFoundFile( ListCommandDigest digest, List<ArquivoDigest> list_dig){
         for(int i = 0; i < list_dig.size(); i++) {
             ArquivoDigest item_dig = list_dig.get(i); 
@@ -374,6 +440,31 @@ class DigestCalculator {
           
         }
         return false;
+    }
+
+    /*
+    * @checaColisaoNotFoundFile
+    * @params
+    *         filename      - String do nome do arquivo
+              list_dig    - Lista dos digests da linha de comando
+    * @return 
+              true/false  - true = caso exista arquivo igual fornecido na linha de comando
+    *
+    */ 
+    private boolean verificaDuplicidadeLinhaComando(String filename, List<ListCommandDigest> list_dig){
+
+        for(int i = 0; i < list_dig.size(); i++) {
+            ListCommandDigest item_dig = list_dig.get(i); 
+
+            if (filename.equals(item_dig.getNome())) {  
+                  
+               return true;
+
+            }
+          
+        }
+        return false;
+
     }
 
 
