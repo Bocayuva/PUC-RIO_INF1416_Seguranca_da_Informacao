@@ -21,19 +21,19 @@ class OurUseSignature {
         else try {
             byte[] plainText = args[0].getBytes("UTF8");
 
-            System.out.println("Instanciando a classe geradora das chaves RSA");
+            System.out.println("--Instanciando a classe geradora das chaves RSA--");
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");  
 
-            System.out.println("Definindo o tamanho da chave em 1024 bits");
+            System.out.println("--Definindo o tamanho da chave em 1024 bits--");
             keyGen.initialize(1024);    
 
-            System.out.println("Iniciando geração das chaves");
+            System.out.println("--Iniciando geração das chaves--");
             KeyPair    pair = keyGen.generateKeyPair();
             PrivateKey priv = pair.getPrivate();
             PublicKey  pub  = pair.getPublic(); 
+            System.out.println("Chaves pública e privada geradas com sucesso!");
 
-            System.out.println("\n\nIniciando o uso da classe - MySignature");
-            System.out.println("\nUsamos o algoritmo SHA1 de hash + RSA para criptografia\n");
+            System.out.println("\n\n--Iniciando o uso da classe - MySignature--");
             MySignature sign = MySignature.getInstance("SHA1withRSA");
             sign.initSign(priv);    
             sign.update(plainText); 
@@ -62,10 +62,10 @@ class OurUseSignature {
               if (sign.verify(signature)) {
                 System.out.println( "\nAssinatura verificada" );
               } else{
-                System.out.println( "Assinatura falhou" );
+                System.out.println( "\nAssinatura falhou" );
               } 
             } catch (Exception se) {
-              System.out.println( "Assinatura falhou" + se.toString() );
+              System.out.println( "\nAssinatura falhou" + se.toString() );
             }
 
 

@@ -11,8 +11,11 @@ import java.util.*;
 
 class DigestCalculator {
 
-  public List<ArquivoDigest> lista_arquivos;
-  public List<ListCommandDigest> digest_command;
+    /* Lista de arquivos com seus respectivos digests em MD5 ou SHA1 */
+    public List<ArquivoDigest> lista_arquivos;
+
+    /* Lista de digests gerados via linha de comando */
+    public List<ListCommandDigest> digest_command;
 
     public static void main(String[] args) {
 
@@ -27,15 +30,16 @@ class DigestCalculator {
             System.exit(1);
           }
 
-          /* Arquivo com a lista de digest */
+          /* Caminho do arquivo com a lista de digest salvo */
           String caminho_lista = args[args.length - 1];
 
-          /* Instancia a classe digCalculator */
           DigestCalculator digCalc    = new DigestCalculator();
-
           digCalc.lista_arquivos      = new ArrayList<ArquivoDigest>();          
 
-          /* Recupera o arquivo com a lista */
+          /* 
+          * Le o arquivo e armazena na lista de digest do arquivo
+          * cada objeto do tipo ArquivoDigest
+          */
           try{
             FileInputStream file = new FileInputStream(caminho_lista);
             BufferedReader br    = new BufferedReader(new InputStreamReader(file));
@@ -46,10 +50,14 @@ class DigestCalculator {
             }
             br.close();
           }catch(Exception e){
-            System.out.println("Erro na leitura do arquivo com a lista de digest!" + e.toString());
+            System.out.println("Erro na leitura do arquivo com a lista de digest : " + e.toString());
           }     
 
-          /* Calcula o digest de cada arquivo informado via linha de comando */
+          /* 
+          * Le cada parametro do tipo caminho de arquivo,
+          * cria para cada um objeto do tipo ListCommandDigest,
+          * e armazena na lista do tipo ListCommandDigest
+          */
           try{
             digCalc.digest_command      = new ArrayList<ListCommandDigest>();
             for(int i=1; i<args.length -1; i++){
@@ -64,7 +72,7 @@ class DigestCalculator {
 
             }
           }catch(Exception e){
-            System.out.println("Erro na geração de digest via linha de comando" + e.toString());
+            System.out.println("Erro no acumulo de digest via linha de comando : " + e.toString());
           }          
 
           /* Verificação de cada arquivo informado na linha de comando */
@@ -124,24 +132,44 @@ class DigestCalculator {
 
                   String to_file = " " + tipo_digest + " " + digCalc.digest_command.get(i-1).getDigest();
                   String result = file_name + to_file;
-                  System.out.println("=>" + result + " NOT FOUND");
-                  digCalc.adicionaDentroArquivo(caminho_lista, digCalc.digest_command.get(i-1).getNome(), to_file);
+
+                  if(digCalc.checaColisaoNotFound(digCalc.digest_command.get(i-1)
+                                        ,digCalc.digest_command)){
+
+                     System.out.println("=>" + result + " COLISION");
+
+                  }else{
+                      System.out.println("=>" + result + " NOT FOUND");
+                      digCalc.adicionaDentroArquivo(caminho_lista, digCalc.digest_command.get(i-1).getNome(), to_file);
+                  }
+                  
 
                 }
                 
               }else{
-                /* STATUS pode ser: NOT FOUND */               
+                /* STATUS pode ser: NOT FOUND */  
+                
+                String result = file_name + " " + tipo_digest + " " + digCalc.digest_command.get(i-1).getDigest();
                 
                 if(digCalc.checaColisaoNotFound(digCalc.digest_command.get(i-1)
                                         ,digCalc.digest_command)){
-
-                   String result = file_name + " " + tipo_digest + " " + digCalc.digest_command.get(i-1).getDigest();
+                   
                    System.out.println("=>" + result + " COLISION");
 
                 }else{
-                    String result = file_name + " " + tipo_digest + " " + digCalc.digest_command.get(i-1).getDigest();
-                    System.out.println("=>" + result + " NOT FOUND");
-                    digCalc.adicionaFinalArquivo(caminho_lista, result);
+
+                    if(digCalc.checaColisaoNotFoundFile(digCalc.digest_command.get(i-1)
+                                        ,digCalc.lista_arquivos)){
+                   
+                       System.out.println("=>" + result + " COLISION");
+
+                    }else{
+
+                        System.out.println("=>" + result + " NOT FOUND");
+                        digCalc.adicionaFinalArquivo(caminho_lista, result);
+
+                    }
+
                 }
                 
               }
@@ -208,7 +236,7 @@ class DigestCalculator {
         return null;
 
     }
-
+/*
     private boolean checaColisao(ListCommandDigest digest, List<ListCommandDigest> list_dig, List<ArquivoDigest> lista, String filename){
 
         for(int i = 0; i < lista.size(); i++) {
@@ -247,6 +275,8 @@ class DigestCalculator {
 
     }
 
+*/
+    
     private void adicionaFinalArquivo(String filename, String new_line){
       try{
         FileWriter fw = new FileWriter(filename,true);
@@ -272,7 +302,6 @@ class DigestCalculator {
         String currentLine;
 
         while((currentLine = reader.readLine()) != null) {
-            // trim newline when comparing with lineToRemove
             String[] trimmedLine = currentLine.trim().split(" ");
             if(trimmedLine[0].equals(lineToRemove[0])){
               writer.write(currentLine + add_line + System.getProperty("line.separator"));
@@ -319,6 +348,25 @@ class DigestCalculator {
             if (!digest.getNome().equals(item_dig.getNome())) {  
                   
                if (digest.getDigest().equals(item_dig.getDigest())) {
+                  return true;
+               }
+
+            }
+          
+        }
+        return false;
+    }
+
+    private boolean checaColisaoNotFoundFile( ListCommandDigest digest, List<ArquivoDigest> list_dig){
+        for(int i = 0; i < list_dig.size(); i++) {
+            ArquivoDigest item_dig = list_dig.get(i); 
+
+            if (!digest.getNome().equals(item_dig.getNome())) {  
+                  
+               if (digest.getDigest().equals(item_dig.getDigest())) {
+                  return true;
+               }
+               if (digest.getDigest().equals(item_dig.getDigest2())) {
                   return true;
                }
 

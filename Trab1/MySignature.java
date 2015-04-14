@@ -40,11 +40,13 @@ public class MySignature {
 
         try{
             mySig.cipher      = Cipher.getInstance(crypts[1]);
-            System.out.println( "\n" + mySig.cipher.getProvider().getInfo() );    
+            System.out.println( "\n Lista de providers: " + mySig.cipher.getProvider().getInfo() );    
         }catch(Exception e){
             System.out.println("Erro: ao iniciar a classe Cipher - " + e.toString());
         }
         
+        System.out.println("\nGeração do HASH: " + crypts[0]);
+        System.out.println("\nAlgoritmo de criptografia:  " + crypts[1]);
 
         return mySig;
     }
@@ -147,8 +149,10 @@ public class MySignature {
         try{
             if (sign == true) {
                 cipher.init(cipher.ENCRYPT_MODE, priv);
+                System.out.println("\nCriptografia HASH + chave privada!");
             }else{
                 cipher.init(cipher.DECRYPT_MODE, pubi);
+                System.out.println("\nDecriptografia HASH + chave pública!");
             }            
             cipher.update(b);
             ret = cipher.doFinal();
