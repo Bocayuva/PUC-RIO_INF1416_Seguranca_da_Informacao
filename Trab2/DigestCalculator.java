@@ -19,21 +19,25 @@ class DigestCalculator {
 
     public static void main(String[] args) {
 
+      System.out.println("\n\n");
+      System.out.println("*********** Iniciando DigestCalculator ***********");
+      System.out.println("\n\n");
+
       if (args.length < 3) {
-            System.out.println("Erro na passagem de argumentos para o método, verifique e tente novamente!");
+            System.out.println("=> Erro na passagem de argumentos para o método, verifique e tente novamente!");
             System.exit(1);
         }else{
 
           String tipo_digest = args[0];
           if (!tipo_digest.equals("MD5") && !tipo_digest.equals("SHA1")) {
-            System.out.println("Tipo de digest informado inválido!" + tipo_digest);
+            System.out.println("=> Tipo de digest informado inválido!" + tipo_digest);
             System.exit(1);
           }
 
           /* Caminho do arquivo com a lista de digest salvo */
           String caminho_lista = args[args.length - 1];
           if (!caminho_lista.equals("ListDigests")) {
-            System.out.println("Arquivo com a lista de digests conhecido não informado, ListDigests!");
+            System.out.println("=> Arquivo com a lista de digests conhecido não informado, ListDigests!");
             System.exit(1);
           }
 
@@ -54,7 +58,7 @@ class DigestCalculator {
             }
             br.close();
           }catch(Exception e){
-            System.out.println("Erro na leitura do arquivo com a lista de digest : " + e.toString());
+            System.out.println("=> Erro na leitura do arquivo com a lista de digest : " + e.toString());
           }     
 
           /* 
@@ -68,7 +72,7 @@ class DigestCalculator {
                 File f = new File(args[i]);
 
                 if (!f.isFile()) {
-                  System.out.println("Arquivo fornecido não existe : " + args[i]);
+                  System.out.println("=> Arquivo fornecido não existe : " + args[i]);
                   System.exit(1);
                 }
 
@@ -81,7 +85,7 @@ class DigestCalculator {
                 if (digCalc.verificaDuplicidadeLinhaComando(f_name_file
                                                             , digCalc.digest_command)) {
             
-                    System.out.println("O seguinte arquivo foi fornecido em duplicidade via linha de comando : " + f_name_file);
+                    System.out.println("=> O seguinte arquivo foi fornecido em duplicidade via linha de comando : " + f_name_file);
                     System.exit(1);
 
                 }else{
@@ -97,7 +101,7 @@ class DigestCalculator {
 
             }
           }catch(Exception e){
-            System.out.println("Erro no acumulo de digest via linha de comando : " + e.toString());
+            System.out.println("=> Erro no acumulo de digest via linha de comando : " + e.toString());
           }          
 
           /* Verificação de cada arquivo informado na linha de comando */
@@ -115,11 +119,11 @@ class DigestCalculator {
                                         ,digCalc.digest_command)){
 
                         String result = file_name + " " + tipo_digest + " " + digCalc.digest_command.get(i-1).getDigest();
-                        System.out.println("=>" + result + " COLISION");
+                        System.out.println( result + " COLISION");
 
                       }else{
                           String result = file_name + " " + tipo_digest + " " + digCalc.digest_command.get(i-1).getDigest();
-                          System.out.println("=>" + result + " OK");
+                          System.out.println( result + " OK");
                       }
                       
 
@@ -129,11 +133,11 @@ class DigestCalculator {
                                         ,digCalc.digest_command)){
 
                         String result = file_name + " " + tipo_digest + " " + digCalc.digest_command.get(i-1).getDigest();
-                        System.out.println("=>" + result + " COLISION");
+                        System.out.println( result + " COLISION");
 
                       }else{
                           String result = file_name + " " + tipo_digest + " " + digCalc.digest_command.get(i-1).getDigest();
-                          System.out.println("=>" + result + " OK");
+                          System.out.println( result + " OK");
                       }
 
                     }else{
@@ -142,11 +146,11 @@ class DigestCalculator {
                                         ,digCalc.digest_command)){
 
                         String result = file_name + " " + tipo_digest + " " + digCalc.digest_command.get(i-1).getDigest();
-                        System.out.println("=>" + result + " COLISION");
+                        System.out.println( result + " COLISION");
 
                       }else{
                           String result = file_name + " " + tipo_digest + " " + digCalc.digest_command.get(i-1).getDigest();
-                          System.out.println("=>" + result + " NOT OK");
+                          System.out.println( result + " NOT OK");
                       }
 
 
@@ -161,10 +165,10 @@ class DigestCalculator {
                   if(digCalc.checaColisaoNotFound(digCalc.digest_command.get(i-1)
                                         ,digCalc.digest_command)){
 
-                     System.out.println("=>" + result + " COLISION");
+                     System.out.println( result + " COLISION");
 
                   }else{
-                      System.out.println("=>" + result + " NOT FOUND");
+                      System.out.println( result + " NOT FOUND");
                       digCalc.adicionaDentroArquivo(caminho_lista, digCalc.digest_command.get(i-1).getNome(), to_file);
                   }
                   
@@ -179,18 +183,18 @@ class DigestCalculator {
                 if(digCalc.checaColisaoNotFound(digCalc.digest_command.get(i-1)
                                         ,digCalc.digest_command)){
                    
-                   System.out.println("=>" + result + " COLISION");
+                   System.out.println( result + " COLISION");
 
                 }else{
 
                     if(digCalc.checaColisaoNotFoundFile(digCalc.digest_command.get(i-1)
                                         ,digCalc.lista_arquivos)){
                    
-                       System.out.println("=>" + result + " COLISION");
+                       System.out.println( result + " COLISION");
 
                     }else{
 
-                        System.out.println("=>" + result + " NOT FOUND");
+                        System.out.println( result + " NOT FOUND");
                         digCalc.adicionaFinalArquivo(caminho_lista, result);
 
                     }
@@ -201,6 +205,10 @@ class DigestCalculator {
           }
 
         }
+
+        System.out.println("\n\n");
+        System.out.println("*********** Finalizando DigestCalculator ***********");
+        System.out.println("\n\n");
 
     }
 
@@ -236,7 +244,7 @@ class DigestCalculator {
         
         inpStream.close();
       }catch(Exception e){
-        System.out.println("Erro gerando digest: " + e.toString());
+        System.out.println("=> Erro gerando digest: " + e.toString());
       }   
       return md.digest();
       
@@ -309,7 +317,7 @@ class DigestCalculator {
         fw.write(new_line + "\n");
         fw.close();
       }catch(Exception e){
-        System.out.println("Erro ao adicionar digest com status NOT FOUND! ");
+        System.out.println("=> Erro ao adicionar digest com status NOT FOUND! ");
       }      
 
     }

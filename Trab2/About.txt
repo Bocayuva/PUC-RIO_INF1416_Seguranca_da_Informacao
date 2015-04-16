@@ -46,6 +46,9 @@ para executar no Linux, execute os seguintes passos:
 > chmod 755 tests_script
 > ./tests_script
 
+* A pasta arquivos segue junto ao trabalho pois referem-se aos arquivos
+utilizados nos testes
+
 ---------------------------------------------------------
 GERADO EM 14/04/2015
 ---------------------------------------------------------
