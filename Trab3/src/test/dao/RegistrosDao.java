@@ -1,0 +1,25 @@
+package test.dao;
+
+import org.junit.Test;
+
+import main.business.Mensagem;
+import main.business.Registros;
+import main.business.Usuario;
+
+public class RegistrosDao {
+
+	@Test
+	public void CriaRegistro(){
+		Registros reg = new Registros();
+		reg.setArq_name("file_teste.txt");
+		Usuario user = new Usuario();
+		user.setId(1);
+		reg.setUser_fk(user);
+		Mensagem msg = new Mensagem();
+		msg.setId(1001);
+		reg.setMsg_fk(msg);
+		main.dao.RegistrosDao regDao = new main.dao.RegistrosDao();
+		regDao.CriaRegistro(reg);
+	}
+	
+}
