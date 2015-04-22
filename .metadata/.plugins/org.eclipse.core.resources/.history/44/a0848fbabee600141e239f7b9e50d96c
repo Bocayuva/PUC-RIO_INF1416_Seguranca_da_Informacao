@@ -1,0 +1,9 @@
+package main.business;
+
+public class TanList {
+
+	private int Id;
+	private String TanItem;
+	private int user_fk
+	
+}

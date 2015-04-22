@@ -1,0 +1,126 @@
+package main.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import main.business.Grupo;
+import main.business.Usuario;
+import main.jdbc.ConnectionFactory;
+
+public class UsuarioDao {
+
+	// a conexão com o banco de dados
+	private Connection connection;
+	
+    public UsuarioDao() {
+		   this.connection = new ConnectionFactory().getConnection();
+	}
+    
+    public void AdicionaUsuario(Usuario usuario){
+    	String sql = "insert into usuarios " +
+                "(" +
+                "user_name," +
+                "login_name," +
+                "user_group_fk," +
+                "user_password," +
+                "user_url_pub," +
+                "user_tan_list," +
+                "disabled," +
+                "salt," +
+                "created_at" +
+                ")" +
+                " values (?,?,?,?,?,?,?,?, now())";
+
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            // seta os valores
+            stmt.setString(1, usuario.getUser_name());
+            stmt.setString(2, usuario.getLogin_name());
+            stmt.setInt(3, usuario.getUser_group_fk());
+            stmt.setString(4, usuario.getUser_pwd());
+            stmt.setString(5, usuario.getUser_url_pub());
+            stmt.setInt(6, usuario.getUser_tan_list());            
+            stmt.setBoolean(7, true);
+            stmt.setInt(8, usuario.getSalt());
+
+            // executa
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+	public Usuario buscar(String login_name) {
+		String sql = "select * from usuarios where login_name = ?";
+		Usuario usuario = null;
+		try {
+            // prepared statement para inserção
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, login_name);
+            ResultSet res = stmt.executeQuery();
+            
+            while (res.next()) {
+            	usuario = new Usuario();
+				usuario.setId(res.getInt("id"));
+				usuario.setDisabled(res.getBoolean("disabled"));
+				usuario.setLogin_name(login_name);
+				usuario.setUser_name(res.getString("user_name"));
+				usuario.setUser_tan_list(res.getInt("user_tan_list"));
+				usuario.setUser_url_pub(res.getString("user_url_pub"));
+				
+				GrupoDao grDao = new GrupoDao();
+				Grupo gr = new Grupo();
+				
+				grDao.buscar(res.getInt("user_group_fk"), gr);
+				usuario.setUser_group_fk(gr);
+				
+			}
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+		return usuario;
+	}
+
+	public void update(Usuario usuario) {
+		String sql = "update usuarios" +
+				"set user_name = ?," +
+                "set login_name = ?," +
+                "set user_group_fk = ?," +
+                "set user_password = ?," +
+                "set user_url_pub = ?," +
+                "set user_tan_list = ?," +
+                "set disabled = ?," +
+                "set salt = ?" +
+				" where id = ?";
+		try {
+            // prepared statement para inserção
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            
+            stmt.setString(1, usuario.getUser_name());
+            stmt.setString(2, usuario.getLogin_name());
+            stmt.setInt(3, usuario.getUser_group_fk());
+            stmt.setString(4, usuario.getUser_pwd());
+            stmt.setString(5, usuario.getUser_url_pub());
+            stmt.setInt(6, usuario.getUser_tan_list());            
+            stmt.setBoolean(7, usuario.isDisabled());
+            stmt.setInt(8, usuario.getSalt());
+			
+			GrupoDao grDao = new GrupoDao();
+			Grupo gr = new Grupo();
+			
+			grDao.buscar(res.getInt("user_group_fk"), gr);
+			usuario.setUser_group_fk(gr);
+			
+			stmt.executeUpdate();
+				
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }		
+	}
+	
+}

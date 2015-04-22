@@ -28,19 +28,20 @@ public class UsuarioDao {
 	
 	@Test
 	public void buscarUsuario(){
-		Usuario usuario = Usuario.buscar("joaoteste");
+		Usuario usuario = Usuario.buscarPorLogin("joaoteste");
+		Assert.assertEquals(212, usuario.getSalt());
 		Assert.assertEquals(1, usuario.getUser_group_fk());
 		Assert.assertEquals(1, usuario.getId());		
 	}
 	
 	@Test
 	public void updateUsuario(){
-		Usuario usuario = Usuario.buscar("joaosilva");
+		Usuario usuario = Usuario.buscarPorLogin("joaosilva");
 		int id          = usuario.getId();
 		Assert.assertNotEquals("Update Joao", usuario.getUser_name());
 		usuario.setUser_name("Update Joao");
 		Usuario.update(usuario);
-		Usuario usuario_update = Usuario.buscar("joaosilva");
+		Usuario usuario_update = Usuario.buscarPorLogin("joaosilva");
 		Assert.assertEquals(id, usuario_update.getId());
 		Assert.assertEquals("Update Joao", usuario_update.getUser_name());
 	}

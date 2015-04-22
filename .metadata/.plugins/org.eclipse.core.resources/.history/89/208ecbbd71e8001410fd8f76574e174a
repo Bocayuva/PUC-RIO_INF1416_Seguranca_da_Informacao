@@ -1,0 +1,18 @@
+package main.java;
+
+import javax.swing.JFrame;
+
+public class TerceiraEtapa extends Home {
+
+	JFrame frame;
+	
+	public TerceiraEtapa(JFrame jframe){		
+		frame = jframe;
+	}
+	
+	public static void validaTanList(){
+		
+		
+	}
+	
+}

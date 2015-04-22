@@ -1,0 +1,28 @@
+package main.business;
+
+public class Registros {
+
+	private int Id;
+	private Mensagem msg_fk;
+	private Usuario user_fk;
+	private String arq_name;
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
+	public Mensagem getMsg_fk() {
+		return msg_fk;
+	}
+	public void setMsg_fk(Mensagem msg_fk) {
+		this.msg_fk = msg_fk;
+	}
+	public Usuario getUser_fk() {
+		return user_fk;
+	}
+	public void setUser_fk(Usuario user_fk) {
+		this.user_fk = user_fk;
+	}
+	
+}

@@ -1,5 +1,8 @@
 package main.business;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 import main.dao.UsuarioDao;
 
 public class Usuario {
@@ -13,6 +16,7 @@ public class Usuario {
 	private int user_tan_list;
 	private boolean disabled;
 	private int salt;
+	private Timestamp blocked_at;
 	
 	public int getId() {
 		return Id;
@@ -68,15 +72,26 @@ public class Usuario {
 	public void setSalt(int salt) {
 		this.salt = salt;
 	}
-	public static Usuario buscar(String login_name) {
+	public Timestamp getBlocked_at() {
+		return blocked_at;
+	}
+	public void setBlocked_at(Timestamp timestamp) {
+		this.blocked_at = timestamp;
+	}
+	public static Usuario buscarPorLogin(String login_name) {
 		UsuarioDao usuDao = new UsuarioDao();
-		Usuario usuario = usuDao.buscar(login_name);
+		Usuario usuario = usuDao.buscarPorLogin(login_name);
 		return usuario;
 	}
 	public static void update(Usuario usuario) {
 		UsuarioDao usuDao = new UsuarioDao();
 		usuDao.update(usuario);		
 	}
+	public static Usuario buscar(int user_fk) {
+		UsuarioDao usuDao = new UsuarioDao();
+		Usuario usuario = usuDao.buscar(user_fk);
+		return usuario;
+	}	
 	
 
 }

@@ -1,0 +1,28 @@
+package main.business;
+
+public class TanList {
+
+	private int Id;
+	private String TanItem;
+	private Usuario user_fk;
+	
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
+	public String getTanItem() {
+		return TanItem;
+	}
+	public void setTanItem(String tanItem) {
+		TanItem = tanItem;
+	}
+	public Usuario getUserFk() {
+		return UserFk;
+	}
+	public void setUserFk(Usuario userFk) {
+		UserFk = userFk;
+	}
+	
+}

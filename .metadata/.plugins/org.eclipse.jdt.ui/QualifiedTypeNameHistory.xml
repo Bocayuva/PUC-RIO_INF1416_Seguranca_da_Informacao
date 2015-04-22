@@ -1,2 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.sql.DriverManager"/>
+<fullyQualifiedTypeName name="test.java.ConnectionFactory"/>
+<fullyQualifiedTypeName name="javax.swing.text.StyleContext.SmallAttributeSet"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="main.jdbc.ConnectionFactory"/>
+<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+<fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="main.business.Registros"/>
+<fullyQualifiedTypeName name="main.business.Mensagem"/>
+<fullyQualifiedTypeName name="test.dao.RegistrosDao"/>
+<fullyQualifiedTypeName name="main.dao.RegistrosDao"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="test.dao.TanListDao"/>
+<fullyQualifiedTypeName name="org.junit.Assert"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="main.dao.GrupoDao"/>
+<fullyQualifiedTypeName name="main.business.Grupo"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="javax.swing.JPasswordField"/>
+<fullyQualifiedTypeName name="javax.swing.JButton"/>
+<fullyQualifiedTypeName name="java.security.MessageDigest"/>
+<fullyQualifiedTypeName name="main.dao.UsuarioDao"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="org.eclipse.jface.text.link.LinkedModeUI.ExitFlags"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="java.lang.ProcessBuilder.Redirect"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="java.sql.Timestamp"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="main.java.SegundaEtapa"/>
+<fullyQualifiedTypeName name="main.java.TerceiraEtapa"/>
+<fullyQualifiedTypeName name="main.java.QuartaEtapa"/>
+<fullyQualifiedTypeName name="main.java.Home"/>
+<fullyQualifiedTypeName name="main.business.Usuario"/>
+<fullyQualifiedTypeName name="main.java.PrimeiraEtapa"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="main.dao.TanListDao"/>
+<fullyQualifiedTypeName name="main.helper.Utility"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="main.business.TanList"/>
+</qualifiedTypeNameHistroy>

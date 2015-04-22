@@ -1,0 +1,5 @@
+Duvidas do trabalho:
+
+1 - Cada erro da terceira etapa eu apago o tan item da lista do usuario, ou apenas busco um proximo?
+    Em caso de erro na digitacao eu troco o tan item, certo?
+2 - Como proceder para o caso do usuário não ter mais tan itens?

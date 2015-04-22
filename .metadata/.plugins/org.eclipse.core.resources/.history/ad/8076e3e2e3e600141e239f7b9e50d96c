@@ -1,0 +1,26 @@
+package test.dao;
+
+import main.business.Grupo;
+import main.business.Usuario;
+
+import org.junit.Test;
+
+public class UsuarioDao {
+	
+	@Test
+	public void AdicionaUsuario(){
+		Usuario user = new Usuario();
+		user.setUser_name("João da Silva");
+		user.setLogin_name("joaosilva");
+		Grupo gr = new Grupo();
+		gr.setGid(1);
+		user.setUser_group_fk(gr);
+		user.setUser_tan_list(10);
+		user.setUser_url_pub("aa");
+		user.setUser_pwd("md53175bce1d3201d16594cebf9d7eb3");
+		
+		main.dao.UsuarioDao udao = new main.dao.UsuarioDao();
+		udao.AdicionaUsuario(user);
+	}
+
+}

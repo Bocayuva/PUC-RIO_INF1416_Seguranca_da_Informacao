@@ -34,6 +34,7 @@ CREATE TABLE usuarios
   disabled boolean,
   salt integer,
   created_at timestamp without time zone,
+  blocked_at timestamp without time zone,
   CONSTRAINT usuario_pkey PRIMARY KEY (id),
   CONSTRAINT usuario_group_fkey FOREIGN KEY (user_group_fk)
       REFERENCES public.grupos (gid) MATCH SIMPLE
@@ -71,6 +72,7 @@ CREATE TABLE tan_lists
   id serial NOT NULL,
   tan_item character varying(32), 
   id_user_fk integer,  
+  order_user integer,
   created_at timestamp without time zone,
   CONSTRAINT tan_lists_pkey PRIMARY KEY (id),
   CONSTRAINT usuario_tan_list_fkey FOREIGN KEY (id_user_fk)

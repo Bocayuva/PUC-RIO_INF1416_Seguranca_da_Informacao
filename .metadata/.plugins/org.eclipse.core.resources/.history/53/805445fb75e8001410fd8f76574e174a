@@ -1,0 +1,53 @@
+package main.java;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+import org.eclipse.jface.text.link.LinkedModeUI.ExitFlags;
+
+import main.business.TanList;
+import main.business.Usuario;
+import main.helper.Utility;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
+
+public class QuartaEtapa {
+
+	private JFrame frame;
+	private Usuario usuario;	
+	
+	public QuartaEtapa(JFrame jframe, Usuario jusuario){		
+		frame = jframe;
+		usuario = jusuario;
+	}
+	
+	public void begin(){
+		
+		frame.getContentPane().removeAll();		
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		
+		JLabel lbBoasVindas = new JLabel("Olá, " + usuario.getUser_name());
+		panel.add(lbBoasVindas);
+		
+		final JLabel lbMsgErro = new JLabel("-");
+		panel.add(lbMsgErro);
+				
+		Home.etapa.rebuildFrame();
+		
+	}
+	
+}

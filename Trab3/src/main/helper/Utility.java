@@ -3,10 +3,18 @@ package main.helper;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 import javax.swing.JButton;
+
+import main.business.TanList;
+import main.business.Usuario;
+import main.dao.TanListDao;
 
 public class Utility {
 
@@ -68,8 +76,53 @@ public class Utility {
 	}
 
 	public static boolean verificaSenhaTeclado(int salt, String pass_digited, String user_pwd) {
+		pass_digited = pass_digited.substring(0, pass_digited.length() - 1);
+		String[] elementos = pass_digited.split("_");
 		
-		return false;
+		List<String> lista = new ArrayList<String>();
+		lista.add(elementos[0]);
+		lista.add(elementos[1]);
+		
+		int n =  1;
+		int num_digitos = (elementos.length) / 2;
+		int left = 2;
+		int right = 4;
+		boolean retorno = false;
+		while (n < num_digitos) {
+			int tam_lista = lista.size();
+			for (int i = 0; i < tam_lista; i++) {
+				for (int j = left; j < right; j++) {
+					lista.add(lista.get(i) + elementos[j]);
+					if ( (lista.get(i) + elementos[j]).length() >= num_digitos  ) {
+						String senha_dig = geraSenha(lista.get(i) + elementos[j] + salt);
+						if (user_pwd.equals(senha_dig)) {
+							retorno = true;
+							break;
+						}	
+					}
+				}
+			}
+			left  += 2;
+			right += 2;
+			n     += 1;
+		}
+		
+		return retorno;
+	}
+
+	public static List<TanList> getTanItem(Usuario usuario) {
+		List<TanList> tanItens = new ArrayList<TanList>();
+		TanListDao tanListDao = new TanListDao();
+		tanListDao.buscarItens(tanItens, usuario.getId());	
+		return tanItens;
+	}
+	
+	public static void bloquearUsuario(Usuario usuario){
+		Calendar calendar = Calendar.getInstance();
+		Timestamp data_block = new Timestamp(calendar.getTime().getTime());
+		data_block.setTime(data_block.getTime() + 2*60*1000);
+		usuario.setBlocked_at(data_block);
+		Usuario.update(usuario);
 	}
 	
 }

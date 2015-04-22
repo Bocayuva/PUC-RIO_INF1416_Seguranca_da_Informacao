@@ -1,0 +1,52 @@
+1429465160056	Delete element
+1429466342161	Encapsulate field 'Id'
+1429466355807	Encapsulate field 'user_name'
+1429466364127	Encapsulate field 'login_name'
+1429466369136	Encapsulate field 'user_group_fk'
+1429466373307	Encapsulate field 'user_url_pub'
+1429466378889	Encapsulate field 'user_tan_list'
+1429466383207	Encapsulate field 'disabled'
+1429466451917	Encapsulate field 'gid'
+1429466455939	Encapsulate field 'grupo_name'
+1429466772832	Encapsulate field 'Id'
+1429466778019	Encapsulate field 'TanItem'
+1429466782925	Encapsulate field 'user_fk'
+1429466809673	Delete element
+1429466813842	Delete element
+1429466845711	Move compilation unit
+1429466904462	Delete element
+1429466921644	Delete element
+1429466927954	Delete element
+1429466937623	Move compilation unit
+1429466943168	Delete element
+1429466976285	Rename package 'test.jdbc'
+1429467026440	Delete element
+1429467091001	Delete element
+1429467093603	Delete element
+1429467105945	Rename package 'test'
+1429467848048	Encapsulate field 'user_pwd'
+1429469382028	Encapsulate field 'Id'
+1429469385517	Encapsulate field 'MsgText'
+1429469505563	Rename type 'Mensagens'
+1429469523269	Encapsulate field 'Id'
+1429469526903	Encapsulate field 'MsgFk'
+1429469531419	Encapsulate field 'UserFk'
+1429469559665	Encapsulate field 'UserFk'
+1429469614016	Encapsulate field 'user_group_fk'
+1429469662450	Encapsulate field 'Id'
+1429469668159	Encapsulate field 'user_name'
+1429469671770	Encapsulate field 'login_name'
+1429469675343	Encapsulate field 'user_group_fk'
+1429469679078	Encapsulate field 'user_pwd'
+1429469682443	Encapsulate field 'user_url_pub'
+1429469687872	Encapsulate field 'user_tan_list'
+1429469692092	Encapsulate field 'disabled'
+1429469721867	Encapsulate field 'user_fk'
+1429469741086	Encapsulate field 'msg_fk'
+1429469747200	Encapsulate field 'user_fk'
+1429471950927	Encapsulate field 'arq_name'
+1429489589529	Delete element
+1429495486277	Encapsulate field 'salt'
+1429624850378	Encapsulate field 'blocked_at'
+1429657049597	Encapsulate field 'usuario'
+1429658474829	Delete elements

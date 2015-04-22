@@ -10,11 +10,16 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import main.business.TanList;
 import main.business.Usuario;
 import main.helper.Utility;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
 
 public class Home {
 
@@ -41,6 +46,10 @@ public class Home {
 	 * Create the application.
 	 */
 	public Home() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		primeiraetapa();
 	}
 
@@ -48,9 +57,7 @@ public class Home {
 	 * Initialize the contents of the frame.
 	 */
 	private void primeiraetapa() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().removeAll();
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -72,26 +79,32 @@ public class Home {
 				if (lgName.length() > 20) {
 					lbMsgErro.setText("Login name inválido!");
 				}else{
-					usuario = Usuario.buscar(lgName);
+					usuario = Usuario.buscarPorLogin(lgName);
 					if(usuario == null){
 						/* Usuario não localizado */
 						lbMsgErro.setText("Usuário não localizado!");
-					}else{
-						
+					}else{						
 						if(usuario.isDisabled()){
-							/* Usuario está bloqueado */
 							lbMsgErro.setText("Usuário está bloqueado!");
 						}else{
-							lbMsgErro.setText("Usuário encontrado!");
-							segundaetapa();
-						}					
-						
+							Calendar calendar = Calendar.getInstance();
+							Timestamp data_atual = new Timestamp(calendar.getTime().getTime());
+							
+							if(usuario.getBlocked_at().after(data_atual)){
+								lbMsgErro.setText("Usuário está bloqueado!");
+							}else{
+								lbMsgErro.setText("Usuário encontrado!");
+								segundaetapa();
+							}
+							
+						}	
 					}
 					
 				}
 			}
 		});
-		panel.add(btnLogin);		
+		panel.add(btnLogin);	
+		rebuildFrame();
 	}
 	
 	private void segundaetapa(){
@@ -116,98 +129,166 @@ public class Home {
 		passWd_Hidden.setVisible(false);
 		panel.add(passWd_Hidden);
 		
+		final JTextField Erros_segunda_etapa = new JTextField();
+		Erros_segunda_etapa.setVisible(false);
+		panel.add(Erros_segunda_etapa);
+		Erros_segunda_etapa.setText("0");
+		
 		final JButton[] botoes = Utility.geraBotoes();
-		botoes[0].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String[] params = botoes[0].getText().split(" ");
-				String PassWd = new String(txtPassWd.getPassword());
-				if (PassWd.length() < 10) {
-					txtPassWd.setText(PassWd + ".");
-					passWd_Hidden.setText(passWd_Hidden.getText() + params[0] + '_' + params[1]);
-				}
-			}
-		});
-		panel.add(botoes[0]);
 		
-		botoes[1].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String[] params = botoes[1].getText().split(" ");
-				String PassWd = new String(txtPassWd.getPassword());
-				if (PassWd.length() < 10) {
-					txtPassWd.setText(PassWd + ".");
-					passWd_Hidden.setText(passWd_Hidden.getText() + params[0] + '_' + params[1]);
+		for (int i = 0; i < botoes.length; i++) {
+			final int operador = i;
+			botoes[operador].addActionListener(new ActionListener() {			
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String[] params = botoes[operador].getText().split(" ");
+					String PassWd = new String(txtPassWd.getPassword());
+					if (PassWd.length() < 10) {
+						txtPassWd.setText(PassWd + ".");
+						passWd_Hidden.setText(passWd_Hidden.getText() + params[0] + '_' + params[2] + '_' );
+					}
 				}
-			}
-		});
-		panel.add(botoes[1]);
+			});
+			panel.add(botoes[operador]);
+		}
 		
-		botoes[2].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String[] params = botoes[2].getText().split(" ");
-				String PassWd = new String(txtPassWd.getPassword());
-				if (PassWd.length() < 10) {
-					txtPassWd.setText(PassWd + ".");
-					passWd_Hidden.setText(passWd_Hidden.getText() + params[0] + '_' + params[1]);
-				}
-			}
-		});
-		panel.add(botoes[2]);
-		
-		botoes[3].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String[] params = botoes[3].getText().split(" ");
-				String PassWd = new String(txtPassWd.getPassword());
-				if (PassWd.length() < 10) {
-					txtPassWd.setText(PassWd + ".");
-					passWd_Hidden.setText(passWd_Hidden.getText() + params[0] + '_' + params[1]);
-				}
-			}
-		});
-		panel.add(botoes[3]);
-		
-		botoes[4].addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String[] params = botoes[4].getText().split(" ");
-				String PassWd = new String(txtPassWd.getPassword());
-				if (PassWd.length() < 10) {
-					txtPassWd.setText(PassWd + ".");
-					passWd_Hidden.setText(passWd_Hidden.getText() + params[0] + '_' + params[1]);
-				}
-			}
-		});
-		panel.add(botoes[4]);
-		
-		JButton btnConfirmar = new JButton();
-		btnConfirmar.setText("Confirmar");
-		btnConfirmar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int salt = usuario.getSalt();
-				boolean isTrue = Utility.verificaSenhaTeclado(salt, passWd_Hidden.getText(), usuario.getUser_pwd());
-				if (isTrue) {
-					lbMsgErro.setText("ok, senha valida");
-				}
-			}
-		});
-		panel.add(btnConfirmar);
-		
-		JButton btnLimpar = new JButton();
-		btnLimpar.setText("Limpar");
+		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				txtPassWd.setText("");
+				passWd_Hidden.setText("");
 			}
+			
 		});
 		panel.add(btnLimpar);
 		
+		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int salt = usuario.getSalt();
+				if (passWd_Hidden.getText().equals("")) {
+					lbMsgErro.setText("forneça a senha!");
+				}else{	
+					boolean isTrue = Utility.verificaSenhaTeclado(salt, passWd_Hidden.getText(), usuario.getUser_pwd());
+					if (isTrue) {
+						terceiraetapa("");
+					}else{
+						
+						int num_erros = Integer.parseInt(Erros_segunda_etapa.getText()) + 1;
+						Erros_segunda_etapa.setText(num_erros + "");
+						
+						if(num_erros >= 3){
+							Utility.bloquearUsuario(usuario);
+							primeiraetapa();		
+						}else{
+							txtPassWd.setText("");
+							passWd_Hidden.setText("");
+							lbMsgErro.setText("senha não confere!");
+						}						
+					}
+				}
+			}
+					
+			
+		});
+		panel.add(btnConfirmar);
+		
+		rebuildFrame();
 	}
+	
+	private void terceiraetapa(String numErros) {
+
+		frame.getContentPane().removeAll();		
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		
+		JLabel lblListViewPrograma = new JLabel("List View Programa");
+		panel.add(lblListViewPrograma);
+		
+		final JLabel lbMsgErro = new JLabel("-");
+		panel.add(lbMsgErro);
+		
+		final JTextField Erros_terceira_etapa = new JTextField();
+		Erros_terceira_etapa.setVisible(false);
+		panel.add(Erros_terceira_etapa);
+		if (numErros.equals("")) {
+			Erros_terceira_etapa.setText("0");
+		}else{
+			Erros_terceira_etapa.setText(numErros);
+		}
+		
+		
+		final List<TanList> tan_itens = Utility.getTanItem(usuario);
+		final JTextField tanItemADigitar = new JTextField();
+		final JTextField itemPosition = new JTextField();
+		
+		Random rand = new Random();
+		if (tan_itens.size() <= 0) {
+			lbMsgErro.setText("atualize seu cadastro! faltam tan itens");
+		}else{
+			final int posicao = rand.nextInt(tan_itens.size());
+			
+			itemPosition.setText(posicao + "");
+			tanItemADigitar.setText(tan_itens.get(posicao).getTanItem());
+			
+			final JLabel lbTanList = new JLabel("Forneça o código na posição " + posicao + " ");
+			panel.add(lbTanList);
+			
+			final JTextField txtTanList = new JTextField();
+			panel.add(txtTanList);
+			txtTanList.setColumns(10);
+			
+			JButton btnTanList = new JButton("Confirmar");
+			btnTanList.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent arg0) {
+					String valor_digitado = Utility.geraSenha(txtTanList.getText() + usuario.getSalt());
+					if (valor_digitado.equals(tanItemADigitar)) {						
+						TanList.apagarRegistro(tan_itens.get(posicao));
+						quartaetapa();
+					}else{
+						int num_erros = Integer.parseInt(Erros_terceira_etapa.getText()) + 1;
+						Erros_terceira_etapa.setText(num_erros + "");
+						
+						if(num_erros >= 3){
+							Utility.bloquearUsuario(usuario);
+							primeiraetapa();		
+						}else{
+							TanList.apagarRegistro(tan_itens.get(posicao));							
+							terceiraetapa(Erros_terceira_etapa.getText());
+							//txtTanList.setText("");
+							//lbMsgErro.setText("codigo errado!");
+						}						
+					}
+				}
+			});
+			panel.add(btnTanList);
+		}
+		
+		rebuildFrame();
+	}
+	
+	
+	private void quartaetapa() {
+
+		frame.getContentPane().removeAll();		
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		
+		JLabel lbBoasVindas = new JLabel("Olá, " + usuario.getUser_name());
+		panel.add(lbBoasVindas);
+		
+		final JLabel lbMsgErro = new JLabel("-");
+		panel.add(lbMsgErro);
+				
+		rebuildFrame();
+	}
+	
+	private void rebuildFrame(){
+		frame.revalidate();
+		frame.repaint();
+	}
+	
 
 }

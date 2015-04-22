@@ -29,9 +29,10 @@ public class UsuarioDao {
                 "user_tan_list," +
                 "disabled," +
                 "salt," +
-                "created_at" +
+                "created_at," +
+                "blocked_at" +
                 ")" +
-                " values (?,?,?,?,?,?,?,?, now())";
+                " values (?,?,?,?,?,?,?,?, now(), now())";
 
         try {
             // prepared statement para inserção
@@ -44,7 +45,7 @@ public class UsuarioDao {
             stmt.setString(4, usuario.getUser_pwd());
             stmt.setString(5, usuario.getUser_url_pub());
             stmt.setInt(6, usuario.getUser_tan_list());            
-            stmt.setBoolean(7, true);
+            stmt.setBoolean(7, false);
             stmt.setInt(8, usuario.getSalt());
 
             // executa
@@ -55,7 +56,7 @@ public class UsuarioDao {
         }
     }
 
-	public Usuario buscar(String login_name) {
+	public Usuario buscarPorLogin(String login_name) {
 		String sql = "select * from usuarios where login_name = ?";
 		Usuario usuario = null;
 		try {
@@ -72,6 +73,9 @@ public class UsuarioDao {
 				usuario.setUser_name(res.getString("user_name"));
 				usuario.setUser_tan_list(res.getInt("user_tan_list"));
 				usuario.setUser_url_pub(res.getString("user_url_pub"));
+				usuario.setUser_pwd(res.getString("user_password"));
+				usuario.setSalt(res.getInt("salt"));
+				usuario.setBlocked_at(res.getTimestamp("blocked_at"));
 				
 				GrupoDao grDao = new GrupoDao();
 				Grupo gr = new Grupo();
@@ -80,6 +84,8 @@ public class UsuarioDao {
 				usuario.setUser_group_fk(gr);
 				
 			}
+            
+            stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -97,6 +103,7 @@ public class UsuarioDao {
                 " , user_tan_list = ?" +
                 " , disabled = ?" +
                 " , salt = ?" +
+                " , blocked_at = ?" +
 				" where id = ?";
 		try {
             // prepared statement para inserção
@@ -110,13 +117,51 @@ public class UsuarioDao {
             stmt.setInt(6, usuario.getUser_tan_list());            
             stmt.setBoolean(7, usuario.isDisabled());
             stmt.setInt(8, usuario.getSalt());
-            stmt.setInt(9, usuario.getId());
-			
+            stmt.setTimestamp(9, usuario.getBlocked_at());
+            stmt.setInt(10, usuario.getId());
+            
 			stmt.executeUpdate();
+			stmt.close();
 				
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }		
+	}
+
+	public Usuario buscar(int user_fk) {
+		String sql = "select * from usuarios where id = ? ";
+		Usuario usuario = null;
+		try {
+            // prepared statement para inserção
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, user_fk);
+            ResultSet res = stmt.executeQuery();
+            
+            while (res.next()) {
+            	usuario = new Usuario();
+				usuario.setId(user_fk);
+				usuario.setDisabled(res.getBoolean("disabled"));
+				usuario.setLogin_name(res.getString("login_name"));
+				usuario.setUser_name(res.getString("user_name"));
+				usuario.setUser_tan_list(res.getInt("user_tan_list"));
+				usuario.setUser_url_pub(res.getString("user_url_pub"));
+				usuario.setUser_pwd(res.getString("user_password"));
+				usuario.setSalt(res.getInt("salt"));
+				usuario.setBlocked_at(res.getTimestamp("blocked_at"));
+				
+				GrupoDao grDao = new GrupoDao();
+				Grupo gr = new Grupo();
+				
+				grDao.buscar(res.getInt("user_group_fk"), gr);
+				usuario.setUser_group_fk(gr);
+				
+			}
+            
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+		return usuario;
 	}
 	
 }

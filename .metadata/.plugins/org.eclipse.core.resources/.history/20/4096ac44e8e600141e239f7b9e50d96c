@@ -1,0 +1,45 @@
+package main.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import main.business.Grupo;
+import main.jdbc.ConnectionFactory;
+
+public class GrupoDao {
+
+	// a conexão com o banco de dados
+	private Connection connection;
+	
+    public GrupoDao() {
+		   this.connection = new ConnectionFactory().getConnection();
+	}
+	
+	public void Grupo buscar(int gid, Grupo gr) {
+		String sql = "select * from usuarios where login_name = ?";
+		try {
+            // prepared statement para inserção
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, login_name);
+            ResultSet res = stmt.executeQuery();
+            
+            while (res.next()) {
+				usuario.setId(res.getInt("id"));
+				usuario.setDisabled(res.getBoolean("disabled"));
+				usuario.setLogin_name(login_name);
+				usuario.setUser_name(res.getString("user_name"));
+				usuario.setUser_tan_list(res.getInt("user_tan_list"));
+				usuario.setUser_url_pub(res.getString("user_url_pub"));
+				usuario.setUser_group_fk(GrupoDao.buscar(res.getInt("user_group_fk")));
+				
+			}
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+	}
+
+	
+	
+}

@@ -1,0 +1,12 @@
+package test.dao;
+
+import org.junit.Test;
+
+public class TanListDao {
+
+	@Test
+	public void CriaRegistro(){
+		
+	}
+	
+}

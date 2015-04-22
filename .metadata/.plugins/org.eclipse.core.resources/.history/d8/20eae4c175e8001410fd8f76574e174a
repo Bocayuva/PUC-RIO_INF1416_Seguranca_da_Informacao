@@ -1,0 +1,129 @@
+package main.java;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+import org.eclipse.jface.text.link.LinkedModeUI.ExitFlags;
+
+import main.business.TanList;
+import main.business.Usuario;
+import main.helper.Utility;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
+
+public class SegundaEtapa {
+
+	private Home etapa;
+	private JFrame frame;
+	private Usuario usuario;	
+	
+	public SegundaEtapa(JFrame jframe, Usuario jusuario, Home etapa){		
+		frame = jframe;
+		usuario = jusuario;
+	}
+	
+	public void begin(){
+		
+		frame.getContentPane().removeAll();
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		
+		JLabel lblListViewPrograma = new JLabel("List View Programa");
+		panel.add(lblListViewPrograma);
+		
+		final JLabel lbMsgErro = new JLabel("-");
+		panel.add(lbMsgErro);
+		
+		final JPasswordField txtPassWd = new JPasswordField();
+		txtPassWd.setVisible(true);
+		txtPassWd.setEnabled(false);
+		txtPassWd.setColumns(10);
+		panel.add(txtPassWd);
+		
+		final JTextField passWd_Hidden = new JTextField();
+		passWd_Hidden.setVisible(false);
+		panel.add(passWd_Hidden);
+		
+		final JTextField Erros_segunda_etapa = new JTextField();
+		Erros_segunda_etapa.setVisible(false);
+		panel.add(Erros_segunda_etapa);
+		Erros_segunda_etapa.setText("0");
+		
+		final JButton[] botoes = Utility.geraBotoes();
+		
+		for (int i = 0; i < botoes.length; i++) {
+			final int operador = i;
+			botoes[operador].addActionListener(new ActionListener() {			
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String[] params = botoes[operador].getText().split(" ");
+					String PassWd = new String(txtPassWd.getPassword());
+					if (PassWd.length() < 10) {
+						txtPassWd.setText(PassWd + ".");
+						passWd_Hidden.setText(passWd_Hidden.getText() + params[0] + '_' + params[2] + '_' );
+					}
+				}
+			});
+			panel.add(botoes[operador]);
+		}
+		
+		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtPassWd.setText("");
+				passWd_Hidden.setText("");
+			}
+			
+		});
+		panel.add(btnLimpar);
+		
+		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int salt = usuario.getSalt();
+				if (passWd_Hidden.getText().equals("")) {
+					lbMsgErro.setText("forneça a senha!");
+				}else{	
+					boolean isTrue = Utility.verificaSenhaTeclado(salt, passWd_Hidden.getText(), usuario.getUser_pwd());
+					if (isTrue) {
+						Home.etapa.etapa3.begin();
+					}else{
+						
+						int num_erros = Integer.parseInt(Erros_segunda_etapa.getText()) + 1;
+						Erros_segunda_etapa.setText(num_erros + "");
+						
+						if(num_erros >= 3){
+							Calendar calendar = Calendar.getInstance();
+							Timestamp data_block = new Timestamp(calendar.getTime().getTime());
+							data_block.setTime(data_block.getTime() + 2*60*1000);
+							usuario.setBlocked_at(data_block);
+							Usuario.update(usuario);
+							Home.etapa.etapa1.begin();	
+						}else{
+							lbMsgErro.setText("senha não confere!");
+						}						
+					}
+				}
+			}
+					
+			
+		});
+		panel.add(btnConfirmar);
+		
+		Home.etapa.rebuildFrame();
+	}
+	
+}
