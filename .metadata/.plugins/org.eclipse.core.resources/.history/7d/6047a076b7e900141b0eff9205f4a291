@@ -1,0 +1,59 @@
+package main.java;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import main.business.Usuario;
+
+public class TelaInicial extends JPanel {
+
+	private JFrame frame;
+	private Usuario usuario;
+	private JPanel panel;
+		
+	public TelaInicial(Usuario fusuario, JFrame fframe){
+		usuario = fusuario;
+		frame   = fframe;
+		frame.setBounds(100,100,650,650);
+	}
+	
+	public void montaTela() {
+		
+		frame.getContentPane().removeAll();		
+		
+		panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		
+		
+		panel.setLayout(new GridLayout());
+		
+		montaCabecalho();
+		montaCorpo1();
+		montaCorpo2();
+				
+		rebuildFrame();
+		
+	}
+
+	private void montaCabecalho() {
+		
+	}
+	
+	private void montaCorpo1() {
+		
+	}
+
+	private void montaCorpo2() {
+		
+	}
+	
+	private void rebuildFrame(){
+		frame.revalidate();
+		frame.repaint();
+	}
+
+}

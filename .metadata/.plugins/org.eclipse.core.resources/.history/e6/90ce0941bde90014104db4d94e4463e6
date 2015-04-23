@@ -1,0 +1,69 @@
+package main.java;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import main.business.Usuario;
+import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
+import javax.swing.JDesktopPane;
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+
+public class TelaInicial extends JPanel {
+
+	private JFrame frame;
+	private Usuario usuario;
+		
+	public TelaInicial(Usuario fusuario, JFrame fframe){
+				
+		frame.setBounds(100,100,650,650);
+		usuario = fusuario;
+		frame   = fframe;		
+		
+	}
+	
+	public void montaTela() {
+		
+		frame.getContentPane().removeAll();		
+		
+		montaCabecalho();
+		montaCorpo1();
+		montaCorpo2();
+				
+		rebuildFrame();
+		
+	}
+
+	private void montaCabecalho() {
+		JPanel cabecalho = new JPanel();
+		cabecalho.setBounds(100, 100, 650, 200);
+		cabecalho.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+		
+		JLabel lbLogin = new JLabel("Login: " + usuario.getLogin_name());
+		cabecalho.add(lbLogin);
+		
+		JLabel lbGrupo = new JLabel("Grupo: " + usuario.getLogin_name());
+		cabecalho.add(lbLogin);
+		
+		frame.getContentPane().add(cabecalho);
+	}
+	
+	private void montaCorpo1() {
+		
+	}
+
+	private void montaCorpo2() {
+		
+	}
+	
+	private void rebuildFrame(){
+		frame.revalidate();
+		frame.repaint();
+	}
+
+}

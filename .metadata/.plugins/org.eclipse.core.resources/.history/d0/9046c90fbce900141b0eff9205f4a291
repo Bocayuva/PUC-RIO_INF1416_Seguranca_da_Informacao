@@ -1,0 +1,75 @@
+package main.java;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import main.business.Usuario;
+import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
+import javax.swing.JDesktopPane;
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+
+public class TelaInicial extends JPanel {
+
+	private JFrame frame;
+	private Usuario usuario;
+	private JPanel panel;
+		
+	public TelaInicial(Usuario fusuario, JFrame fframe){
+		
+		frame.setBounds(100,100,650,650);
+		usuario = fusuario;
+		frame   = fframe;		
+		
+	}
+	
+	public void montaTela() {
+		
+		frame.getContentPane().removeAll();		
+		
+		panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{1};
+		gridBagLayout.rowHeights = new int[]{3};
+		gridBagLayout.columnWeights = new double[]{Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{Double.MIN_VALUE};
+		panel.add(gridBagLayout);
+		
+		montaCabecalho();
+		montaCorpo1();
+		montaCorpo2();
+				
+		rebuildFrame();
+		
+	}
+
+	private void montaCabecalho() {
+		JPanel cabecalho = new JPanel();
+		
+		JLabel lblNewLabel = new JLabel("Login name: " + usuario.getLogin_name());
+		cabecalho.add(lblNewLabel);
+		
+		frame.getContentPane().add(cabecalho);
+	}
+	
+	private void montaCorpo1() {
+		
+	}
+
+	private void montaCorpo2() {
+		
+	}
+	
+	private void rebuildFrame(){
+		frame.revalidate();
+		frame.repaint();
+	}
+
+}

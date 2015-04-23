@@ -50,3 +50,8 @@
 1429624850378	Encapsulate field 'blocked_at'
 1429657049597	Encapsulate field 'usuario'
 1429658474829	Delete elements
+1429790776257	Rename type 'Home'
+1429793377053	Rename type 'TelaInicial'
+1429793382889	Delete element
+1429796504165	Delete element
+1429796532660	Delete element
