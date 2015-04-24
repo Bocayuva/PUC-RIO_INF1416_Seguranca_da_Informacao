@@ -1,0 +1,43 @@
+package main.java;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import main.business.Grupo;
+import main.business.Usuario;
+
+public class Cabecalho extends JPanel {
+	
+	public Cabecalho() {
+		MontaCabecalho(usuario);
+	}
+
+	/**
+	 * Create the panel.
+	 * @return 
+	 */
+	public static  JPanel MontaCabecalho(Usuario usuario) {
+		
+		JPanel cabecalho = new JPanel();
+		cabecalho.setBounds(10, 12, 501, 91);
+		cabecalho.setLayout(null);
+		
+		JLabel lbLogin = new JLabel("Login: " + usuario.getLogin_name());
+		lbLogin.setBounds(12, 12, 469, 15);
+		cabecalho.add(lbLogin);
+		
+		Grupo grUsuario = Grupo.buscar(usuario.getUser_group_fk());
+		
+		JLabel lbGrupo = new JLabel("Grupo: " + grUsuario.getGrupo_name());
+		lbGrupo.setBounds(12, 39, 469, 15);
+		cabecalho.add(lbGrupo);
+		
+		JLabel lbDescUsuario = new JLabel("Descrição do usuário: " + usuario.getUser_name());
+		lbDescUsuario.setBounds(12, 66, 469, 15);
+		cabecalho.add(lbDescUsuario);
+		
+		return cabecalho;
+		
+	}
+
+}

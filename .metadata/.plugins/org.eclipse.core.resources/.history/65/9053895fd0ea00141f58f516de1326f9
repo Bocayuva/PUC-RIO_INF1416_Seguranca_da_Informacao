@@ -1,0 +1,33 @@
+package main.java;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+
+import main.business.Usuario;
+
+public class CadastrarUsuario extends TelaInicial {
+
+	public CadastrarUsuario(Usuario fusuario, JFrame fframe) {
+		super(fusuario, fframe);		
+	}
+
+	public void montaFormCadastro() {
+		JPanel formCadastro = new JPanel();
+		formCadastro.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		formCadastro.setBounds(10, 169, 501, 350);
+		formCadastro.setLayout(null);
+		
+		JLabel lbMenu = new JLabel("Formulário de cadastro: ");
+		lbMenu.setBounds(12, 12, 113, 15);
+		formCadastro.add(lbMenu);
+		
+		super.allPane.add(formCadastro);
+	}
+
+}

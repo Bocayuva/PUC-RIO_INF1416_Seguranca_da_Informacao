@@ -1,0 +1,14 @@
+package main.java;
+
+import javax.swing.JPanel;
+
+public class SairSistema extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public SairSistema() {
+
+	}
+
+}

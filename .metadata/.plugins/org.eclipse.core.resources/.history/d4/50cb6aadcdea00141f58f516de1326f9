@@ -1,0 +1,11 @@
+package main.java;
+
+import javax.swing.JPanel;
+
+public class CadastrarUsuario extends JPanel {
+
+	public void montaFormCadastro(){
+		
+	}
+	
+}

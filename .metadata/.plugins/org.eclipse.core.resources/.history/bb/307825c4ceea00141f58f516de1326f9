@@ -1,0 +1,14 @@
+package main.java;
+
+import javax.swing.JFrame;
+
+import main.business.Usuario;
+
+public class CadastrarUsuario extends Menu {
+
+	public CadastrarUsuario(Usuario fusuario, JFrame fframe) {
+		super(fusuario, fframe);
+		// TODO Auto-generated constructor stub
+	}
+
+}

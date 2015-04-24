@@ -1,0 +1,51 @@
+package main.java;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+
+import main.business.Usuario;
+
+public class CadastrarUsuario extends TelaInicial {
+
+	public CadastrarUsuario(Usuario fusuario, JFrame fframe) {
+		super(fusuario, fframe);		
+	}
+
+	public void montaFormCadastro() {
+		JPanel corpo2 = new JPanel();
+		corpo2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		corpo2.setBounds(10, 169, 501, 350);
+		corpo2.setLayout(null);
+		
+		JLabel lbMenu = new JLabel("Cadastrar novo usuário: ");
+		lbMenu.setBounds(12, 12, 113, 15);
+		corpo2.add(lbMenu);
+		
+		final JPanel jForm;
+		
+		JButton btnNovoUsuario = new JButton("1 - Cadastrar um ");
+		btnNovoUsuario.setBounds(12, 40, 247, 25);
+		btnNovoUsuario.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		corpo2.add(btnNovoUsuario);
+		
+		JButton btnConsultaPasta = new JButton("2 - Consulta pasta de arquivos secretos do usuário");
+		btnConsultaPasta.setBounds(12, 77, 396, 25);
+		corpo2.add(btnConsultaPasta);
+		JButton btnSair = new JButton("3 - Sair do sistema");
+		btnSair.setBounds(12, 114, 165, 25);
+		corpo2.add(btnSair);
+		
+		super.allPane.add(corpo2);
+	}
+
+}
