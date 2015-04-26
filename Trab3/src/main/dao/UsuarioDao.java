@@ -58,7 +58,7 @@ public class UsuarioDao {
 
 	public Usuario buscarPorLogin(String login_name) {
 		String sql = "select * from usuarios where login_name = ?";
-		Usuario usuario = null;
+		Usuario usuario = new Usuario();
 		try {
             // prepared statement para inserção
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -66,7 +66,7 @@ public class UsuarioDao {
             ResultSet res = stmt.executeQuery();
             
             while (res.next()) {
-            	usuario = new Usuario();
+            	
 				usuario.setId(res.getInt("id"));
 				usuario.setDisabled(res.getBoolean("disabled"));
 				usuario.setLogin_name(login_name);

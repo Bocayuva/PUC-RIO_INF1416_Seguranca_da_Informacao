@@ -91,6 +91,10 @@ public class Usuario {
 		UsuarioDao usuDao = new UsuarioDao();
 		Usuario usuario = usuDao.buscar(user_fk);
 		return usuario;
+	}
+	public static void incluir(Usuario usuario) {
+		UsuarioDao usuDao = new UsuarioDao();
+		usuDao.AdicionaUsuario(usuario);
 	}	
 	
 

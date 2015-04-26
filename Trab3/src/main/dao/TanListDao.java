@@ -12,7 +12,6 @@ import main.jdbc.ConnectionFactory;
 
 public class TanListDao {
 
-	// a conexão com o banco de dados
 		private Connection connection;
 		
 	    public TanListDao() {
@@ -30,15 +29,13 @@ public class TanListDao {
 	                " values (?,?,?,now())";
 
 	        try {
-	            // prepared statement para inserção
+
 	            PreparedStatement stmt = connection.prepareStatement(sql);
 
-	            // seta os valores
 	            stmt.setString(1, tanlist.getTanItem());
 	            stmt.setInt(2, tanlist.getUser_fk());
 	            stmt.setInt(3, tanlist.getOrder_user());
 
-	            // executa
 	            stmt.execute();
 	            stmt.close();
 	        } catch (SQLException e) {
@@ -52,7 +49,7 @@ public class TanListDao {
 	                	 "order by order_user";
 			
 			try {
-	            // prepared statement para inserção
+
 	            PreparedStatement stmt = connection.prepareStatement(sql);
 	            stmt.setInt(1, User_fk);
 	            ResultSet res = stmt.executeQuery();
@@ -77,7 +74,7 @@ public class TanListDao {
 			String sql = "delete from tan_lists " +
 					" where id = ? ";
 			try {
-	            // prepared statement para inserção
+
 	            PreparedStatement stmt = connection.prepareStatement(sql);
 	            
 	            stmt.setInt(1, id);
@@ -88,6 +85,32 @@ public class TanListDao {
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }		
+		}
+
+		public boolean buscarPorTanItemUsuario(String tanHex, Usuario usuario) {
+			String sql = "select * from tan_lists " +
+               	 "where id_user_fk = ? " +
+               	 "and tan_item = ? ";
+			try {
+				
+	            PreparedStatement stmt = connection.prepareStatement(sql);	            
+	            stmt.setInt(1, usuario.getId());
+	            stmt.setString(2, tanHex);
+	            
+	            ResultSet res = stmt.executeQuery();
+	            
+	            if (res.next()) {
+	            	stmt.close();
+					return true;
+				}
+	            
+				stmt.close();
+					
+	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
+			
+			return false;
 		}
 	
 }

@@ -1,5 +1,0 @@
-package main.java;
-
-public class CadastrarUsuario extends Menu {
-
-}

@@ -1,9 +1,0 @@
-package main.java;
-
-import javax.swing.JPanel;
-
-public class CadastrarUsuario extends JPanel {
-
-	
-	
-}

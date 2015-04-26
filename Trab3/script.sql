@@ -18,6 +18,26 @@ GRANT ALL ON SCHEMA public TO public;
 COMMENT ON SCHEMA public
   IS 'standard public schema';
 
+
+
+-- Table: grupos
+
+-- DROP TABLE grupos;
+
+CREATE TABLE grupos
+(
+  gid serial NOT NULL,
+  grupo_name character varying(50),  
+  created_at timestamp without time zone,
+  CONSTRAINT grupo_pkey PRIMARY KEY (gid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE grupos
+  OWNER TO postgres;
+
+
 -- Table: usuario
 
 -- DROP TABLE usuarios;
@@ -39,29 +59,15 @@ CREATE TABLE usuarios
   CONSTRAINT usuario_group_fkey FOREIGN KEY (user_group_fk)
       REFERENCES public.grupos (gid) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
+  CONSTRAINT usuario_user_name_unique 
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE usuario
+ALTER TABLE usuarios
   OWNER TO postgres;
 
--- Table: grupos
 
--- DROP TABLE grupos;
-
-CREATE TABLE grupos
-(
-  gid serial NOT NULL,
-  grupo_name character varying(50),  
-  created_at timestamp without time zone,
-  CONSTRAINT grupo_pkey PRIMARY KEY (gid)
-)
-WITH (
-  OIDS=FALSE
-);
-ALTER TABLE grupos
-  OWNER TO postgres;
 
 -- Table: tan_lists
 

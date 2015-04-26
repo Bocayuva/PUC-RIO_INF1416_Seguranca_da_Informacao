@@ -241,15 +241,14 @@ public class Login {
 		
 		
 		final List<TanList> tan_itens    = Utility.getTanItem(usuario);
-		
-		Random rand = new Random();
-		final int posicao = rand.nextInt(tan_itens.size());
-		final String tanItemADigitar = tan_itens.get(posicao).getTanItem(); 
-		
 		if (tan_itens.size() <= 0) {
 			lbMsgErro.setText("atualize seu cadastro! faltam tan itens");
 			return;
 		}
+		
+		Random rand = new Random();
+		final int posicao = rand.nextInt(tan_itens.size());
+		final String tanItemADigitar = tan_itens.get(posicao).getTanItem(); 
 		
 		final JLabel lbTanList = new JLabel("Forneça o código na posição: " + tan_itens.get(posicao).getOrder_user() + " ");
 		lbTanList.setBounds(12, 12, 407, 15);
@@ -270,7 +269,7 @@ public class Login {
 				}
 				String valor_digitado = Utility.geraSenha(txtTanList.getText() + usuario.getSalt());
 				if (valor_digitado.equals(tanItemADigitar)) {						
-					//TanList.apagarRegistro(tan_itens.get(posicao));						
+					TanList.apagarRegistro(tan_itens.get(posicao));						
 					MenuPrincipal menu = new MenuPrincipal(usuario, frame);
 					return;
 				}

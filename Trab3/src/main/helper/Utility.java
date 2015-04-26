@@ -48,6 +48,16 @@ public class Utility {
 		return list;
 	}
 	
+	
+	public static String geraRandomInteger() {
+	    Random rand = new Random();
+	    String randomGerado = "";
+	    for (int i = 0; i < 9; i++) {
+			randomGerado += rand.nextInt(9);
+		}
+		return randomGerado;
+	}
+	
 	public static String geraSenha(String senha){
 		
 		MessageDigest messageDigest = null;
@@ -124,5 +134,32 @@ public class Utility {
 		usuario.setBlocked_at(data_block);
 		Usuario.update(usuario);
 	}
-	
+
+	public static boolean VerificaPadraoInvalido(char[] password) {
+		/* Verifica padroes invalidos na senha */
+		char last_chr = password[0];
+		for (int i = 1; i < password.length; i++) {
+			if (password[i] == last_chr) {
+				return true;
+			}
+			if (password[i] == (last_chr + 1)) {
+				return true;
+			}
+			if (password[i] == (last_chr - 1)) {
+				return true;
+			}
+			last_chr = password[i];
+		}
+		return false;
+	}
+
+	public static String geraRandomTan() {
+		String randTan = "";
+		Random rand = new Random();				
+		for (int i = 0; i < 5; i++) {			
+			randTan += Character.toString((char) (rand.nextInt(91 - 65) + 65));
+		}
+		return randTan;
+	}
+
 }

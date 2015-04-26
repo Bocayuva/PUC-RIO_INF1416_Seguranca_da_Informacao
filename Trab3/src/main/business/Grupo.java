@@ -1,5 +1,9 @@
 package main.business;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import main.dao.GrupoDao;
 
 public class Grupo {
@@ -23,6 +27,17 @@ public class Grupo {
 		GrupoDao grDao = new GrupoDao();
 		Grupo gr = new Grupo();
 		grDao.buscar(user_group_fk, gr);
+		return gr;
+	}
+	public static List<Grupo> buscarTodos(){
+		GrupoDao grDao = new GrupoDao();
+		List<Grupo> grItens = grDao.buscarTodos();
+		return grItens;
+		
+	}
+	public static Grupo buscarPorNome(String grName) {
+		GrupoDao grDao = new GrupoDao();
+		Grupo gr = grDao.buscarPorNome(grName);
 		return gr;
 	}
 	
