@@ -63,7 +63,7 @@ public class TanList {
 			}			
 			
 		}
-		FileCript.adicionaFinalArquivo("tan/" + login_name + ".txt", tanList); 
+		FileCript.adicionaFinalArquivo("tan/" + login_name + ".tan", tanList); 
 	}
 	
 }

@@ -173,5 +173,28 @@ public class UsuarioDao {
         }
 		return usuario;
 	}
+
+	public int totalUsuarios() {
+			
+		String sql = "select count(*) as total from usuarios";
+		int total_usuarios = 0;
+		try {
+            // prepared statement para inserção
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet res = stmt.executeQuery();
+            
+            while (res.next()) {
+            	
+            	total_usuarios = res.getInt("total");
+				
+			}
+            
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+		return total_usuarios;
+		
+	}
 	
 }

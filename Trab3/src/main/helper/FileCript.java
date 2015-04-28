@@ -29,8 +29,7 @@ public class FileCript {
 	public static byte[] getBytesFromFile(String fileUrl){
 		
 		InputStream inpStream = null;
-		String workingDir = System.getProperty("user.dir");
-		File file = new File(workingDir + "/src/" + fileUrl);
+		File file = new File(fileUrl);
 		if (!file.isFile()) {
 			return null;
 		}
@@ -77,6 +76,25 @@ public class FileCript {
 	    FileOutputStream fos = new FileOutputStream(workingDir + "/src/Keys/userpriv_generated");
 	    fos.write(cipherText);
 	    fos.close();
+	}
+	
+	public static byte[] decriptoPrivateKey(String fileUrl) throws Exception{
+		byte[] plainText = "FRASE SECRETA".getBytes("UTF8");
+		
+		byte[] privateFileBytes = getBytesFromFile(fileUrl);
+		
+		KeyGenerator keyGen  = KeyGenerator.getInstance("DES");
+		SecureRandom secRand = SecureRandom.getInstance("SHA1PRNG");
+	    secRand.setSeed(plainText);
+	    keyGen.init(56, secRand);
+	    Key key              = keyGen.generateKey();
+	    	    
+	    Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+	    cipher.init(Cipher.DECRYPT_MODE, key);
+	    
+	    byte[] cipherText = cipher.doFinal(privateFileBytes);
+	    
+	    return cipherText;
 	}
 	
 }

@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -11,6 +14,7 @@ import java.util.Vector;
 import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,7 +34,8 @@ public class CadastrarUsuario{
 
 	private Usuario usuario;
 	private JFrame frame;
-	private JPanel allPane;		
+	private JPanel allPane;	
+	private JLabel lbTotalAcessos;
 
 	public CadastrarUsuario(Usuario fusuario, JFrame fframe) {
 		
@@ -44,12 +49,28 @@ public class CadastrarUsuario{
 		frame.setContentPane(allPane);
 		
 		montaCabecalho();
+		montaCorpo1();
 		montaFormCadastro();
 				
 		rebuildFrame();
 		
 	}
 	
+	private void montaCorpo1() {
+		allPane.setLayout(null);
+		JPanel corpo1 = new JPanel();
+		corpo1.setLocation(12, 100);
+		corpo1.setSize(426, 32);
+		corpo1.setLayout(null);
+				
+		lbTotalAcessos = new JLabel();
+		lbTotalAcessos.setText("Total de usuários do sistema: " + Utility.qtdeUsuariosSistema());
+		lbTotalAcessos.setBounds(12, 12, 402, 15);
+		corpo1.add(lbTotalAcessos);
+		
+		allPane.add(corpo1);
+	}
+
 	private void montaCabecalho() {
 		JPanel cabecalho = Cabecalho.MontaCabecalho(usuario);
 		allPane.add(cabecalho);				
@@ -62,7 +83,7 @@ public class CadastrarUsuario{
 		formCadastro.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		formCadastro.setLayout(null);
 		
-		final JLabel lbMsgErro = new JLabel("-");
+		final JLabel lbMsgErro = new JLabel("");
 		lbMsgErro.setForeground(Color.RED);
 		lbMsgErro.setBounds(12, 226, 406, 25);
 		formCadastro.add(lbMsgErro);
@@ -77,6 +98,7 @@ public class CadastrarUsuario{
 		
 		final JTextField txtUserName = new JTextField();
 		txtUserName.setBounds(12, 55, 402, 25);
+		
 		formCadastro.add(txtUserName);
 		
 		JLabel lbLoginName = new JLabel("Login name: ");
@@ -122,17 +144,35 @@ public class CadastrarUsuario{
 		formCadastro.add(lbUrl);
 		
 		final JTextField txtUrl = new JTextField();
-		txtUrl.setBounds(12, 191, 194, 25);
+		txtUrl.setBounds(12, 191, 133, 25);
+		txtUrl.setEnabled(false);
 		formCadastro.add(txtUrl);
 		
+		JButton btnChooseFile = new JButton("->");
+		btnChooseFile.setBounds(154, 189, 49, 25);
+		btnChooseFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+				int result = chooser.showOpenDialog(frame);
+				if (result == JFileChooser.APPROVE_OPTION) {
+				    File selectedFile = chooser.getSelectedFile();
+				    txtUrl.setText( selectedFile.getAbsolutePath());
+				}
+				
+			}
+		});
+		formCadastro.add(btnChooseFile);
+		
 		JLabel lbTan = new JLabel("Tamanho da lista:");
-		lbTan.setBounds(224, 174, 194, 15);
+		lbTan.setBounds(285, 174, 133, 15);
 		formCadastro.add(lbTan);
 		
 		final JTextField txtTan = new JTextField();
-		txtTan.setBounds(224, 191, 194, 25);
+		txtTan.setBounds(285, 191, 133, 25);
 		formCadastro.add(txtTan);
-		
+				
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setBounds(12, 263, 147, 25);
 		btnCadastrar.addActionListener(new ActionListener(){
@@ -141,8 +181,16 @@ public class CadastrarUsuario{
 					lbMsgErro.setText("Forneça o nome do usuário!");
 					return;
 				}
+				if (txtUserName.getText().length() > 50) {
+					lbMsgErro.setText("Nome do usuário não deve ser maior que 50 caracteres");
+					return;
+				}
 				if (txtLoginName.getText().equals("")) {
 					lbMsgErro.setText("Forneça o login!");
+					return;
+				}
+				if (txtLoginName.getText().length() > 20) {
+					lbMsgErro.setText("Login name não deve ser maior que 20 caracteres");
 					return;
 				}
 				Usuario novo_usuario = Usuario.buscarPorLogin(txtLoginName.getText());
@@ -206,10 +254,35 @@ public class CadastrarUsuario{
 					e.printStackTrace();
 				}
 				
-				Usuario.incluir(usuario);	
-				TanList tanItem = new TanList();
-				tanItem.criarItens(usuario.getLogin_name(), usuario.getUser_tan_list());
-				montaFormCadastro();
+				try {
+					Usuario.incluir(usuario);
+				} catch (Exception e) {
+					lbMsgErro.setText("Erro ao incluir usuário no sistema, verifique os dados informados e tente novamente!");
+				}
+				
+				try {
+					TanList tanItem = new TanList();
+					tanItem.criarItens(usuario.getLogin_name(), usuario.getUser_tan_list());
+					limpaForm();
+				} catch (Exception e) {
+					lbMsgErro.setText("Erro ao criar tan list do usuário!");
+				}
+									
+				
+			}
+
+			private void limpaForm() {
+				
+				lbMsgErro.setText("");
+				txtUserName.setText("");
+				txtLoginName.setText("");
+				comboGrupo.setSelectedIndex(0);
+				pwdSenhaPessoal.setText("");
+				pwdConfirmaSenha.setText("");
+				txtUrl.setText("");
+				txtTan.setText("");
+				lbTotalAcessos.setText("Total de usuários do sistema: " + Utility.qtdeUsuariosSistema());
+				
 			}
 		});
 		formCadastro.add(btnCadastrar);

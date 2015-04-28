@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
 import main.business.Usuario;
+import main.helper.Utility;
 
 public class ConsultaPasta{
 
@@ -29,12 +30,27 @@ public class ConsultaPasta{
 		frame.setContentPane(allPane);
 		
 		montaCabecalho();
+		montaCorpo1();
 		montaFormCadastro();
 				
 		rebuildFrame();
 		
 	}
 	
+	private void montaCorpo1() {
+		allPane.setLayout(null);
+		JPanel corpo1 = new JPanel();
+		corpo1.setLocation(12, 100);
+		corpo1.setSize(426, 32);
+		corpo1.setLayout(null);
+		
+		JLabel lbTotalAcessos = new JLabel("Total de consultas do usuário: " + usuario.getNum_consultas());
+		lbTotalAcessos.setBounds(12, 12, 402, 15);
+		corpo1.add(lbTotalAcessos);
+		
+		allPane.add(corpo1);
+	}
+
 	private void montaCabecalho() {
 		JPanel cabecalho = Cabecalho.MontaCabecalho(usuario);
 		allPane.add(cabecalho);				
@@ -43,7 +59,7 @@ public class ConsultaPasta{
 	public void montaFormCadastro() {
 		
 		JPanel formCadastro = new JPanel();
-		formCadastro.setBounds(12, 135, 426, 276);
+		formCadastro.setBounds(12, 135, 426, 310);
 		formCadastro.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		formCadastro.setLayout(null);
 		

@@ -96,7 +96,7 @@ public class Login {
 					return;
 				}
 				usuario = Usuario.buscarPorLogin(lgName);
-				if(usuario == null){
+				if(usuario.getId() == 0){
 					lbMsgErro.setText("Usuário não localizado!");
 					return;
 				}

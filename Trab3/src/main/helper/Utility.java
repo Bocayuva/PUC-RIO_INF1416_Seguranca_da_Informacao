@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import main.business.TanList;
 import main.business.Usuario;
 import main.dao.TanListDao;
+import main.dao.UsuarioDao;
 
 public class Utility {
 
@@ -160,6 +161,11 @@ public class Utility {
 			randTan += Character.toString((char) (rand.nextInt(91 - 65) + 65));
 		}
 		return randTan;
+	}
+	
+	public static int qtdeUsuariosSistema(){
+		UsuarioDao usuDao = new UsuarioDao();
+		return usuDao.totalUsuarios();
 	}
 
 }
