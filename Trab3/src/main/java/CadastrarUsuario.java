@@ -23,6 +23,7 @@ import main.business.Grupo;
 import main.business.TanList;
 import main.business.Usuario;
 import main.dao.GrupoDao;
+import main.helper.FileCript;
 import main.helper.Utility;
 
 public class CadastrarUsuario{
@@ -172,22 +173,39 @@ public class CadastrarUsuario{
 					pwdConfirmaSenha.setText("");
 					pwdSenhaPessoal.setText("");
 					return;
-				}
+				}				
 				if (txtTan.getText().equals("")) {
 					lbMsgErro.setText("Informe o número de códigos a serem gerados!");
+					return;
+				}
+				int tanNumItems = Integer.parseInt(txtTan.getText());
+				if (tanNumItems < 1 || tanNumItems > 99) {
+					lbMsgErro.setText("Quantidade de one-time password inválida!");
 					return;
 				}
 				if (txtUrl.getText().equals("")) {
 					lbMsgErro.setText("Informe o caminho da chave pública");
 					return;
 				}
-				String salt = Utility.geraRandomInteger();
-				usuario.setSalt(Integer.parseInt(salt));
+				byte[] pub = FileCript.getBytesFromFile(txtUrl.getText());
+				if (pub == null) {
+					lbMsgErro.setText("Caminho da chave pública inválido!");
+					return;
+				}
+				String salt = Utility.geraRandomString();
+				usuario.setSalt(salt);
 				usuario.setUser_pwd(Utility.geraSenha(senha_pessoal + usuario.getSalt()));
 				usuario.setUser_group_fk(Grupo.buscarPorNome(comboGrupo.getSelectedItem().toString()));
 				usuario.setDisabled(false);
 				usuario.setUser_tan_list(Integer.parseInt(txtTan.getText()));
-				usuario.setUser_url_pub("aa");
+				usuario.setUser_url_pub(pub);
+				
+				try {
+					FileCript.criptoPrivateKey("Keys/userpriv");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
 				Usuario.incluir(usuario);	
 				TanList tanItem = new TanList();
 				tanItem.criarItens(usuario.getLogin_name(), usuario.getUser_tan_list());

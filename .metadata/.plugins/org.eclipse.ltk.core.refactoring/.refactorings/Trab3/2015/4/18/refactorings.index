@@ -1,0 +1,4 @@
+1430176272151	Change method 'geraRandomInteger'
+1430178754833	Encapsulate field 'num_acessos'
+1430178763727	Encapsulate field 'num_consultas'
+1430188763637	Rename type 'File'

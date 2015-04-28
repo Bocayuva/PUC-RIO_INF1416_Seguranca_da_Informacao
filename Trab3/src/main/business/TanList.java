@@ -2,7 +2,7 @@ package main.business;
 
 import main.dao.TanListDao;
 import main.dao.UsuarioDao;
-import main.helper.File;
+import main.helper.FileCript;
 import main.helper.Utility;
 
 public class TanList {
@@ -63,7 +63,7 @@ public class TanList {
 			}			
 			
 		}
-		File.adicionaFinalArquivo("tan/" + login_name + ".txt", tanList); 
+		FileCript.adicionaFinalArquivo("tan/" + login_name + ".txt", tanList); 
 	}
 	
 }

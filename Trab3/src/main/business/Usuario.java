@@ -12,11 +12,13 @@ public class Usuario {
 	private String login_name;
 	private Grupo user_group_fk;
 	private String user_pwd;
-	private String user_url_pub;
+	private byte[] user_url_pub;
 	private int user_tan_list;
 	private boolean disabled;
-	private int salt;
+	private String salt;
 	private Timestamp blocked_at;
+	private int num_acessos;
+	private int num_consultas;
 	
 	public int getId() {
 		return Id;
@@ -48,11 +50,11 @@ public class Usuario {
 	public void setUser_pwd(String user_pwd) {
 		this.user_pwd = user_pwd;
 	}
-	public String getUser_url_pub() {
+	public byte[] getUser_url_pub() {
 		return user_url_pub;
 	}
-	public void setUser_url_pub(String user_url_pub) {
-		this.user_url_pub = user_url_pub;
+	public void setUser_url_pub(byte[] bs) {
+		this.user_url_pub = bs;
 	}
 	public int getUser_tan_list() {
 		return user_tan_list;
@@ -66,10 +68,10 @@ public class Usuario {
 	public void setDisabled(boolean disabled) {
 		this.disabled = disabled;
 	}
-	public int getSalt() {
+	public String getSalt() {
 		return salt;
 	}
-	public void setSalt(int salt) {
+	public void setSalt(String salt) {
 		this.salt = salt;
 	}
 	public Timestamp getBlocked_at() {
@@ -77,6 +79,18 @@ public class Usuario {
 	}
 	public void setBlocked_at(Timestamp timestamp) {
 		this.blocked_at = timestamp;
+	}
+	public int getNum_acessos() {
+		return num_acessos;
+	}
+	public void setNum_acessos(int num_acessos) {
+		this.num_acessos = num_acessos;
+	}
+	public int getNum_consultas() {
+		return num_consultas;
+	}
+	public void setNum_consultas(int num_consultas) {
+		this.num_consultas = num_consultas;
 	}
 	public static Usuario buscarPorLogin(String login_name) {
 		UsuarioDao usuDao = new UsuarioDao();

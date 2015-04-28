@@ -18,8 +18,8 @@ public class UsuarioDao {
 		gr.setGid(1);
 		user.setUser_group_fk(gr);
 		user.setUser_tan_list(10);
-		user.setUser_url_pub("aa");
-		user.setSalt(100);
+		user.setUser_url_pub(null);
+		user.setSalt("0001112223");
 		user.setUser_pwd(Utility.geraSenha("123456" + user.getSalt()));		
 		
 		main.dao.UsuarioDao udao = new main.dao.UsuarioDao();

@@ -188,7 +188,7 @@ public class Login {
 		btnConfirmar.setBounds(12, 97, 103, 25);
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int salt = usuario.getSalt();
+				String salt = usuario.getSalt();
 				if (passWd_Hidden.getText().equals("")) {
 					lbMsgErro.setText("forneça a senha!");
 					return;
@@ -269,7 +269,9 @@ public class Login {
 				}
 				String valor_digitado = Utility.geraSenha(txtTanList.getText() + usuario.getSalt());
 				if (valor_digitado.equals(tanItemADigitar)) {						
-					TanList.apagarRegistro(tan_itens.get(posicao));						
+					TanList.apagarRegistro(tan_itens.get(posicao));	
+					usuario.setNum_acessos(usuario.getNum_acessos() + 1);
+					Usuario.update(usuario);
 					MenuPrincipal menu = new MenuPrincipal(usuario, frame);
 					return;
 				}

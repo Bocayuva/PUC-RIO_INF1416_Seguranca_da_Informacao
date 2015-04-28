@@ -58,8 +58,8 @@ public class MenuPrincipal{
 		corpo1.setSize(426, 48);
 		corpo1.setLayout(null);
 		
-		JLabel lbTotalAcessos = new JLabel("Total de acessos do usuário: ");
-		lbTotalAcessos.setBounds(12, 12, 209, 15);
+		JLabel lbTotalAcessos = new JLabel("Total de acessos do usuário: " + usuario.getNum_acessos());
+		lbTotalAcessos.setBounds(12, 12, 402, 15);
 		corpo1.add(lbTotalAcessos);
 		
 		allPane.add(corpo1);
@@ -90,6 +90,8 @@ public class MenuPrincipal{
 		btnConsultaPasta.setBounds(12, 77, 396, 25);
 		btnConsultaPasta.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				usuario.setNum_consultas(usuario.getNum_consultas() + 1);
+				Usuario.update(usuario);
 				ConsultaPasta conPasta = new ConsultaPasta(usuario, frame);
 				conPasta.montaFormCadastro();
 				return;

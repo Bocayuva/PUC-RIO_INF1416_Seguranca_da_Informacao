@@ -29,10 +29,12 @@ public class UsuarioDao {
                 "user_tan_list," +
                 "disabled," +
                 "salt," +
+                "num_acessos," +
+                "num_consultas," +
                 "created_at," +
                 "blocked_at" +
                 ")" +
-                " values (?,?,?,?,?,?,?,?, now(), now())";
+                " values (?,?,?,?,?,?,?,?, 0, 0, now(), now())";
 
         try {
             // prepared statement para inserção
@@ -43,10 +45,10 @@ public class UsuarioDao {
             stmt.setString(2, usuario.getLogin_name());
             stmt.setInt(3, usuario.getUser_group_fk());
             stmt.setString(4, usuario.getUser_pwd());
-            stmt.setString(5, usuario.getUser_url_pub());
+            stmt.setBytes(5, usuario.getUser_url_pub());
             stmt.setInt(6, usuario.getUser_tan_list());            
             stmt.setBoolean(7, false);
-            stmt.setInt(8, usuario.getSalt());
+            stmt.setString(8, usuario.getSalt());
 
             // executa
             stmt.execute();
@@ -72,10 +74,12 @@ public class UsuarioDao {
 				usuario.setLogin_name(login_name);
 				usuario.setUser_name(res.getString("user_name"));
 				usuario.setUser_tan_list(res.getInt("user_tan_list"));
-				usuario.setUser_url_pub(res.getString("user_url_pub"));
+				usuario.setUser_url_pub(res.getBytes("user_url_pub"));
 				usuario.setUser_pwd(res.getString("user_password"));
-				usuario.setSalt(res.getInt("salt"));
+				usuario.setSalt(res.getString("salt"));
 				usuario.setBlocked_at(res.getTimestamp("blocked_at"));
+				usuario.setNum_acessos(res.getInt("num_acessos"));
+				usuario.setNum_consultas(res.getInt("num_consultas"));
 				
 				GrupoDao grDao = new GrupoDao();
 				Grupo gr = new Grupo();
@@ -104,6 +108,8 @@ public class UsuarioDao {
                 " , disabled = ?" +
                 " , salt = ?" +
                 " , blocked_at = ?" +
+                " , num_acessos = ?" +
+                " , num_consultas = ?" +
 				" where id = ?";
 		try {
             // prepared statement para inserção
@@ -113,12 +119,14 @@ public class UsuarioDao {
             stmt.setString(2, usuario.getLogin_name());
             stmt.setInt(3, usuario.getUser_group_fk());
             stmt.setString(4, usuario.getUser_pwd());
-            stmt.setString(5, usuario.getUser_url_pub());
+            stmt.setBytes(5, usuario.getUser_url_pub());
             stmt.setInt(6, usuario.getUser_tan_list());            
             stmt.setBoolean(7, usuario.isDisabled());
-            stmt.setInt(8, usuario.getSalt());
+            stmt.setString(8, usuario.getSalt());
             stmt.setTimestamp(9, usuario.getBlocked_at());
-            stmt.setInt(10, usuario.getId());
+            stmt.setInt(10, usuario.getNum_acessos());
+            stmt.setInt(11, usuario.getNum_consultas());
+            stmt.setInt(12, usuario.getId());
             
 			stmt.executeUpdate();
 			stmt.close();
@@ -144,10 +152,12 @@ public class UsuarioDao {
 				usuario.setLogin_name(res.getString("login_name"));
 				usuario.setUser_name(res.getString("user_name"));
 				usuario.setUser_tan_list(res.getInt("user_tan_list"));
-				usuario.setUser_url_pub(res.getString("user_url_pub"));
+				usuario.setUser_url_pub(res.getBytes("user_url_pub"));
 				usuario.setUser_pwd(res.getString("user_password"));
-				usuario.setSalt(res.getInt("salt"));
+				usuario.setSalt(res.getString("salt"));
 				usuario.setBlocked_at(res.getTimestamp("blocked_at"));
+				usuario.setNum_acessos(res.getInt("num_acessos"));
+				usuario.setNum_consultas(res.getInt("num_consultas"));
 				
 				GrupoDao grDao = new GrupoDao();
 				Grupo gr = new Grupo();

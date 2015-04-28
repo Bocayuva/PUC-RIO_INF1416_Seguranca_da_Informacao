@@ -49,7 +49,7 @@ public class Utility {
 	}
 	
 	
-	public static String geraRandomInteger() {
+	public static String geraRandomString() {
 	    Random rand = new Random();
 	    String randomGerado = "";
 	    for (int i = 0; i < 9; i++) {
@@ -85,7 +85,7 @@ public class Utility {
 		
 	}
 
-	public static boolean verificaSenhaTeclado(int salt, String pass_digited, String user_pwd) {
+	public static boolean verificaSenhaTeclado(String salt, String pass_digited, String user_pwd) {
 		pass_digited = pass_digited.substring(0, pass_digited.length() - 1);
 		String[] elementos = pass_digited.split("_");
 		
