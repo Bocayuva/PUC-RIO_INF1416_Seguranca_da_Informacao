@@ -15,7 +15,6 @@ import javax.crypto.KeyGenerator;
 public class FileCript {
 
 	public static void adicionaFinalArquivo(String filename, String new_line){
-		
       try{
     	  String workingDir = System.getProperty("user.dir");
     	  PrintWriter writer = new PrintWriter(workingDir + "/src/" + filename, "UTF-8");

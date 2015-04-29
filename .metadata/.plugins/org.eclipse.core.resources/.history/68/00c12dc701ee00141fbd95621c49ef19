@@ -119,7 +119,6 @@ public class ConsultaPasta{
 			public void actionPerformed(ActionEvent arg0) {
 				
 				JFileChooser chooser = new JFileChooser();
-				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				chooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 				int result = chooser.showOpenDialog(frame);
 				if (result == JFileChooser.APPROVE_OPTION) {
@@ -130,13 +129,15 @@ public class ConsultaPasta{
 			}
 		});
 		formConsulta.add(btnChoosePasta);
-				
-		JButton btnListar = new JButton("Listar");
-		btnListar.setBounds(12, 273, 147, 25);
-		formConsulta.add(btnListar);
+		
+		
+		
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setBounds(12, 239, 147, 25);
+		formConsulta.add(btnCadastrar);
 		
 		JButton btnMenu = new JButton("Menu principal");
-		btnMenu.setBounds(260, 273, 154, 25);
+		btnMenu.setBounds(260, 239, 154, 25);
 		btnMenu.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				MenuPrincipal menu = new MenuPrincipal(usuario, frame);

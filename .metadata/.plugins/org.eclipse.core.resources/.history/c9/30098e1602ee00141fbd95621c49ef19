@@ -119,7 +119,6 @@ public class ConsultaPasta{
 			public void actionPerformed(ActionEvent arg0) {
 				
 				JFileChooser chooser = new JFileChooser();
-				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				chooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 				int result = chooser.showOpenDialog(frame);
 				if (result == JFileChooser.APPROVE_OPTION) {

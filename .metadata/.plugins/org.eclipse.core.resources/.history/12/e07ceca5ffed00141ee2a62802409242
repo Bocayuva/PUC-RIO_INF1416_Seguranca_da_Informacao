@@ -66,21 +66,21 @@ public class ConsultaPasta{
 		formConsulta.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		formConsulta.setLayout(null);
 		
-		JLabel lbMenu = new JLabel("Consulta pasta");
-		lbMenu.setBounds(12, 5, 402, 15);
+		JLabel lbMenu = new JLabel("Consulta pasta: ");
+		lbMenu.setBounds(12, 12, 402, 15);
 		formConsulta.add(lbMenu);
 		
 		JLabel lblCamin = new JLabel("Caminho da chave privada: ");
-		lblCamin.setBounds(12, 27, 402, 15);
+		lblCamin.setBounds(12, 39, 70, 15);
 		formConsulta.add(lblCamin);
 		
 		final JTextField txtKeyPriv = new JTextField();
-		txtKeyPriv.setBounds(12, 43, 341, 25);
+		txtKeyPriv.setBounds(12, 55, 133, 25);
 		txtKeyPriv.setEnabled(false);
 		formConsulta.add(txtKeyPriv);
 		
 		JButton btnChooseFile = new JButton("->");
-		btnChooseFile.setBounds(365, 43, 49, 25);
+		btnChooseFile.setBounds(154, 55, 49, 25);
 		btnChooseFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -97,46 +97,47 @@ public class ConsultaPasta{
 		formConsulta.add(btnChooseFile);
 		
 		JLabel lbFraseSecreta = new JLabel("Frase secreta: ");
-		lbFraseSecreta.setBounds(12, 69, 402, 15);
+		lbFraseSecreta.setBounds(12, 75, 70, 15);
 		formConsulta.add(lbFraseSecreta);
 		
 		final JTextField txtFraseSecreta = new JTextField();
-		txtFraseSecreta.setBounds(12, 85, 402, 25);
+		txtFraseSecreta.setBounds(12, 55, 133, 25);
 		formConsulta.add(txtFraseSecreta);
 		
 		JLabel lbCamihoPasta = new JLabel("Caminho da pasta: ");
-		lbCamihoPasta.setBounds(12, 110, 402, 15);
+		lbCamihoPasta.setBounds(12, 85, 70, 15);
 		formConsulta.add(lbCamihoPasta);
 		
 		final JTextField txtCaminhoPasta = new JTextField();
-		txtCaminhoPasta.setBounds(12, 127, 341, 25);
+		txtCaminhoPasta.setBounds(12, 90, 133, 25);
 		txtCaminhoPasta.setEnabled(false);
 		formConsulta.add(txtCaminhoPasta);
 		
 		JButton btnChoosePasta = new JButton("->");
-		btnChoosePasta.setBounds(365, 127, 49, 25);
+		btnChoosePasta.setBounds(154, 55, 49, 25);
 		btnChoosePasta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				JFileChooser chooser = new JFileChooser();
-				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				chooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 				int result = chooser.showOpenDialog(frame);
 				if (result == JFileChooser.APPROVE_OPTION) {
 				    File selectedFile = chooser.getSelectedFile();
-				    txtCaminhoPasta.setText( selectedFile.getAbsolutePath());
+				    txtKeyPriv.setText( selectedFile.getAbsolutePath());
 				}
 				
 			}
 		});
-		formConsulta.add(btnChoosePasta);
-				
-		JButton btnListar = new JButton("Listar");
-		btnListar.setBounds(12, 273, 147, 25);
-		formConsulta.add(btnListar);
+		formConsulta.add(btnChooseFile);
+		
+		
+		
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setBounds(12, 239, 147, 25);
+		formConsulta.add(btnCadastrar);
 		
 		JButton btnMenu = new JButton("Menu principal");
-		btnMenu.setBounds(260, 273, 154, 25);
+		btnMenu.setBounds(260, 239, 154, 25);
 		btnMenu.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				MenuPrincipal menu = new MenuPrincipal(usuario, frame);

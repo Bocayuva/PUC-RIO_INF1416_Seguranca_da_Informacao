@@ -93,7 +93,7 @@ public class MenuPrincipal{
 				usuario.setNum_consultas(usuario.getNum_consultas() + 1);
 				Usuario.update(usuario);
 				ConsultaPasta conPasta = new ConsultaPasta(usuario, frame);
-				conPasta.montaFormConsulta();
+				conPasta.montaFormCadastro();
 				return;
 			}
 		});

@@ -1,9 +1,0 @@
-package main.java;
-
-public class TerceiraEtapa extends Home {
-
-	public static void validaTanList(){
-		
-	}
-	
-}

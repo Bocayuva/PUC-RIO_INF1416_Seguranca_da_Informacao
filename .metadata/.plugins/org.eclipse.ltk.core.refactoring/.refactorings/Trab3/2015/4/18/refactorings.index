@@ -2,3 +2,4 @@
 1430178754833	Encapsulate field 'num_acessos'
 1430178763727	Encapsulate field 'num_consultas'
 1430188763637	Rename type 'File'
+1430264015598	Rename local variable 'formCadastro'

@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.sql.Date"/>
-<fullyQualifiedTypeName name="org.eclipse.jface.text.link.LinkedModeUI.ExitFlags"/>
-<fullyQualifiedTypeName name="java.lang.Exception"/>
-<fullyQualifiedTypeName name="java.lang.ProcessBuilder.Redirect"/>
-<fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
 <fullyQualifiedTypeName name="java.sql.Timestamp"/>
 <fullyQualifiedTypeName name="main.java.SegundaEtapa"/>
@@ -14,7 +9,6 @@
 <fullyQualifiedTypeName name="main.java.PrimeiraEtapa"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="main.business.TanList"/>
-<fullyQualifiedTypeName name="main.helper.Utility"/>
 <fullyQualifiedTypeName name="main.dao.TanListDao"/>
 <fullyQualifiedTypeName name="java.awt.GridLayout"/>
 <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
@@ -28,7 +22,6 @@
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="main.java.TelaInicial"/>
 <fullyQualifiedTypeName name="main.java.MenuPrincipal"/>
-<fullyQualifiedTypeName name="javax.swing.JLabel"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="main.business.Usuario"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
@@ -36,7 +29,6 @@
 <fullyQualifiedTypeName name="main.java.Cabecalho"/>
 <fullyQualifiedTypeName name="main.java.ConsultaPasta"/>
 <fullyQualifiedTypeName name="main.java.SairSistema"/>
-<fullyQualifiedTypeName name="javax.swing.JTextField"/>
 <fullyQualifiedTypeName name="javax.swing.JSeparator"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="main.dao.GrupoDao"/>
@@ -53,11 +45,19 @@
 <fullyQualifiedTypeName name="javax.swing.text.StyleContext.SmallAttributeSet"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
-<fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="javax.crypto.KeyGenerator"/>
 <fullyQualifiedTypeName name="java.security.Key"/>
 <fullyQualifiedTypeName name="javax.crypto.Cipher"/>
 <fullyQualifiedTypeName name="java.security.SecureRandom"/>
 <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
 <fullyQualifiedTypeName name="main.helper.FileCript"/>
+<fullyQualifiedTypeName name="main.dao.UsuarioDao"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="main.helper.Utility"/>
+<fullyQualifiedTypeName name="javax.swing.JLabel"/>
+<fullyQualifiedTypeName name="java.beans.PropertyChangeListener"/>
+<fullyQualifiedTypeName name="java.beans.PropertyChangeEvent"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="javax.swing.JFileChooser"/>
+<fullyQualifiedTypeName name="java.io.File"/>
 </qualifiedTypeNameHistroy>
