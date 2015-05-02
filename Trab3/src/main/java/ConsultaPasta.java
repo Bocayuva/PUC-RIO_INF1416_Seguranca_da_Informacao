@@ -1,8 +1,10 @@
 package main.java;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.io.File;
 import java.security.Key;
 import java.util.List;
@@ -17,7 +19,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.BevelBorder;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.text.TabExpander;
 
@@ -26,6 +31,7 @@ import main.helper.FileCript;
 import main.helper.FileUnitCript;
 import main.helper.Utility;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ConsultaPasta{
 
@@ -38,7 +44,7 @@ public class ConsultaPasta{
 		usuario = fusuario;
 		frame   = fframe;
 		
-		frame.setBounds(100,100,500, 500);
+		frame.setBounds(100,100,600, 510);
 		frame.getContentPane().removeAll();		
 		
 		allPane = new JPanel();
@@ -55,8 +61,10 @@ public class ConsultaPasta{
 	private void montaCorpo1() {
 		allPane.setLayout(null);
 		JPanel corpo1 = new JPanel();
-		corpo1.setLocation(12, 100);
-		corpo1.setSize(426, 32);
+		corpo1.setBackground(new Color(255, 255, 224));
+		corpo1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		corpo1.setLocation(12, 113);
+		corpo1.setSize(569, 34);
 		corpo1.setLayout(null);
 		
 		JLabel lbTotalAcessos = new JLabel("Total de consultas do usuário: " + usuario.getNum_consultas());
@@ -73,9 +81,10 @@ public class ConsultaPasta{
 
 	public void montaFormConsulta() {
 		
-		JPanel formConsulta = new JPanel();
-		formConsulta.setBounds(12, 135, 426, 325);
+		JPanel formConsulta = new JPanel();		
+		formConsulta.setBackground(new Color(255, 255, 224));
 		formConsulta.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		formConsulta.setBounds(12, 159, 569, 308);
 		formConsulta.setLayout(null);
 		
 		JLabel lbMenu = new JLabel("Consulta pasta");
@@ -87,12 +96,12 @@ public class ConsultaPasta{
 		formConsulta.add(lblCamin);
 		
 		final JTextField txtKeyPriv = new JTextField();
-		txtKeyPriv.setBounds(12, 43, 341, 25);
+		txtKeyPriv.setBounds(12, 43, 484, 25);
 		txtKeyPriv.setEnabled(false);
 		formConsulta.add(txtKeyPriv);
 		
 		JButton btnChooseFile = new JButton("->");
-		btnChooseFile.setBounds(365, 43, 49, 25);
+		btnChooseFile.setBounds(508, 43, 49, 25);
 		btnChooseFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -113,7 +122,7 @@ public class ConsultaPasta{
 		formConsulta.add(lbFraseSecreta);
 		
 		final JTextField txtFraseSecreta = new JTextField();
-		txtFraseSecreta.setBounds(12, 85, 402, 25);
+		txtFraseSecreta.setBounds(12, 85, 545, 25);
 		formConsulta.add(txtFraseSecreta);
 		
 		JLabel lbCamihoPasta = new JLabel("Caminho da pasta: ");
@@ -121,12 +130,12 @@ public class ConsultaPasta{
 		formConsulta.add(lbCamihoPasta);
 		
 		final JTextField txtCaminhoPasta = new JTextField();
-		txtCaminhoPasta.setBounds(12, 127, 341, 25);
+		txtCaminhoPasta.setBounds(12, 127, 484, 25);
 		txtCaminhoPasta.setEnabled(false);
 		formConsulta.add(txtCaminhoPasta);
 		
 		JButton btnChoosePasta = new JButton("->");
-		btnChoosePasta.setBounds(365, 127, 49, 25);
+		btnChoosePasta.setBounds(508, 127, 49, 25);
 		btnChoosePasta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -146,9 +155,45 @@ public class ConsultaPasta{
 		final TableModel modeloTable = new TableModel();
 	    final JTable table           = new JTable(modeloTable);
 		table.setBounds(12, 164, 402, 108);
-	    
+		
+		final JScrollPane scrollpane = new JScrollPane(table); 
+		scrollpane.setBounds(12, 164, 545, 94);
+		scrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); 
+		scrollpane.setVisible(false);
+		
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		TableColumn tbColum = null;
+		tbColum = table.getColumnModel().getColumn(0);
+		tbColum.setPreferredWidth(250);
+		tbColum = table.getColumnModel().getColumn(1);
+		tbColum.setPreferredWidth(250);
+		tbColum = table.getColumnModel().getColumn(2);
+		tbColum.setPreferredWidth(100);
+		
+		table.addMouseListener(new MouseAdapter(){
+			
+			@Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+		        int row = table.rowAtPoint(evt.getPoint());
+		        int col = table.columnAtPoint(evt.getPoint());
+		        
+		        if (row >= 0 && col == 0) {
+		           FileUnitCript item = modeloTable.getRow(row);
+		           if (item.checarAutenticidadeIntegridade()) {
+		        	   try {
+		        		   item.decriptoFile();
+		        	   } catch (Exception e) {
+		        		   e.printStackTrace();
+		        	   }
+		           }
+		        }
+		    }
+			
+		});
+		
+		
 		JButton btnListar = new JButton("Listar");
-		btnListar.setBounds(12, 284, 147, 25);
+		btnListar.setBounds(12, 270, 147, 25);
 		btnListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 								
@@ -159,12 +204,16 @@ public class ConsultaPasta{
 				if (fCript.checarAutenticidadeIntegridade()) {
 					
 					try {
-						
+						modeloTable.removeAll();
 						fCript.decriptaArquivo();
 						List<FileUnitCript> fileUList = fCript.MontaGrid();
+						modeloTable.setList(fileUList);
 						for (int i = 0; i < fileUList.size(); i++) {
-							modeloTable.addValue(i, fileUList.get(i));
-						}
+							modeloTable.addValue(fileUList.get(i));
+							
+						}						
+						scrollpane.setVisible(true);
+						scrollpane.repaint();
 						
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -176,11 +225,11 @@ public class ConsultaPasta{
 				
 			}
 		});
-		formConsulta.add(btnListar);
-		formConsulta.add(table);
+		formConsulta.add(btnListar);		
+		formConsulta.add(scrollpane, BorderLayout.CENTER);
 		
 		JButton btnMenu = new JButton("Menu principal");
-		btnMenu.setBounds(260, 284, 154, 25);
+		btnMenu.setBounds(403, 270, 154, 25);
 		btnMenu.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				MenuPrincipal menu = new MenuPrincipal(usuario, frame);

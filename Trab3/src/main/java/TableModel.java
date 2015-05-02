@@ -9,32 +9,54 @@ import main.helper.FileUnitCript;
 
 public class TableModel extends AbstractTableModel {
 
-	private static final int COL_NOME_SECRETO = 0; 
-	private static final int COL_NOME_CODIGO  = 1; 
-	private static final int COL_STATUS       = 2;
-
-	private String[] colunas = new String[]{"Nome secreto", "Nome código", "Status"}; 
-	private String[][] linhas = new String[100][3]; 
+	private static final long serialVersionUID = 1;
+	private String[] columnNames = new String[]{"Nome secreto", "Nome código", "Status"};
+	public List<List<String>> data = new ArrayList<List<String>>(); 
+	public List<FileUnitCript> itens_data = null;
 	
+	public TableModel(){
+		
+	}	
 	@Override
 	public int getColumnCount() {
-		return this.colunas.length;
+		return columnNames.length;
 	}
 
 	@Override
 	public int getRowCount() {
-		return this.linhas.length;
+		return data.size();
 	}
 
 	@Override
 	public String getValueAt(int row, int col) {
-		return this.linhas[row][col];
+		return data.get(row).get(col);
+	}
+	
+	@Override
+	public String getColumnName(int col) {
+	    return columnNames[col];
+	}
+	
+
+	public void addValue(FileUnitCript item){
+		List<String> item_linha = new ArrayList<String>();
+		item_linha.add(item.getNomeSecreto());
+		item_linha.add(item.getNomeCodigo());
+		item_linha.add(item.getStatus());
+		data.add(item_linha);
 	}
 
-	public void addValue(int row, FileUnitCript item){
-		this.linhas[row][0] = item.getNomeSecreto();
-		this.linhas[row][1] = item.getNomeCodigo();
-		this.linhas[row][2] = item.getStatus();
+	public void removeAll() {
+		for (int i = 0; i < data.size(); i++) {
+			data.remove(i);
+		}		
+	}
+	
+	public FileUnitCript getRow(int row){
+		return itens_data.get(row);		
+	}
+	public void setList(List<FileUnitCript> fileUList) {
+		itens_data = fileUList;
 	}
 
 	

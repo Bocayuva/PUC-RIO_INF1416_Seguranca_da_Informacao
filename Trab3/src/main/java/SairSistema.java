@@ -1,5 +1,6 @@
 package main.java;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,7 +23,7 @@ public class SairSistema{
 		usuario = fusuario;
 		frame   = fframe;
 		
-		frame.setBounds(100,100,500, 500);
+		frame.setBounds(100,100,600, 510);
 		frame.getContentPane().removeAll();		
 		
 		allPane = new JPanel();
@@ -40,8 +41,10 @@ public class SairSistema{
 		
 		allPane.setLayout(null);
 		JPanel corpo1 = new JPanel();
-		corpo1.setLocation(12, 100);
-		corpo1.setSize(426, 32);
+		corpo1.setBackground(new Color(255, 255, 224));
+		corpo1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		corpo1.setLocation(12, 113);
+		corpo1.setSize(569, 34);
 		corpo1.setLayout(null);
 		
 		JLabel lbTotalAcessos = new JLabel("Total de acessos do usuário: " + usuario.getNum_acessos());
@@ -59,13 +62,14 @@ public class SairSistema{
 
 	public void montaFormCadastro() {
 		
-		JPanel formCadastro = new JPanel();
-		formCadastro.setBounds(12, 135, 426, 276);
+		JPanel formCadastro = new JPanel();		
+		formCadastro.setBackground(new Color(255, 255, 224));
 		formCadastro.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		formCadastro.setBounds(12, 159, 569, 308);
 		formCadastro.setLayout(null);
 		
 		JLabel lbSaida = new JLabel("Saída do sistema: ");
-		lbSaida.setBounds(12, 12, 402, 15);
+		lbSaida.setBounds(12, 12, 545, 15);
 		formCadastro.add(lbSaida);
 		
 		JLabel lbMsgSaida = new JLabel("Mensagem de saída: ");
@@ -77,11 +81,11 @@ public class SairSistema{
 				System.exit(0);
 			}
 		});
-		btnCadastrar.setBounds(12, 239, 147, 25);
+		btnCadastrar.setBounds(12, 271, 147, 25);
 		formCadastro.add(btnCadastrar);
 		
 		JButton btnMenu = new JButton("Menu principal");
-		btnMenu.setBounds(260, 239, 154, 25);
+		btnMenu.setBounds(403, 271, 154, 25);
 		btnMenu.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				MenuPrincipal menu = new MenuPrincipal(usuario, frame);

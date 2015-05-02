@@ -47,6 +47,7 @@ public class Login {
 	 * Create the application.
 	 */
 	public Login() {
+		
 		frame = new JFrame();
 		frame.getContentPane().setLocation(0, 0);
 		frame.setBounds(100, 100, 450, 300);
@@ -82,7 +83,7 @@ public class Login {
 		txtLoginName.setColumns(10);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.setBounds(359, 74, 73, 25);
+		btnLogin.setBounds(308, 74, 124, 25);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				lbMsgErro.setText("");
@@ -131,25 +132,25 @@ public class Login {
 		lbMsgInfo.setBounds(12, 12, 401, 15);
 		panel.add(lbMsgInfo);
 		
-		final JLabel lbMsgErro = new JLabel("-");
+		final JLabel lbMsgErro = new JLabel("");
 		lbMsgErro.setForeground(Color.RED);
 		lbMsgErro.setBounds(12, 134, 420, 15);
 		panel.add(lbMsgErro);
 		
 		final JPasswordField txtPassWd = new JPasswordField();
-		txtPassWd.setBounds(12, 31, 401, 25);
+		txtPassWd.setBounds(12, 31, 420, 25);
 		txtPassWd.setVisible(true);
 		txtPassWd.setEnabled(false);
 		txtPassWd.setColumns(10);
 		panel.add(txtPassWd);
 		
 		final JTextField passWd_Hidden = new JTextField();
-		passWd_Hidden.setBounds(303, 103, 129, 19);
+		passWd_Hidden.setBounds(224, 97, 208, 25);
 		passWd_Hidden.setVisible(false);
 		panel.add(passWd_Hidden);
 		
 		final JTextField Erros_segunda_etapa = new JTextField();
-		Erros_segunda_etapa.setBounds(420, 37, 12, 19);
+		Erros_segunda_etapa.setBounds(12, 161, 420, 19);
 		Erros_segunda_etapa.setVisible(false);
 		panel.add(Erros_segunda_etapa);
 		Erros_segunda_etapa.setText("0");
@@ -228,13 +229,13 @@ public class Login {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		final JLabel lbMsgErro = new JLabel("-");
+		final JLabel lbMsgErro = new JLabel("");
 		lbMsgErro.setForeground(Color.RED);
 		lbMsgErro.setBounds(12, 100, 420, 15);
 		panel.add(lbMsgErro);
 		
 		final JTextField Erros_terceira_etapa = new JTextField();
-		Erros_terceira_etapa.setBounds(329, 64, 103, 19);
+		Erros_terceira_etapa.setBounds(120, 64, 312, 24);
 		Erros_terceira_etapa.setVisible(false);
 		panel.add(Erros_terceira_etapa);
 		Erros_terceira_etapa.setText("0");
@@ -251,7 +252,7 @@ public class Login {
 		final String tanItemADigitar = tan_itens.get(posicao).getTanItem(); 
 		
 		final JLabel lbTanList = new JLabel("Forneça o código na posição: " + tan_itens.get(posicao).getOrder_user() + " ");
-		lbTanList.setBounds(12, 12, 407, 15);
+		lbTanList.setBounds(12, 12, 420, 15);
 		panel.add(lbTanList);
 		
 		final JTextField txtTanList = new JTextField();

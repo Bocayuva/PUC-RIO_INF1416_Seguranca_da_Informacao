@@ -42,7 +42,7 @@ public class CadastrarUsuario{
 		usuario = fusuario;
 		frame   = fframe;
 		
-		frame.setBounds(100,100,500, 500);
+		frame.setBounds(100,100,600, 510);
 		frame.getContentPane().removeAll();		
 		
 		allPane = new JPanel();
@@ -54,33 +54,38 @@ public class CadastrarUsuario{
 				
 		rebuildFrame();
 		
-	}
-	
-	private void montaCorpo1() {
-		allPane.setLayout(null);
-		JPanel corpo1 = new JPanel();
-		corpo1.setLocation(12, 100);
-		corpo1.setSize(426, 32);
-		corpo1.setLayout(null);
-				
-		lbTotalAcessos = new JLabel();
-		lbTotalAcessos.setText("Total de usuários do sistema: " + Utility.qtdeUsuariosSistema());
-		lbTotalAcessos.setBounds(12, 12, 402, 15);
-		corpo1.add(lbTotalAcessos);
-		
-		allPane.add(corpo1);
-	}
+	}	
 
 	private void montaCabecalho() {
 		JPanel cabecalho = Cabecalho.MontaCabecalho(usuario);
 		allPane.add(cabecalho);				
 	}
+	
+	private void montaCorpo1() {
+		allPane.setLayout(null);
+		JPanel corpo1 = new JPanel();
+		corpo1.setBackground(new Color(255, 255, 224));
+		corpo1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		corpo1.setLocation(12, 113);
+		corpo1.setSize(569, 34);
+		corpo1.setLayout(null);
+				
+		lbTotalAcessos = new JLabel();
+		lbTotalAcessos.setText("Total de usuários do sistema: " + Utility.qtdeUsuariosSistema());
+		lbTotalAcessos.setBounds(12, 12, 546, 15);
+		corpo1.add(lbTotalAcessos);
+		
+		allPane.add(corpo1);
+		
+	}
+
 
 	public void montaFormCadastro() {
 		
 		JPanel formCadastro = new JPanel();
-		formCadastro.setBounds(12, 135, 426, 300);
+		formCadastro.setBackground(new Color(255, 255, 224));
 		formCadastro.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		formCadastro.setBounds(12, 159, 569, 308);
 		formCadastro.setLayout(null);
 		
 		final JLabel lbMsgErro = new JLabel("");
@@ -97,7 +102,7 @@ public class CadastrarUsuario{
 		formCadastro.add(lbUserName);
 		
 		final JTextField txtUserName = new JTextField();
-		txtUserName.setBounds(12, 55, 402, 25);
+		txtUserName.setBounds(12, 55, 545, 25);
 		
 		formCadastro.add(txtUserName);
 		
@@ -109,7 +114,7 @@ public class CadastrarUsuario{
 		txtLoginName.setBounds(12, 101, 194, 25);
 		formCadastro.add(txtLoginName);
 		
-		JLabel lbGrupo = new JLabel("Grupo: ");
+		JLabel lbGrupo = new JLabel("Grupo de usuário:  ");
 		lbGrupo.setBounds(224, 81, 232, 16);
 		formCadastro.add(lbGrupo);
 		
@@ -119,7 +124,7 @@ public class CadastrarUsuario{
 			comboGrupo.insertItemAt(grItens.get(i).getGrupo_name(), i);
 		}
 		comboGrupo.setSelectedIndex(0);
-		comboGrupo.setBounds(224, 101, 194, 25);
+		comboGrupo.setBounds(224, 101, 333, 25);
 		formCadastro.add(comboGrupo);
 		
 		JLabel lbSenhaPessoal = new JLabel("Senha pessoal:");
@@ -127,29 +132,29 @@ public class CadastrarUsuario{
 		formCadastro.add(lbSenhaPessoal);
 		
 		final JPasswordField pwdSenhaPessoal = new JPasswordField();
-		pwdSenhaPessoal.setBounds(12, 148, 194, 25);
+		pwdSenhaPessoal.setBounds(12, 148, 232, 25);
 		formCadastro.add(pwdSenhaPessoal);
 		
 		JLabel lbConfirmaSenha = new JLabel("Confirme a senha:");
-		lbConfirmaSenha.setBounds(224, 127, 190, 16);
+		lbConfirmaSenha.setBounds(325, 127, 190, 16);
 		formCadastro.add(lbConfirmaSenha);
 		
 		final JPasswordField pwdConfirmaSenha = new JPasswordField();
-		pwdConfirmaSenha.setBounds(224, 148, 194, 25);
+		pwdConfirmaSenha.setBounds(325, 148, 232, 25);
 		formCadastro.add(pwdConfirmaSenha);
 	
 		
-		JLabel lbUrl = new JLabel("Caminho:");
-		lbUrl.setBounds(12, 174, 194, 15);
+		JLabel lbUrl = new JLabel("Caminho da chave pública:");
+		lbUrl.setBounds(12, 174, 350, 15);
 		formCadastro.add(lbUrl);
 		
 		final JTextField txtUrl = new JTextField();
-		txtUrl.setBounds(12, 191, 133, 25);
+		txtUrl.setBounds(12, 191, 350, 25);
 		txtUrl.setEnabled(false);
 		formCadastro.add(txtUrl);
 		
 		JButton btnChooseFile = new JButton("->");
-		btnChooseFile.setBounds(154, 189, 49, 25);
+		btnChooseFile.setBounds(369, 189, 49, 25);
 		btnChooseFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -166,11 +171,11 @@ public class CadastrarUsuario{
 		formCadastro.add(btnChooseFile);
 		
 		JLabel lbTan = new JLabel("Tamanho da lista:");
-		lbTan.setBounds(285, 174, 133, 15);
+		lbTan.setBounds(424, 174, 133, 15);
 		formCadastro.add(lbTan);
 		
 		final JTextField txtTan = new JTextField();
-		txtTan.setBounds(285, 191, 133, 25);
+		txtTan.setBounds(424, 191, 133, 25);
 		formCadastro.add(txtTan);
 				
 		JButton btnCadastrar = new JButton("Cadastrar");
@@ -282,7 +287,7 @@ public class CadastrarUsuario{
 		formCadastro.add(btnCadastrar);
 		
 		JButton btnMenu = new JButton("Menu principal");
-		btnMenu.setBounds(264, 263, 154, 25);
+		btnMenu.setBounds(403, 263, 154, 25);
 		btnMenu.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				MenuPrincipal menu = new MenuPrincipal(usuario, frame);

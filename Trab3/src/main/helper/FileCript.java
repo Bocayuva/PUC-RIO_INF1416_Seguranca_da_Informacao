@@ -211,8 +211,7 @@ public class FileCript {
 					fileU.setSymKey();
 					if (fileU.checarAutenticidadeIntegridade()) {
 						fileU.setStatus("OK");
-						fileU.decriptoFile();
-						
+						//fileU.decriptoFile();						
 					}else{
 						fileU.setStatus("NOT OK");
 					}

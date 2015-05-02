@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 
 import main.business.Grupo;
 import main.business.Usuario;
+import javax.swing.border.BevelBorder;
+import java.awt.Color;
 
 public class Cabecalho{
 	
@@ -19,7 +21,9 @@ public class Cabecalho{
 	public static JPanel MontaCabecalho(Usuario usuario) {
 		
 		JPanel cabecalho = new JPanel();
-		cabecalho.setBounds(10, 12, 501, 91);
+		cabecalho.setBackground(new Color(255, 255, 224));
+		cabecalho.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		cabecalho.setBounds(10, 12, 569, 91);
 		cabecalho.setLayout(null);
 		
 		JLabel lbLogin = new JLabel("Login: " + usuario.getLogin_name());

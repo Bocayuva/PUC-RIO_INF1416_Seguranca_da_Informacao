@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.BevelBorder;
+import java.awt.Color;
 
 public class MenuPrincipal{
 
@@ -32,7 +33,7 @@ public class MenuPrincipal{
 		usuario = fusuario;
 		frame   = fframe;
 		
-		frame.setBounds(100,100,500, 500);
+		frame.setBounds(100,100,600, 510);
 		frame.getContentPane().removeAll();		
 		
 		allPane = new JPanel();
@@ -54,12 +55,14 @@ public class MenuPrincipal{
 	private void montaCorpo1() {
 		allPane.setLayout(null);
 		JPanel corpo1 = new JPanel();
-		corpo1.setLocation(12, 99);
-		corpo1.setSize(426, 48);
+		corpo1.setBackground(new Color(255, 255, 224));
+		corpo1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		corpo1.setLocation(12, 113);
+		corpo1.setSize(569, 34);
 		corpo1.setLayout(null);
 		
 		JLabel lbTotalAcessos = new JLabel("Total de acessos do usuário: " + usuario.getNum_acessos());
-		lbTotalAcessos.setBounds(12, 12, 402, 15);
+		lbTotalAcessos.setBounds(12, 12, 546, 15);
 		corpo1.add(lbTotalAcessos);
 		
 		allPane.add(corpo1);
@@ -67,8 +70,9 @@ public class MenuPrincipal{
 
 	private void montaCorpo2() {
 		JPanel corpo2 = new JPanel();
+		corpo2.setBackground(new Color(255, 255, 224));
 		corpo2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		corpo2.setBounds(12, 159, 426, 190);
+		corpo2.setBounds(12, 159, 569, 308);
 		corpo2.setLayout(null);
 		
 		JLabel lbMenu = new JLabel("Menu principal: ");
