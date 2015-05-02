@@ -85,6 +85,9 @@ public class MenuPrincipal{
 			}
 		});
 		corpo2.add(btnNovoUsuario);
+		if (usuario.getUser_group_fk() == 2) {
+			btnNovoUsuario.setVisible(false);
+		}
 		
 		JButton btnConsultaPasta = new JButton("2 - Consulta pasta de arquivos secretos do usuário");
 		btnConsultaPasta.setBounds(12, 77, 396, 25);
@@ -98,6 +101,7 @@ public class MenuPrincipal{
 			}
 		});
 		corpo2.add(btnConsultaPasta);
+		
 		
 		JButton btnSair = new JButton("3 - Sair do sistema");
 		btnSair.setBounds(12, 114, 165, 25);

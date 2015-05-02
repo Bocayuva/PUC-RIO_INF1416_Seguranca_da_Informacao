@@ -1,8 +1,16 @@
 package main.helper;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,7 +18,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import javax.crypto.KeyGenerator;
 import javax.swing.JButton;
+import javax.swing.JTable;
 
 import main.business.TanList;
 import main.business.Usuario;
@@ -168,4 +178,104 @@ public class Utility {
 		return usuDao.totalUsuarios();
 	}
 
+	public static byte[] getBytesFromFile(String fileUrl){
+		
+		InputStream inpStream = null;
+		File file = new File(fileUrl);
+		if (!file.isFile()) {
+			return null;
+		}
+		
+		if (file.length() > Integer.MAX_VALUE) {
+			return null;
+		}
+		 
+        byte[] bFile = new byte[(int) file.length()];
+         
+        int offset  = 0;
+		int numRead = 0;		
+        try {
+        	
+        	inpStream = new FileInputStream(file);
+		    while (offset < bFile.length
+					&& (numRead=inpStream.read(bFile, offset, bFile.length-offset)) >= 0) {
+				offset += numRead;
+			}
+	       	inpStream.close();
+
+        }catch(Exception e){
+        	e.printStackTrace();
+        }
+        
+		return bFile;
+		
+		
+		
+	}
+	
+
+	public static void adicionaFinalArquivo(String filename, String new_line){
+		
+      try{
+    	  String workingDir = System.getProperty("user.dir");
+    	  PrintWriter writer = new PrintWriter(workingDir + "/src/" + filename, "UTF-8");
+    	  writer.println(new_line);
+    	  writer.close();
+      }catch(Exception e){
+    	  System.out.println("=> Erro ao gerar a lista de chaves únicas! ");
+      }      
+
+    }
+	
+	public static Key getKeyFromRandom(byte[] seed){
+		KeyGenerator keyGen = null;
+		try {
+			keyGen = KeyGenerator.getInstance("DES");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		SecureRandom seedSec = null;
+		Key key = null;
+		try {
+			seedSec = SecureRandom.getInstance("SHA1PRNG");
+			seedSec.setSeed(seed);
+		    keyGen.init(56, seedSec);
+		    key = keyGen.generateKey();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return key;
+	}
+	
+
+	public static List<String> MontaFileList(String fileDecList) {
+		
+		List<String> fileItens = new ArrayList<String>();
+		
+		FileInputStream fis = null;
+        BufferedReader reader = null;
+        
+        try{
+        	
+        	fis = new FileInputStream(fileDecList);
+            reader = new BufferedReader(new InputStreamReader(fis));
+          
+            String line = reader.readLine();
+            while(line != null){
+                fileItens.add(line);
+                line = reader.readLine();
+            } 
+            
+    		reader.close();
+        	
+        }catch(Exception e){
+        
+        	e.printStackTrace();
+        	
+        }		
+		
+		return fileItens;
+	}
+		
+	
 }

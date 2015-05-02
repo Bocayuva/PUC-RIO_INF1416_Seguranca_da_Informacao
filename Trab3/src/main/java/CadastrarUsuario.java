@@ -235,7 +235,7 @@ public class CadastrarUsuario{
 					lbMsgErro.setText("Informe o caminho da chave pública");
 					return;
 				}
-				byte[] pub = FileCript.getBytesFromFile(txtUrl.getText());
+				byte[] pub = Utility.getBytesFromFile(txtUrl.getText());
 				if (pub == null) {
 					lbMsgErro.setText("Caminho da chave pública inválido!");
 					return;
@@ -247,12 +247,6 @@ public class CadastrarUsuario{
 				usuario.setDisabled(false);
 				usuario.setUser_tan_list(Integer.parseInt(txtTan.getText()));
 				usuario.setUser_url_pub(pub);
-				
-				try {
-					FileCript.criptoPrivateKey("Keys/userpriv");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 				
 				try {
 					Usuario.incluir(usuario);
