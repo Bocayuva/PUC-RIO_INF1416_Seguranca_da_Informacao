@@ -1,0 +1,116 @@
+package main.helper;
+
+import java.security.Key;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.spec.EncodedKeySpec;
+import java.security.spec.PKCS8EncodedKeySpec;
+
+import javax.crypto.Cipher;
+
+public class FileUnitCript {
+
+	private String NomeSecreto;
+	private String NomeCodigo;
+	private String Status;
+	private PrivateKey privKey;
+	private PublicKey  pubKey;
+	private Key symKey;
+	private String folderUrl;
+	private String fileDecript;
+	
+	public FileUnitCript(){
+		
+	}
+
+	public String getNomeSecreto() {
+		return NomeSecreto;
+	}
+
+	public void setNomeSecreto(String nomeSecreto) {
+		NomeSecreto = nomeSecreto;
+	}
+
+	public String getNomeCodigo() {
+		return NomeCodigo;
+	}
+
+	public void setNomeCodigo(String nomeCodigo) {
+		NomeCodigo = nomeCodigo;
+	}
+
+	public String getStatus() {
+		return Status;
+	}
+
+	public void setStatus(String status) {
+		Status = status;
+	}
+
+	public PrivateKey getPrivKey() {
+		return privKey;
+	}
+
+	public void setPrivKey(String fileUrl) {
+		this.privKey = privKey;
+				
+		byte[] plainText      = null;
+		PrivateKey privateKey = null;
+		
+        Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+		byte[] cipherText = Utility.getBytesFromFile(fileUrl);
+		
+		Key key   = this.getKeyFromRandom(keyphrase.getBytes());
+		
+	    cipher.init(Cipher.DECRYPT_MODE, key);
+	    try{
+	    	plainText = cipher.doFinal(cipherText);
+	    }catch(Exception e){
+	    	e.printStackTrace();
+	    }	    
+		KeyFactory keyFactory         = KeyFactory.getInstance("RSA");
+		EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(plainText);
+		
+		try {
+			privateKey = keyFactory.generatePrivate(privateKeySpec);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		this.privKey = privateKey;
+	}
+
+	public PublicKey getPubKey() {
+		return pubKey;
+	}
+
+	public void setPubKey(PublicKey pubKey) {
+		this.pubKey = pubKey;
+	}
+
+	public Key getSymKey() {
+		return symKey;
+	}
+
+	public void setSymKey(Key symKey) {
+		this.symKey = symKey;
+	}
+
+	public String getFolderUrl() {
+		return folderUrl;
+	}
+
+	public void setFolderUrl(String folderUrl) {
+		this.folderUrl = folderUrl;
+	}
+
+	public String getFileDecript() {
+		return fileDecript;
+	}
+
+	public void setFileDecript(String fileDecript) {
+		this.fileDecript = fileDecript;
+	}
+	
+}

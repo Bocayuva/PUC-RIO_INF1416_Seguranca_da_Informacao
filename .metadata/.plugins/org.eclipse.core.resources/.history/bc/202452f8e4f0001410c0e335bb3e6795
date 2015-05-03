@@ -1,0 +1,57 @@
+package main.java;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+
+import main.helper.FileUnitCript;
+
+public class TableModel extends DefaultTableModel {
+
+	private static final long serialVersionUID = 1;
+	private Vector<String> colunas;// = new String[]{"Nome secreto", "Nome código", "Status"}; 
+	private List<List<String>> linhas = new ArrayList<List<String>>(); 
+	private Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+	
+	public TableModel(){
+		this.colunas = new Vector<String>();
+		this.colunas.add("");
+		this.colunas.add("Nome secreto");
+		this.colunas.add("Nome secreto");
+		this.setDataVector(data, colunas);
+	}
+	
+	@Override
+	public int getColumnCount() {
+		return this.colunas.size();
+	}
+
+	@Override
+	public int getRowCount() {
+		return this.linhas.size();
+	}
+
+	@Override
+	public String getValueAt(int row, int col) {
+		return this.linhas.get(row).get(col);
+	}
+
+	public void addValue(FileUnitCript item){
+		List<String> item_linha = new ArrayList<String>();
+		item_linha.add(item.getNomeSecreto());
+		item_linha.add(item.getNomeCodigo());
+		item_linha.add(item.getStatus());
+		this.linhas.add(item_linha);
+	}
+
+	public void removeAll() {
+		for (int i = 0; i < this.linhas.size(); i++) {
+			this.linhas.remove(i);
+		}		
+	}
+
+	
+}

@@ -1,0 +1,40 @@
+package main.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import main.business.Grupo;
+import main.business.LogView;
+import main.jdbc.ConnectionFactory;
+
+public class LogViewDao {
+
+	private Connection connection;
+	
+    public LogViewDao() {
+		   this.connection = new ConnectionFactory().getConnection();
+	}
+    
+    public List<LogView> buscarTodos() {
+		List<LogView> lgItens = new ArrayList<LogView>();
+		String sql = "select * from grupos";
+		try {
+            // prepared statement para inserção
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet res = stmt.executeQuery();
+            
+            while (res.next()) {
+            	LogView lgItem = new LogView();
+            	lgItem.setNum_controle(res.getInt("num_controle"));
+            	lgItens.add(lgItem);
+			}
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+		return lgItens;
+	}
+}

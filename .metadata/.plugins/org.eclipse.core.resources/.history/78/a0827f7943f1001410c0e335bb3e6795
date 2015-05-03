@@ -1,0 +1,21 @@
+package test.dao;
+
+import main.business.Mensagem;
+import main.business.Registros;
+import main.business.Usuario;
+import main.dao.RegistrosDao;
+import main.dao.UsuarioDao;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class AAInicio {
+
+	@Test
+	public void ZerarRegistros(){
+		RegistrosDao regDao = new RegistrosDao();
+		regDao.apagarTodos();
+		
+		UsuarioDao usuDao = new UsuarioDao();
+	}
+}

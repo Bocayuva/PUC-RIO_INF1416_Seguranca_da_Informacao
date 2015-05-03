@@ -1,0 +1,29 @@
+package main.helper;
+
+public class FileUnitCript {
+
+	private String NomeSecreto;
+	private String NomeCodigo;
+	private String Status;
+	
+	public FileUnitCript(){
+		
+	}
+
+	public String getNomeSecreto() {
+		return NomeSecreto;
+	}
+
+	public void setNomeSecreto(String nomeSecreto) {
+		NomeSecreto = nomeSecreto;
+	}
+
+	public String getNomeCodigo() {
+		return NomeCodigo;
+	}
+
+	public void setNomeCodigo(String nomeCodigo) {
+		NomeCodigo = nomeCodigo;
+	}
+	
+}

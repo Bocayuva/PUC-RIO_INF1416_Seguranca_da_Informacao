@@ -1,0 +1,48 @@
+package test.dao;
+
+import main.business.Grupo;
+import main.business.Mensagem;
+import main.business.Registros;
+import main.business.Usuario;
+import main.dao.RegistrosDao;
+import main.dao.UsuarioDao;
+import main.helper.Utility;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class AAInicio {
+
+	@Test
+	public void ZerarRegistros(){
+		RegistrosDao regDao = new RegistrosDao();
+		regDao.apagarTodos();
+		
+		UsuarioDao usuDao = new UsuarioDao();
+		usuDao.apagarTodos();
+	}
+	
+	@Test
+	public void UsuarioInicial(){
+		Usuario user = new Usuario();
+		user.setUser_name("João Inicio");
+		user.setLogin_name("joaoinicio");
+		Grupo gr = new Grupo();
+		gr.setGid(1);
+		user.setUser_group_fk(gr);
+		user.setUser_tan_list(10);
+		user.setUser_url_pub(null);
+		user.setSalt("0001112223");
+		user.setUser_pwd(Utility.geraSenha("13131313" + user.getSalt()));		
+		
+		main.dao.UsuarioDao udao = new main.dao.UsuarioDao();
+		udao.AdicionaUsuario(user);
+		
+		user = Usuario.buscarPorLogin("joaosilva");
+		Assert.assertEquals("0001112223", user.getSalt());
+		Assert.assertNotEquals("testemodulo", user.getLogin_name());
+		Assert.assertEquals("joaosilva", user.getLogin_name());
+		Assert.assertEquals(1, user.getUser_group_fk());
+	}
+	
+}

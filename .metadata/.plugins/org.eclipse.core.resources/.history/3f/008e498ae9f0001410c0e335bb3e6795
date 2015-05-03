@@ -1,0 +1,50 @@
+package main.java;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.table.AbstractTableModel;
+
+import main.helper.FileUnitCript;
+
+public class TableModel extends AbstractTableModel {
+
+	private static final long serialVersionUID = 1;
+	private String[] columnNames = new String[]{"Nome secreto", "Nome código", "Status"};
+	private List<List<String>> data = new ArrayList<List<String>>(); 
+	
+	public TableModel(){
+		super();
+	}
+	
+	@Override
+	public int getColumnCount() {
+		return this.columnNames.length;
+	}
+
+	@Override
+	public int getRowCount() {
+		return this.data.size();
+	}
+
+	@Override
+	public String getValueAt(int row, int col) {
+		return this.data.get(row).get(col);
+	}
+
+	public void addValue(FileUnitCript item){
+		List<String> item_linha = new ArrayList<String>();
+		item_linha.add(item.getNomeSecreto());
+		item_linha.add(item.getNomeCodigo());
+		item_linha.add(item.getStatus());
+		this.data.add(item_linha);
+	}
+
+	public void removeAll() {
+		for (int i = 0; i < this.data.size(); i++) {
+			this.data.remove(i);
+		}		
+	}
+
+	
+}

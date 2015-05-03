@@ -1,49 +1,57 @@
 package test.dao;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+
 import main.business.Grupo;
 import main.business.Usuario;
+import main.dao.GrupoDao;
 import main.helper.Utility;
 
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UsuarioDao {
-	
+		
 	@Test
 	public void AdicionaUsuario(){
 		Usuario user = new Usuario();
 		user.setUser_name("João da Silva");
-		user.setLogin_name("joaosilva");
-		Grupo gr = new Grupo();
-		gr.setGid(1);
+		user.setLogin_name("joaoadiciona");
+		Grupo gr = Grupo.buscar(1);
 		user.setUser_group_fk(gr);
 		user.setUser_tan_list(10);
 		user.setUser_url_pub(null);
-		user.setSalt("0001112223");
-		user.setUser_pwd(Utility.geraSenha("123456" + user.getSalt()));		
+		user.setSalt("000111222");
+		user.setUser_pwd(Utility.geraSenha("13131313" + user.getSalt()));		
 		
 		main.dao.UsuarioDao udao = new main.dao.UsuarioDao();
 		udao.AdicionaUsuario(user);
+		
+		user = Usuario.buscarPorLogin("joaosilva");
+		Assert.assertEquals("000111222", user.getSalt());
+		Assert.assertNotEquals("testemodulo", user.getLogin_name());
+		Assert.assertEquals("joaosilva", user.getLogin_name());
+		Assert.assertEquals(1, user.getUser_group_fk());
 	}
-	
+			
 	@Test
-	public void buscarUsuario(){
-		Usuario usuario = Usuario.buscarPorLogin("joaoteste");
-		Assert.assertEquals(212, usuario.getSalt());
-		Assert.assertEquals(1, usuario.getUser_group_fk());
-		Assert.assertEquals(1, usuario.getId());		
-	}
-	
-	@Test
-	public void updateUsuario(){
-		Usuario usuario = Usuario.buscarPorLogin("joaosilva");
+	public void UpdateUsuario(){
+		
+		Usuario usuario = Usuario.buscarPorLogin("joaoadiciona");
 		int id          = usuario.getId();
-		Assert.assertNotEquals("Update Joao", usuario.getUser_name());
-		usuario.setUser_name("Update Joao");
+		java.util.Date date= new java.util.Date();
+		Timestamp time = new Timestamp(date.getTime());
+		Assert.assertNotEquals("Update Joao " + time, usuario.getUser_name());
+		usuario.setUser_name("Update Joao " + time);
 		Usuario.update(usuario);
-		Usuario usuario_update = Usuario.buscarPorLogin("joaosilva");
+		Usuario usuario_update = Usuario.buscarPorLogin("joaoadiciona");
 		Assert.assertEquals(id, usuario_update.getId());
-		Assert.assertEquals("Update Joao", usuario_update.getUser_name());
+		Assert.assertEquals("Update Joao " + time, usuario_update.getUser_name());
+		
 	}
-
+	
 }

@@ -33,17 +33,10 @@ public class FileCript {
 	private String fileDecript;
 	private String keyphrase;
 	
-	public FileCript(String keyphrase, String fileUrl, String folderUrl){
+	public FileCript(){
 		
-		setFolderUrl(folderUrl);
-		this.setKeyphrase(keyphrase);
-		try {
-			setPrivateKey(fileUrl);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		setSymKey();
-	}
+		
+	}	
 		
 	public void setPrivateKey(String fileUrl) throws Exception{
 		
@@ -227,6 +220,7 @@ public class FileCript {
 		}
 		return fileUList;
 	}
+
 
 	
 }

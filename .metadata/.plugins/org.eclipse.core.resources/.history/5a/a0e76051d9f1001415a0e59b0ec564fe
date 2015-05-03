@@ -1,0 +1,42 @@
+package main.java;
+
+import java.util.LinkedList;
+
+import javax.swing.table.AbstractTableModel;
+
+import main.business.LogView;
+
+public class MyModel extends AbstractTableModel {
+
+    private static final String[] columnNames = {"ID", "Mensagem"};
+    private final LinkedList<LogView> list;
+
+    private MyModel() {
+        list = new LinkedList<LogView>();
+    }
+
+    public void addElement(LogView e) {
+        list.add(e);
+        fireTableRowsInserted(list.size()-1, list.size()-1);
+    }
+
+    @Override
+    public int getColumnCount() {
+        return columnNames.length;
+    }
+
+    @Override
+    public int getRowCount() {
+        return list.size();
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        switch(columnIndex) {
+            case 0: return list.get(rowIndex).getId_msg();
+            case 1: return list.get(rowIndex).getMsg_full();
+        }
+        return null;
+    }
+
+}

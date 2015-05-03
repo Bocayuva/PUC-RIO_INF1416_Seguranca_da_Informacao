@@ -1,0 +1,54 @@
+package main.helper;
+
+import java.security.Key;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+
+public class FileUnitCript {
+
+	private String NomeSecreto;
+	private String NomeCodigo;
+	private String Status;
+	private PrivateKey privKey;
+	private PublicKey  pubKey;
+	private Key symKey;
+	private String folderUrl;
+	private String fileDecript;
+	
+	public FileUnitCript(){
+		
+	}
+
+	public String getNomeSecreto() {
+		return NomeSecreto;
+	}
+
+	public void setNomeSecreto(String nomeSecreto) {
+		NomeSecreto = nomeSecreto;
+	}
+
+	public String getNomeCodigo() {
+		return NomeCodigo;
+	}
+
+	public void setNomeCodigo(String nomeCodigo) {
+		NomeCodigo = nomeCodigo;
+	}
+
+	public String getStatus() {
+		return Status;
+	}
+
+	public void setStatus(String status) {
+		Status = status;
+	}
+
+	public PrivateKey getPrivKey() {
+		return privKey;
+	}
+
+	public void setPrivKey(PrivateKey privKey) {
+		this.privKey = privKey;
+	}
+	
+}

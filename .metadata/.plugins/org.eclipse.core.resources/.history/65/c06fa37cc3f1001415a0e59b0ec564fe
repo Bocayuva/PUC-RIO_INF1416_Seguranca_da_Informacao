@@ -1,0 +1,127 @@
+package main.business;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import main.dao.LogViewDao;
+import main.helper.FileUnitCript;
+import main.helper.Utility;
+
+
+public class LogView {
+	
+	private int num_controle;
+	private String mensagem;
+	private String login_name;
+	private String arq_name;
+	private String msg_full;
+	private int id_msg;
+
+	public int getNum_controle() {
+		return num_controle;
+	}
+
+	public void setNum_controle(int num_controle) {
+		this.num_controle = num_controle;
+	}
+	
+	public static List<LogView> buscarTodos() {
+		LogViewDao lgDao = new LogViewDao();
+		List<LogView> lgItens = lgDao.buscarTodos();
+		return lgItens;
+	}
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
+
+	public static List<LogView> buscarPorControle(int num_controle2) {
+		LogViewDao lgDao = new LogViewDao();
+		List<LogView> lgItens = lgDao.buscarPorControle(num_controle2);
+		return lgItens;
+	}
+
+	public String getLogin_name() {
+		return login_name;
+	}
+
+	public void setLogin_name(String login_name) {
+		this.login_name = login_name;
+	}
+
+	public String getArq_name() {
+		return arq_name;
+	}
+
+	public void setArq_name(String arq_name) {
+		this.arq_name = arq_name;
+	}
+
+	public String getMsg_full() {
+		return msg_full;
+	}
+
+	public void setMsg_full() {
+		String msg_original = this.getMensagem();
+		if (this.getLogin_name() != null) {
+			msg_original.replace("<login_name>", this.getLogin_name());
+		}
+		if (this.getArq_name() != null) {
+			msg_original.replace("<arq_name>", this.getArq_name());
+		}
+		this.msg_full = msg_original;
+	}
+
+	public int getId_msg() {
+		return id_msg;
+	}
+
+	public void setId_msg(int id_msg) {
+		this.id_msg = id_msg;
+	}
+	
+	
+	public List<LogView> MontaGrid(fileList){
+		
+		String[][] data  = new String[100][3];
+		
+		List<FileUnitCript> fileUList = new ArrayList<FileUnitCript>();
+		for (int i=0; i < fileList.size(); i++) {
+			if(fileList.get(i).length()>1) {
+				String[] full_name = fileList.get(i).split(" ");
+				data[i][0] = full_name[0];
+				data[i][1] = full_name[1];
+				try {
+					FileUnitCript fileU = new FileUnitCript();
+					fileU.setFolderUrl(this.getFolderUrl());
+					fileU.setNomeCodigo(full_name[1]);
+					fileU.setNomeSecreto(full_name[0]);
+					fileU.setPubKey(this.getPubKey());
+					fileU.setPrivKey(this.getPrivKey());
+					fileU.setSymKey();
+					if (fileU.checarAutenticidadeIntegridade()) {
+						fileU.setStatus("OK");
+						//fileU.decriptoFile();						
+					}else{
+						fileU.setStatus("NOT OK");
+					}
+					data[i][1] = fileU.getStatus();
+					fileUList.add(fileU);
+						
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		}
+		return fileUList;
+	}
+	
+	
+
+}

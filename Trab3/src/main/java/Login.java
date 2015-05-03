@@ -9,13 +9,17 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.xml.bind.annotation.XmlElementDecl.GLOBAL;
 
+import main.business.Registros;
 import main.business.TanList;
 import main.business.Usuario;
 import main.helper.Utility;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
@@ -26,10 +30,8 @@ public class Login {
 
 	protected JFrame frame;
 	protected Usuario usuario;
+	public static int SessionId;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -43,26 +45,69 @@ public class Login {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
+	public static int getSession(){
+		return SessionId;
+	}
+	
 	public Login() {
 		
 		frame = new JFrame();
-		frame.getContentPane().setLocation(0, 0);
+		
+		frame.setDefaultCloseOperation(0);
+		frame.addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+			
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				Registros.adicionarRegistro(new int[]{1002} , new Usuario[]{null}, new String[]{null});
+				System.exit(0);
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				
+			}
+		});		
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("List View Program - Gerenciador de arquivos");
+		
+		SessionId = new Integer(Registros.buscarUltimoRegistro() + 1);
+		
+		Registros.adicionarRegistro(new int[]{1001} , new Usuario[]{null}, new String[]{null});
 		
 		primeiraetapa();
 		
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	private void primeiraetapa() {
 		frame.getContentPane().removeAll();
+		
+		Registros.adicionarRegistro(new int[]{2001} , new Usuario[]{null}, new String[]{null});
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -93,11 +138,12 @@ public class Login {
 					return;
 				}
 				if (lgName.length() > 20) {
-					lbMsgErro.setText("Login name inválido!");
+					lbMsgErro.setText("Usuário inválido!");
 					return;
 				}
 				usuario = Usuario.buscarPorLogin(lgName);
 				if(usuario.getId() == 0){
+					Registros.adicionarRegistro(new int[]{2005} , new Usuario[]{null}, new String[]{null});
 					lbMsgErro.setText("Usuário não localizado!");
 					return;
 				}
@@ -110,8 +156,9 @@ public class Login {
 				
 				if(usuario.getBlocked_at().after(data_atual)){
 					lbMsgErro.setText("Usuário está bloqueado!");
+					Registros.adicionarRegistro(new int[]{2004} , new Usuario[]{usuario}, new String[]{null});
 				}else{
-					lbMsgErro.setText("Usuário encontrado!");
+					Registros.adicionarRegistro(new int[]{2003,2002} , new Usuario[]{usuario,null}, new String[]{null,null});
 					segundaetapa();
 				}
 				
@@ -123,6 +170,8 @@ public class Login {
 	
 	private void segundaetapa(){
 		frame.getContentPane().removeAll();
+		
+		Registros.adicionarRegistro(new int[]{3001} , new Usuario[]{usuario}, new String[]{null});
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -191,12 +240,13 @@ public class Login {
 			public void actionPerformed(ActionEvent arg0) {
 				String salt = usuario.getSalt();
 				if (passWd_Hidden.getText().equals("")) {
-					lbMsgErro.setText("forneça a senha!");
+					lbMsgErro.setText("Forneça sua senha pessoal!");
 					return;
 				}
 				
 				boolean isTrue = Utility.verificaSenhaTeclado(salt, passWd_Hidden.getText(), usuario.getUser_pwd());
 				if (isTrue) {
+					Registros.adicionarRegistro(new int[]{3003,3002} , new Usuario[]{usuario,usuario}, new String[]{null,null});
 					terceiraetapa();
 					return;
 				}
@@ -205,12 +255,18 @@ public class Login {
 				Erros_segunda_etapa.setText(num_erros + "");
 				
 				if(num_erros >= 3){
+					Registros.adicionarRegistro(new int[]{3004, 3007, 3008, 3002} , new Usuario[]{usuario,usuario,usuario,usuario}, new String[]{null,null,null,null});
 					Utility.bloquearUsuario(usuario);
 					primeiraetapa();		
 				}else{
 					txtPassWd.setText("");
 					passWd_Hidden.setText("");
-					lbMsgErro.setText("senha não confere!");
+					lbMsgErro.setText("Senha incorreta! Você ainda tem " + (3 - num_erros) + " tentativa(s).");
+					if (num_erros == 1) {
+						Registros.adicionarRegistro(new int[]{3004, 3005} , new Usuario[]{usuario,usuario}, new String[]{null,null});
+					}else if(num_erros == 2){
+						Registros.adicionarRegistro(new int[]{3004, 3006} , new Usuario[]{usuario,usuario}, new String[]{null,null});
+					}
 				}
 			}
 					
@@ -224,6 +280,8 @@ public class Login {
 	private void terceiraetapa() {
 
 		frame.getContentPane().removeAll();		
+		
+		Registros.adicionarRegistro(new int[]{4001} , new Usuario[]{usuario}, new String[]{null});
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -243,7 +301,7 @@ public class Login {
 		
 		final List<TanList> tan_itens    = Utility.getTanItem(usuario);
 		if (tan_itens.size() <= 0) {
-			lbMsgErro.setText("atualize seu cadastro! faltam tan itens");
+			lbMsgErro.setText("Atualize seu cadastro! Você deve solicitar novas senhas para prosseguir.");
 			return;
 		}
 		
@@ -269,7 +327,8 @@ public class Login {
 					return;
 				}
 				String valor_digitado = Utility.geraSenha(txtTanList.getText() + usuario.getSalt());
-				if (valor_digitado.equals(tanItemADigitar)) {						
+				if (valor_digitado.equals(tanItemADigitar)) {
+					Registros.adicionarRegistro(new int[]{4003,4002} , new Usuario[]{usuario,usuario}, new String[]{null,null});
 					TanList.apagarRegistro(tan_itens.get(posicao));	
 					usuario.setNum_acessos(usuario.getNum_acessos() + 1);
 					Usuario.update(usuario);
@@ -280,11 +339,17 @@ public class Login {
 				Erros_terceira_etapa.setText(num_erros + "");
 				
 				if(num_erros >= 3){
+					Registros.adicionarRegistro(new int[]{4006,4007,4002} , new Usuario[]{usuario,usuario,usuario}, new String[]{null,null,null});
 					Utility.bloquearUsuario(usuario);
 					primeiraetapa();		
 				}else{
 					txtTanList.setText("");
-					lbMsgErro.setText("O código de validação não esta válido!");
+					lbMsgErro.setText("Código incorreto! Você ainda tem " + (3 - num_erros) + " tentativa(s).");
+					if (num_erros == 1) {
+						Registros.adicionarRegistro(new int[]{4004} , new Usuario[]{usuario}, new String[]{null});
+					}else if(num_erros == 2){
+						Registros.adicionarRegistro(new int[]{4005} , new Usuario[]{usuario}, new String[]{null});
+					}
 				}
 			}
 		});

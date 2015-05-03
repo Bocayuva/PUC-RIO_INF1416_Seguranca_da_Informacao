@@ -1,0 +1,103 @@
+package main.java;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+import main.business.Registros;
+import main.business.TanList;
+import main.business.Usuario;
+import main.helper.Utility;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
+import java.awt.Color;
+
+public class Inicio {
+
+	protected JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Inicio window = new Inicio();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Inicio() {
+		
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("List View Program - Utilitário de Configuração");
+		
+		primeiraetapa();
+		
+	}
+
+	
+	private void primeiraetapa() {
+		
+		frame.getContentPane().removeAll();
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+				
+		JLabel lbUsuarioInfo = new JLabel("Informe o nome do usuário: ");
+		lbUsuarioInfo.setBounds(25, 10, 407, 15);
+		panel.add(lbUsuarioInfo);
+		
+		final JLabel lbMsgErro = new JLabel(" ");
+		lbMsgErro.setForeground(Color.RED);
+		lbMsgErro.setBounds(25, 111, 407, 15);
+		panel.add(lbMsgErro);
+		
+		final JTextField txtLoginName = new JTextField();
+		txtLoginName.setBounds(25, 37, 407, 25);
+		panel.add(txtLoginName);
+		txtLoginName.setColumns(10);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.setBounds(308, 74, 124, 25);
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+		});
+		panel.add(btnLogin);	
+		rebuildFrame();
+	}
+	
+	
+		
+	private void rebuildFrame(){
+		frame.revalidate();
+		frame.repaint();
+	}
+	
+
+}

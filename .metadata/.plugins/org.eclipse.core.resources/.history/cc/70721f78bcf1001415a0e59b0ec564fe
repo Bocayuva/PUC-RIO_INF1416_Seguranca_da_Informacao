@@ -1,0 +1,31 @@
+package main.business;
+
+import java.util.List;
+
+import main.dao.LogViewDao;
+
+
+public class LogView {
+	
+	private int num_controle;
+
+	public int getNum_controle() {
+		return num_controle;
+	}
+
+	public void setNum_controle(int num_controle) {
+		this.num_controle = num_controle;
+	}
+	
+	public static List<LogView> buscarTodos() {
+		// public static List<Grupo> buscarTodos(){
+		LogViewDao lgDao = new LogViewDao();
+		List<LogView> grItens = lgDao.buscarTodos();
+		return grItens;
+		
+	}
+	}
+	
+	
+
+}

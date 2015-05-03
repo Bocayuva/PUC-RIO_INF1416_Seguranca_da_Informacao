@@ -1,0 +1,88 @@
+package test.dao;
+
+import main.business.Grupo;
+import main.business.Usuario;
+import main.helper.Utility;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class UsuarioDao {
+	
+	@Test
+	public void zerarUsuarios(){
+		main.dao.UsuarioDao usuDao = new  main.dao.UsuarioDao();
+		usuDao.apagarTodos();
+		Usuario usuario = Usuario.buscar(1);
+		Assert.assertEquals(0, usuario.getId());
+		
+		Usuario user = new Usuario();
+		user.setUser_name("Teste modulo");
+		user.setLogin_name("testemodulo");
+		Grupo gr = new Grupo();
+		gr.setGid(1); // Administrador
+		user.setUser_group_fk(gr);
+		user.setUser_tan_list(10);
+		user.setUser_url_pub(null);
+		user.setSalt("0001112223");
+		user.setUser_pwd(Utility.geraSenha("13131313" + user.getSalt()));		
+		
+		main.dao.UsuarioDao udao = new main.dao.UsuarioDao();
+		udao.AdicionaUsuario(user);
+		
+		usuario = Usuario.buscarPorLogin("testemodulo");
+		Assert.assertEquals("0001112223", usuario.getSalt());
+		Assert.assertEquals("testemodulo", usuario.getLogin_name());
+		
+		usuDao = new  main.dao.UsuarioDao();
+		usuDao.apagarTodos();
+		usuario = Usuario.buscar(1);
+		Assert.assertEquals(0, usuario.getId());
+		
+	}
+	
+	@Test
+	public void AdicionaUsuario(){
+		Usuario user = new Usuario();
+		user.setUser_name("João da Silva");
+		user.setLogin_name("joaosilva");
+		Grupo gr = new Grupo();
+		gr.setGid(1);
+		user.setUser_group_fk(gr);
+		user.setUser_tan_list(10);
+		user.setUser_url_pub(null);
+		user.setSalt("0001112223");
+		user.setUser_pwd(Utility.geraSenha("123456" + user.getSalt()));		
+		
+		main.dao.UsuarioDao udao = new main.dao.UsuarioDao();
+		udao.AdicionaUsuario(user);
+		
+		user = Usuario.buscarPorLogin("joaosilva");
+		Assert.assertEquals("0001112223", user.getSalt());
+		Assert.assertNotEquals("testemodulo", user.getLogin_name());
+		Assert.assertEquals("joaosilva", user.getLogin_name());
+		Assert.assertEquals(1, user.getUser_group_fk());
+	}
+	
+	
+	@Test
+	public void buscarUsuario(){
+		Usuario usuario = Usuario.buscarPorLogin("joaoteste");
+		Assert.assertEquals(212, usuario.getSalt());
+		Assert.assertEquals(1, usuario.getUser_group_fk());
+		Assert.assertEquals(1, usuario.getId());		
+	}
+	
+	@Test
+	public void updateUsuario(){
+		Usuario usuario = Usuario.buscarPorLogin("joaosilva");
+		int id          = usuario.getId();
+		Assert.assertNotEquals("Update Joao", usuario.getUser_name());
+		usuario.setUser_name("Update Joao");
+		Usuario.update(usuario);
+		Usuario usuario_update = Usuario.buscarPorLogin("joaosilva");
+		Assert.assertEquals(id, usuario_update.getId());
+		Assert.assertEquals("Update Joao", usuario_update.getUser_name());
+	}
+
+}

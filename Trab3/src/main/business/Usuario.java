@@ -109,6 +109,10 @@ public class Usuario {
 	public static void incluir(Usuario usuario) {
 		UsuarioDao usuDao = new UsuarioDao();
 		usuDao.AdicionaUsuario(usuario);
+	}
+	public static void apagarUsuario(int id) {
+		UsuarioDao usuDao = new UsuarioDao();
+		usuDao.apagarUsuario(id);
 	}	
 	
 

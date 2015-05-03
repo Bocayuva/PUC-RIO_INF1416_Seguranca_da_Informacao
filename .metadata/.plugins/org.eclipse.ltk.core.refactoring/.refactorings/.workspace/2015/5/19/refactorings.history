@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;ConfigBase&apos; to &apos;LogView&apos;&#x0A;- Original element: &apos;ConfigBase&apos;&#x0A;- Renamed element: &apos;ConfigBase&apos;&#x0A;- Update references to refactored element" description="Rename Java project &apos;ConfigBase&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=ConfigBase" name="LogView" references="true" stamp="1430674604572" version="1.0"/>
+</session>

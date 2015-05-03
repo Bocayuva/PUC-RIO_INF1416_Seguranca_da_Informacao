@@ -2056,3 +2056,491 @@ org.eclipse.core.internal.resources.ResourceException: Resource is out of sync w
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 !SUBENTRY 1 org.eclipse.core.resources 4 274 2015-04-27 20:48:41.409
 !MESSAGE Resource is out of sync with the file system: '/Trab3/script.sql'.
+!SESSION 2015-04-30 00:32:42.720 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.7.0_75
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=pt_BR
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2015-04-30 00:37:28.129
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2015-04-30 01:00:47.422
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [Timed out while retrieving the attached javadoc for File [in File.class [in java.io [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] ]
+	at org.eclipse.jdt.internal.core.JavaElement.getURLContents(JavaElement.java:808)
+	at org.eclipse.jdt.internal.core.BinaryType.getJavadocContents(BinaryType.java:1037)
+	at org.eclipse.jdt.internal.core.BinaryType.getAttachedJavadoc(BinaryType.java:995)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:463)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.extractJavadoc(ProposalInfo.java:95)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.computeInfo(ProposalInfo.java:75)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.getInfo(ProposalInfo.java:58)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:555)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$3.run(AdditionalInfoController.java:106)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1012 2015-04-30 01:00:47.425
+!MESSAGE Timed out while retrieving the attached javadoc for File [in File.class [in java.io [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] 
+!SESSION 2015-04-30 19:08:14.996 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.7.0_75
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=pt_BR
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2015-04-30 19:08:25.944
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2015-04-30 20:04:47.523
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [Timed out while retrieving the attached javadoc for String {key=Ljava/lang/String;} [in String.class [in java.lang [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] ]
+	at org.eclipse.jdt.internal.core.JavaElement.getURLContents(JavaElement.java:808)
+	at org.eclipse.jdt.internal.core.BinaryType.getJavadocContents(BinaryType.java:1037)
+	at org.eclipse.jdt.internal.core.BinaryType.getAttachedJavadoc(BinaryType.java:995)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:463)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:619)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:565)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:557)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:129)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:85)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1012 2015-04-30 20:04:47.526
+!MESSAGE Timed out while retrieving the attached javadoc for String {key=Ljava/lang/String;} [in String.class [in java.lang [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] 
+!SESSION 2015-05-01 13:10:54.257 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.7.0_75
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=pt_BR
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2015-05-02 00:53:03.774
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [Timed out while retrieving the attached javadoc for JTable [in JTable.class [in javax.swing [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] ]
+	at org.eclipse.jdt.internal.core.JavaElement.getURLContents(JavaElement.java:808)
+	at org.eclipse.jdt.internal.core.BinaryType.getJavadocContents(BinaryType.java:1037)
+	at org.eclipse.jdt.internal.core.BinaryMethod.getAttachedJavadoc(BinaryMethod.java:639)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:463)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:619)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:565)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:557)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:129)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:85)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1012 2015-05-02 00:53:03.776
+!MESSAGE Timed out while retrieving the attached javadoc for JTable [in JTable.class [in javax.swing [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] 
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2015-05-02 02:05:04.361
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [Timed out while retrieving the attached javadoc for ActionEvent {key=Ljava/awt/event/ActionEvent;} [in ActionEvent.class [in java.awt.event [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] ]
+	at org.eclipse.jdt.internal.core.JavaElement.getURLContents(JavaElement.java:808)
+	at org.eclipse.jdt.internal.core.BinaryType.getJavadocContents(BinaryType.java:1037)
+	at org.eclipse.jdt.internal.core.BinaryType.getAttachedJavadoc(BinaryType.java:995)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:463)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:619)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:565)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:557)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:129)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:85)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1012 2015-05-02 02:05:04.362
+!MESSAGE Timed out while retrieving the attached javadoc for ActionEvent {key=Ljava/awt/event/ActionEvent;} [in ActionEvent.class [in java.awt.event [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] 
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2015-05-02 02:13:46.835
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [Timed out while retrieving the attached javadoc for Container [in Container.class [in java.awt [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] ]
+	at org.eclipse.jdt.internal.core.JavaElement.getURLContents(JavaElement.java:808)
+	at org.eclipse.jdt.internal.core.BinaryType.getJavadocContents(BinaryType.java:1037)
+	at org.eclipse.jdt.internal.core.BinaryMethod.getAttachedJavadoc(BinaryMethod.java:639)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:463)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.extractJavadoc(ProposalInfo.java:95)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.computeInfo(ProposalInfo.java:75)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.getInfo(ProposalInfo.java:58)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:555)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$3.run(AdditionalInfoController.java:106)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1012 2015-05-02 02:13:46.836
+!MESSAGE Timed out while retrieving the attached javadoc for Container [in Container.class [in java.awt [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] 
+!SESSION 2015-05-02 11:57:02.074 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.7.0_75
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=pt_BR
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2015-05-02 11:57:13.461
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2015-05-02 11:59:58.773
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [Timed out while retrieving the attached javadoc for Component [in Component.class [in java.awt [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] ]
+	at org.eclipse.jdt.internal.core.JavaElement.getURLContents(JavaElement.java:808)
+	at org.eclipse.jdt.internal.core.BinaryType.getJavadocContents(BinaryType.java:1037)
+	at org.eclipse.jdt.internal.core.BinaryMethod.getAttachedJavadoc(BinaryMethod.java:639)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:463)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.extractJavadoc(ProposalInfo.java:95)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.computeInfo(ProposalInfo.java:75)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.getInfo(ProposalInfo.java:58)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:555)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$3.run(AdditionalInfoController.java:106)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1012 2015-05-02 11:59:58.775
+!MESSAGE Timed out while retrieving the attached javadoc for Component [in Component.class [in java.awt [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] 
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2015-05-02 12:33:51.918
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [Timed out while retrieving the attached javadoc for JComponent [in JComponent.class [in javax.swing [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] ]
+	at org.eclipse.jdt.internal.core.JavaElement.getURLContents(JavaElement.java:808)
+	at org.eclipse.jdt.internal.core.BinaryType.getJavadocContents(BinaryType.java:1037)
+	at org.eclipse.jdt.internal.core.BinaryMethod.getAttachedJavadoc(BinaryMethod.java:639)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:463)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.extractJavadoc(ProposalInfo.java:95)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.computeInfo(ProposalInfo.java:75)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.getInfo(ProposalInfo.java:58)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:555)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$3.run(AdditionalInfoController.java:106)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1012 2015-05-02 12:33:51.919
+!MESSAGE Timed out while retrieving the attached javadoc for JComponent [in JComponent.class [in javax.swing [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] 
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2015-05-02 12:33:53.038
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [Timed out while retrieving the attached javadoc for JComponent [in JComponent.class [in javax.swing [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] ]
+	at org.eclipse.jdt.internal.core.JavaElement.getURLContents(JavaElement.java:808)
+	at org.eclipse.jdt.internal.core.BinaryType.getJavadocContents(BinaryType.java:1037)
+	at org.eclipse.jdt.internal.core.BinaryMethod.getAttachedJavadoc(BinaryMethod.java:639)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:463)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.extractJavadoc(ProposalInfo.java:95)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.computeInfo(ProposalInfo.java:75)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.getInfo(ProposalInfo.java:58)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:555)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$3.run(AdditionalInfoController.java:106)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1012 2015-05-02 12:33:53.038
+!MESSAGE Timed out while retrieving the attached javadoc for JComponent [in JComponent.class [in javax.swing [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] 
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2015-05-02 12:39:53.625
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [Timed out while retrieving the attached javadoc for JTable [in JTable.class [in javax.swing [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] ]
+	at org.eclipse.jdt.internal.core.JavaElement.getURLContents(JavaElement.java:808)
+	at org.eclipse.jdt.internal.core.BinaryType.getJavadocContents(BinaryType.java:1037)
+	at org.eclipse.jdt.internal.core.BinaryMethod.getAttachedJavadoc(BinaryMethod.java:639)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:463)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.extractJavadoc(ProposalInfo.java:95)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.computeInfo(ProposalInfo.java:75)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.getInfo(ProposalInfo.java:58)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:555)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$3.run(AdditionalInfoController.java:106)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1012 2015-05-02 12:39:53.626
+!MESSAGE Timed out while retrieving the attached javadoc for JTable [in JTable.class [in javax.swing [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] 
+
+!ENTRY org.eclipse.wb.core 4 4 2015-05-02 13:16:46.706
+!MESSAGE Designer [1.7.0.r44x201405021445.201505021316]: assertion failed
+!STACK 0
+org.eclipse.wb.internal.core.utils.check.AssertionFailedException: assertion failed
+	at org.eclipse.wb.internal.core.utils.check.Assert.fail(Assert.java:225)
+	at org.eclipse.wb.internal.core.utils.check.Assert.isTrue(Assert.java:268)
+	at org.eclipse.wb.internal.core.utils.check.Assert.isTrue(Assert.java:252)
+	at org.eclipse.wb.internal.core.utils.ast.AstEditor.addStatement(AstEditor.java:1593)
+	at org.eclipse.wb.internal.core.utils.ast.AstEditor.addStatement(AstEditor.java:1579)
+	at org.eclipse.wb.core.model.JavaInfo.addExpressionStatement(JavaInfo.java:987)
+	at org.eclipse.wb.internal.swing.model.property.editor.models.table.TableModelPropertyEditor.addExpressionStatement(TableModelPropertyEditor.java:115)
+	at org.eclipse.wb.internal.swing.model.property.editor.models.table.TableModelPropertyEditor.setModelEx(TableModelPropertyEditor.java:106)
+	at org.eclipse.wb.internal.swing.model.property.editor.models.table.TableModelPropertyEditor.access$0(TableModelPropertyEditor.java:96)
+	at org.eclipse.wb.internal.swing.model.property.editor.models.table.TableModelPropertyEditor$1.run(TableModelPropertyEditor.java:91)
+	at org.eclipse.wb.internal.core.utils.execution.ExecutionUtils.run(ExecutionUtils.java:324)
+	at org.eclipse.wb.internal.swing.model.property.editor.models.table.TableModelPropertyEditor.setModel(TableModelPropertyEditor.java:89)
+	at org.eclipse.wb.internal.swing.model.property.editor.models.table.TableModelPropertyEditor.openDialog(TableModelPropertyEditor.java:82)
+	at org.eclipse.wb.internal.core.model.property.editor.TextDialogPropertyEditor$1.onClick(TextDialogPropertyEditor.java:35)
+	at org.eclipse.wb.internal.core.model.property.editor.presentation.ButtonPropertyEditorPresentationImpl$4.handleEvent(ButtonPropertyEditorPresentationImpl.java:124)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3562)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3186)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2015-05-02 13:35:41.563
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [Timed out while retrieving the attached javadoc for JComponent [in JComponent.class [in javax.swing [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] ]
+	at org.eclipse.jdt.internal.core.JavaElement.getURLContents(JavaElement.java:808)
+	at org.eclipse.jdt.internal.core.BinaryType.getJavadocContents(BinaryType.java:1037)
+	at org.eclipse.jdt.internal.core.BinaryMethod.getAttachedJavadoc(BinaryMethod.java:639)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:463)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.extractJavadoc(ProposalInfo.java:95)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.computeInfo(ProposalInfo.java:75)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.getInfo(ProposalInfo.java:58)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:555)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$3.run(AdditionalInfoController.java:106)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1012 2015-05-02 13:35:41.564
+!MESSAGE Timed out while retrieving the attached javadoc for JComponent [in JComponent.class [in javax.swing [in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar]]] 
+
+!ENTRY org.eclipse.ui 4 0 2015-05-02 18:49:01.786
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.reflect.UndeclaredThrowableException
+	at com.sun.proxy.$Proxy2.keyPressed(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:167)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1300)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1285)
+	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1312)
+	at org.eclipse.swt.widgets.Widget.gtk_key_press_event(Widget.java:748)
+	at org.eclipse.swt.widgets.Control.gtk_key_press_event(Control.java:3050)
+	at org.eclipse.swt.widgets.Composite.gtk_key_press_event(Composite.java:741)
+	at org.eclipse.swt.widgets.Widget.windowProc(Widget.java:1773)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:5116)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:4377)
+	at org.eclipse.swt.internal.gtk.OS._gtk_main_do_event(Native Method)
+	at org.eclipse.swt.internal.gtk.OS.gtk_main_do_event(OS.java:8317)
+	at org.eclipse.swt.widgets.Display.eventProc(Display.java:1193)
+	at org.eclipse.swt.internal.gtk.OS._g_main_context_iteration(Native Method)
+	at org.eclipse.swt.internal.gtk.OS.g_main_context_iteration(OS.java:2342)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3184)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor472.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.eclipse.wb.internal.draw2d.EventManager$8.invoke(EventManager.java:325)
+	... 39 more
+Caused by: java.lang.NullPointerException
+	at org.eclipse.wb.gef.graphical.policies.LayoutEditPolicy.isRequestCondition(LayoutEditPolicy.java:105)
+	at org.eclipse.wb.gef.graphical.policies.LayoutEditPolicy.understandsRequest(LayoutEditPolicy.java:125)
+	at org.eclipse.wb.gef.core.EditPart.getUnderstandingPolicies(EditPart.java:665)
+	at org.eclipse.wb.gef.core.EditPart.getTargetEditPart(EditPart.java:757)
+	at org.eclipse.wb.core.gef.part.AbstractComponentEditPart.getTargetEditPart(AbstractComponentEditPart.java:165)
+	at org.eclipse.wb.internal.swing.gef.part.ComponentEditPart.getTargetEditPart(ComponentEditPart.java:45)
+	at org.eclipse.wb.gef.graphical.tools.ResizeTracker.createOperationSet(ResizeTracker.java:204)
+	at org.eclipse.wb.gef.graphical.tools.ResizeTracker.sendKeyRequest(ResizeTracker.java:180)
+	at org.eclipse.wb.gef.graphical.tools.ResizeTracker.keyPressed(ResizeTracker.java:167)
+	at org.eclipse.wb.gef.graphical.tools.SelectionTool.keyPressed(SelectionTool.java:296)
+	at org.eclipse.wb.internal.gef.core.EditDomain.keyPressed(EditDomain.java:207)
+	at org.eclipse.wb.internal.gef.graphical.EditEventManager.keyPressed(EditEventManager.java:94)
+	... 43 more
+!SESSION 2015-05-03 12:40:18.245 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.7.0_75
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=pt_BR
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2015-05-03 12:40:36.443
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+!SESSION 2015-05-03 14:23:44.453 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.7.0_75
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=pt_BR
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2015-05-03 14:23:51.351
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+!SESSION 2015-05-03 14:42:05.315 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.7.0_75
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=pt_BR
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.wb.core 4 4 2015-05-03 15:42:48.904
+!MESSAGE Designer [1.7.0.r44x201405021445.201505031542]: org.eclipse.wb.core.model.association.ConstructorChildAssociation cannot be cast to org.eclipse.wb.core.model.association.InvocationChildAssociation
+!STACK 0
+java.lang.ClassCastException: org.eclipse.wb.core.model.association.ConstructorChildAssociation cannot be cast to org.eclipse.wb.core.model.association.InvocationChildAssociation
+	at org.eclipse.wb.internal.swing.model.component.AbstractPositionContainerInfo.getAssociationInvocation(AbstractPositionContainerInfo.java:89)
+	at org.eclipse.wb.internal.swing.model.component.AbstractPositionContainerInfo.command_MOVE(AbstractPositionContainerInfo.java:62)
+	at org.eclipse.wb.internal.swing.gef.policy.component.JScrollPaneLayoutEditPolicy.command_MOVE(JScrollPaneLayoutEditPolicy.java:90)
+	at org.eclipse.wb.internal.swing.gef.policy.component.JScrollPaneLayoutEditPolicy.command_MOVE(JScrollPaneLayoutEditPolicy.java:1)
+	at org.eclipse.wb.core.gef.policy.layout.position.ObjectPositionLayoutEditPolicy$3.executeEdit(ObjectPositionLayoutEditPolicy.java:73)
+	at org.eclipse.wb.core.gef.command.EditCommand$1.run(EditCommand.java:52)
+	at org.eclipse.wb.internal.core.utils.execution.ExecutionUtils.run(ExecutionUtils.java:324)
+	at org.eclipse.wb.core.gef.command.EditCommand.execute(EditCommand.java:50)
+	at org.eclipse.wb.internal.gef.core.EditDomain.executeCommand(EditDomain.java:59)
+	at org.eclipse.wb.gef.core.tools.Tool.executeCommand(Tool.java:209)
+	at org.eclipse.wb.gef.core.tools.DragEditPartTracker.handleButtonUp(DragEditPartTracker.java:74)
+	at org.eclipse.wb.gef.core.tools.Tool.mouseUp(Tool.java:395)
+	at org.eclipse.wb.gef.graphical.tools.SelectionTool.mouseUp(SelectionTool.java:250)
+	at org.eclipse.wb.internal.gef.core.EditDomain.mouseUp(EditDomain.java:255)
+	at org.eclipse.wb.internal.gef.graphical.EditEventManager.mouseUp(EditEventManager.java:149)
+	at sun.reflect.GeneratedMethodAccessor164.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.eclipse.wb.internal.draw2d.EventManager$8.invoke(EventManager.java:325)
+	at com.sun.proxy.$Proxy1.mouseUp(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:220)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3562)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3186)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+
+!ENTRY org.eclipse.wb.core 4 4 2015-05-03 15:44:04.978
+!MESSAGE Designer [1.7.0.r44x201405021445.201505031542]: org.eclipse.wb.core.model.association.ConstructorChildAssociation cannot be cast to org.eclipse.wb.core.model.association.InvocationChildAssociation
+!STACK 0
+java.lang.ClassCastException: org.eclipse.wb.core.model.association.ConstructorChildAssociation cannot be cast to org.eclipse.wb.core.model.association.InvocationChildAssociation
+	at org.eclipse.wb.internal.swing.model.component.AbstractPositionContainerInfo.getAssociationInvocation(AbstractPositionContainerInfo.java:89)
+	at org.eclipse.wb.internal.swing.model.component.AbstractPositionContainerInfo.command_MOVE(AbstractPositionContainerInfo.java:62)
+	at org.eclipse.wb.internal.swing.gef.policy.component.JScrollPaneLayoutEditPolicy.command_MOVE(JScrollPaneLayoutEditPolicy.java:90)
+	at org.eclipse.wb.internal.swing.gef.policy.component.JScrollPaneLayoutEditPolicy.command_MOVE(JScrollPaneLayoutEditPolicy.java:1)
+	at org.eclipse.wb.core.gef.policy.layout.position.ObjectPositionLayoutEditPolicy$3.executeEdit(ObjectPositionLayoutEditPolicy.java:73)
+	at org.eclipse.wb.core.gef.command.EditCommand$1.run(EditCommand.java:52)
+	at org.eclipse.wb.internal.core.utils.execution.ExecutionUtils.run(ExecutionUtils.java:324)
+	at org.eclipse.wb.core.gef.command.EditCommand.execute(EditCommand.java:50)
+	at org.eclipse.wb.internal.gef.core.EditDomain.executeCommand(EditDomain.java:59)
+	at org.eclipse.wb.gef.core.tools.Tool.executeCommand(Tool.java:209)
+	at org.eclipse.wb.gef.core.tools.DragEditPartTracker.handleButtonUp(DragEditPartTracker.java:74)
+	at org.eclipse.wb.gef.core.tools.Tool.mouseUp(Tool.java:395)
+	at org.eclipse.wb.gef.graphical.tools.SelectionTool.mouseUp(SelectionTool.java:250)
+	at org.eclipse.wb.internal.gef.core.EditDomain.mouseUp(EditDomain.java:255)
+	at org.eclipse.wb.internal.gef.graphical.EditEventManager.mouseUp(EditEventManager.java:149)
+	at sun.reflect.GeneratedMethodAccessor164.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.eclipse.wb.internal.draw2d.EventManager$8.invoke(EventManager.java:325)
+	at com.sun.proxy.$Proxy1.mouseUp(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:220)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3562)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3186)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+
+!ENTRY org.eclipse.wb.core 4 4 2015-05-03 18:16:09.490
+!MESSAGE Designer [1.7.0.r44x201405021445.201505031542]: org.eclipse.wb.core.model.association.ConstructorChildAssociation cannot be cast to org.eclipse.wb.core.model.association.InvocationChildAssociation
+!STACK 0
+java.lang.ClassCastException: org.eclipse.wb.core.model.association.ConstructorChildAssociation cannot be cast to org.eclipse.wb.core.model.association.InvocationChildAssociation
+	at org.eclipse.wb.internal.swing.model.component.AbstractPositionContainerInfo.getAssociationInvocation(AbstractPositionContainerInfo.java:89)
+	at org.eclipse.wb.internal.swing.model.component.AbstractPositionContainerInfo.command_MOVE(AbstractPositionContainerInfo.java:62)
+	at org.eclipse.wb.internal.swing.gef.policy.component.JScrollPaneLayoutEditPolicy.command_MOVE(JScrollPaneLayoutEditPolicy.java:90)
+	at org.eclipse.wb.internal.swing.gef.policy.component.JScrollPaneLayoutEditPolicy.command_MOVE(JScrollPaneLayoutEditPolicy.java:1)
+	at org.eclipse.wb.core.gef.policy.layout.position.ObjectPositionLayoutEditPolicy$3.executeEdit(ObjectPositionLayoutEditPolicy.java:73)
+	at org.eclipse.wb.core.gef.command.EditCommand$1.run(EditCommand.java:52)
+	at org.eclipse.wb.internal.core.utils.execution.ExecutionUtils.run(ExecutionUtils.java:324)
+	at org.eclipse.wb.core.gef.command.EditCommand.execute(EditCommand.java:50)
+	at org.eclipse.wb.internal.gef.core.EditDomain.executeCommand(EditDomain.java:59)
+	at org.eclipse.wb.gef.core.tools.Tool.executeCommand(Tool.java:209)
+	at org.eclipse.wb.gef.core.tools.DragEditPartTracker.handleButtonUp(DragEditPartTracker.java:74)
+	at org.eclipse.wb.gef.core.tools.Tool.mouseUp(Tool.java:395)
+	at org.eclipse.wb.gef.graphical.tools.SelectionTool.mouseUp(SelectionTool.java:250)
+	at org.eclipse.wb.internal.gef.core.EditDomain.mouseUp(EditDomain.java:255)
+	at org.eclipse.wb.internal.gef.graphical.EditEventManager.mouseUp(EditEventManager.java:149)
+	at sun.reflect.GeneratedMethodAccessor164.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.eclipse.wb.internal.draw2d.EventManager$8.invoke(EventManager.java:325)
+	at com.sun.proxy.$Proxy1.mouseUp(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:220)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1276)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3562)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3186)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)

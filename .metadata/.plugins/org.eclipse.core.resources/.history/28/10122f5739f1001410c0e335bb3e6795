@@ -1,0 +1,12 @@
+package main.business;
+
+import java.sql.Date;
+import java.sql.Timestamp;
+
+import main.dao.UsuarioDao;
+
+public class ConfigBase {
+	
+	
+
+}

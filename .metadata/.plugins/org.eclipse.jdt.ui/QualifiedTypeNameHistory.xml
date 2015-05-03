@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.Calendar"/>
-<fullyQualifiedTypeName name="java.sql.Timestamp"/>
-<fullyQualifiedTypeName name="main.java.SegundaEtapa"/>
-<fullyQualifiedTypeName name="main.java.TerceiraEtapa"/>
-<fullyQualifiedTypeName name="main.java.QuartaEtapa"/>
-<fullyQualifiedTypeName name="main.java.Home"/>
-<fullyQualifiedTypeName name="main.java.PrimeiraEtapa"/>
-<fullyQualifiedTypeName name="java.lang.Override"/>
-<fullyQualifiedTypeName name="main.business.TanList"/>
-<fullyQualifiedTypeName name="main.dao.TanListDao"/>
 <fullyQualifiedTypeName name="java.awt.GridLayout"/>
 <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
 <fullyQualifiedTypeName name="java.awt.Container"/>
@@ -32,13 +22,9 @@
 <fullyQualifiedTypeName name="javax.swing.JSeparator"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="main.dao.GrupoDao"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="main.business.Grupo"/>
-<fullyQualifiedTypeName name="java.util.Vector"/>
 <fullyQualifiedTypeName name="javax.swing.ComboBoxModel"/>
 <fullyQualifiedTypeName name="java.awt.Component"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="javax.swing.JComboBox"/>
 <fullyQualifiedTypeName name="java.io.FileWriter"/>
 <fullyQualifiedTypeName name="main.helper.File"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
@@ -60,4 +46,18 @@
 <fullyQualifiedTypeName name="javax.swing.JTextField"/>
 <fullyQualifiedTypeName name="javax.swing.JFileChooser"/>
 <fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.security.spec.EncodedKeySpec"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.swing.JComboBox"/>
+<fullyQualifiedTypeName name="main.dao.LogViewDao"/>
+<fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
+<fullyQualifiedTypeName name="javax.swing.ScrollPaneConstants"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="javax.swing.table.TableColumn"/>
+<fullyQualifiedTypeName name="javax.swing.table.AbstractTableModel"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="main.business.LogView"/>
+<fullyQualifiedTypeName name="main.java.MyModel"/>
+<fullyQualifiedTypeName name="javax.swing.JTable"/>
 </qualifiedTypeNameHistroy>

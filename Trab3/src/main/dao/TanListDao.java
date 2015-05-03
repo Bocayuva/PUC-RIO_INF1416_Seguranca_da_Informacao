@@ -112,5 +112,20 @@ public class TanListDao {
 			
 			return false;
 		}
+		
+		public void apagarTodos() {
+			
+			String sql = "delete from tan_lists";
+			try {
+	            
+	            PreparedStatement stmt = connection.prepareStatement(sql);
+	            stmt.execute();
+	            stmt.close();
+	            
+	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }
+			
+		}
 	
 }

@@ -1,5 +1,6 @@
 package test.dao;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import main.business.Mensagem;
@@ -11,15 +12,18 @@ public class RegistrosDao {
 	@Test
 	public void CriaRegistro(){
 		Registros reg = new Registros();
+		
 		reg.setArq_name("file_teste.txt");
-		Usuario user = new Usuario();
-		user.setId(1);
+		Usuario user = Usuario.buscarPorLogin("joaosilva");
 		reg.setUser_fk(user);
+		
 		Mensagem msg = new Mensagem();
 		msg.setId(1001);
 		reg.setMsg_fk(msg);
+		
 		main.dao.RegistrosDao regDao = new main.dao.RegistrosDao();
 		regDao.CriaRegistro(reg);
+		
 	}
 	
 }

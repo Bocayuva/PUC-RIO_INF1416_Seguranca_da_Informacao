@@ -26,6 +26,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.text.TabExpander;
 
+import main.business.Registros;
 import main.business.Usuario;
 import main.helper.FileCript;
 import main.helper.FileUnitCript;
@@ -46,6 +47,8 @@ public class ConsultaPasta{
 		
 		frame.setBounds(100,100,600, 510);
 		frame.getContentPane().removeAll();		
+		
+		Registros.adicionarRegistro(new int[]{7001} , new Usuario[]{usuario}, new String[]{null});
 		
 		allPane = new JPanel();
 		frame.setContentPane(allPane);
@@ -179,12 +182,19 @@ public class ConsultaPasta{
 		        
 		        if (row >= 0 && col == 0) {
 		           FileUnitCript item = modeloTable.getRow(row);
+		           String arq_name = item.getNomeCodigo();
+		           
+		           Registros.adicionarRegistro(new int[]{7008} , new Usuario[]{usuario}, new String[]{arq_name});
 		           if (item.checarAutenticidadeIntegridade()) {
+		        	   Registros.adicionarRegistro(new int[]{7010} , new Usuario[]{usuario}, new String[]{arq_name});
 		        	   try {
 		        		   item.decriptoFile();
+		        		   Registros.adicionarRegistro(new int[]{7009} , new Usuario[]{usuario}, new String[]{arq_name});
 		        	   } catch (Exception e) {
-		        		   e.printStackTrace();
+		        		   Registros.adicionarRegistro(new int[]{7011} , new Usuario[]{usuario}, new String[]{arq_name});
 		        	   }
+		           }else{
+		        	   Registros.adicionarRegistro(new int[]{7012} , new Usuario[]{usuario}, new String[]{arq_name});
 		           }
 		        }
 		    }
@@ -196,11 +206,33 @@ public class ConsultaPasta{
 		btnListar.setBounds(12, 270, 147, 25);
 		btnListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-								
-				FileCript fCript = new FileCript(txtFraseSecreta.getText(),
-												txtKeyPriv.getText(),
-												txtCaminhoPasta.getText());
+				
+				Registros.adicionarRegistro(new int[]{7003} , new Usuario[]{usuario}, new String[]{null});
+				
+				FileCript fCript = new FileCript();				
+				
+				try{
+					fCript.setFolderUrl(txtCaminhoPasta.getText());
+				}catch(Exception e){
+					Registros.adicionarRegistro(new int[]{7006} , new Usuario[]{usuario}, new String[]{null});
+				}
+				
+				try{
+					fCript.setKeyphrase(txtFraseSecreta.getText());		
+				}catch(Exception e){
+					Registros.adicionarRegistro(new int[]{7005} , new Usuario[]{usuario}, new String[]{null});
+				}
+						
+				try {
+					fCript.setPrivateKey(txtKeyPriv.getText());
+				} catch (Exception e) {
+					Registros.adicionarRegistro(new int[]{7004} , new Usuario[]{usuario}, new String[]{null});
+				}
+				
+				fCript.setSymKey();	
+				
 				fCript.setPubKey(usuario);
+				
 				if (fCript.checarAutenticidadeIntegridade()) {
 					
 					try {
@@ -211,7 +243,8 @@ public class ConsultaPasta{
 						for (int i = 0; i < fileUList.size(); i++) {
 							modeloTable.addValue(fileUList.get(i));
 							
-						}						
+						}				
+						Registros.adicionarRegistro(new int[]{7007} , new Usuario[]{usuario}, new String[]{null});
 						scrollpane.setVisible(true);
 						scrollpane.repaint();
 						
@@ -232,6 +265,7 @@ public class ConsultaPasta{
 		btnMenu.setBounds(403, 270, 154, 25);
 		btnMenu.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				Registros.adicionarRegistro(new int[]{7002} , new Usuario[]{usuario}, new String[]{null});
 				MenuPrincipal menu = new MenuPrincipal(usuario, frame);
 				return;
 			}

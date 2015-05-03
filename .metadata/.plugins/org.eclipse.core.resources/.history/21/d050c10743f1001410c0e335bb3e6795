@@ -1,0 +1,28 @@
+package test.dao;
+
+import main.business.Mensagem;
+import main.business.Registros;
+import main.business.Usuario;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class AAInicio {
+
+	@Test
+	public void CriaRegistro(){
+		Registros reg = new Registros();
+		reg.setArq_name("file_teste.txt");
+		Usuario user = Usuario.buscarPorLogin("joaosilva");
+		reg.setUser_fk(user);
+		Mensagem msg = new Mensagem();
+		msg.setId(1001);
+		reg.setMsg_fk(msg);
+		main.dao.RegistrosDao regDao = new main.dao.RegistrosDao();
+		regDao.CriaRegistro(reg);
+		
+		reg = regDao.buscar(reg.getId());
+		Assert.assertEquals(msg.getId(), reg.getMsg_fk());
+		Assert.assertEquals(user.getId(), reg.getUser_fk());
+	}
+}

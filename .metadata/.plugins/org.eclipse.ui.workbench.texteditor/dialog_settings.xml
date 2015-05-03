@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="309" key="DIALOG_WIDTH"/>
+		<item value="315" key="DIALOG_WIDTH"/>
 		<item value="96" key="DIALOG_Y_ORIGIN"/>
 		<item value="535" key="DIALOG_X_ORIGIN"/>
-		<item value="417" key="DIALOG_HEIGHT"/>
+		<item value="419" key="DIALOG_HEIGHT"/>
 		<item value="1|Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="" key="selection"/>
+		<item value="buscarPorControle" key="selection"/>
 		<list key="findhistory">
+			<item value="buscarPorControle"/>
+			<item value="table"/>
+			<item value="modelotable"/>
+			<item value="MontaGrid"/>
+			<item value="recuperarSymmetricKey"/>
 			<item value="tan/"/>
 			<item value="terceiraetapa"/>
 			<item value="criarItens"/>
-			<item value="menu"/>
-			<item value="lbmsgerr"/>
-			<item value="buscarPorLogin"/>
-			<item value="primeiraetapa"/>
-			<item value="getUser_fk"/>
 		</list>
 		<list key="replacehistory">
 		</list>

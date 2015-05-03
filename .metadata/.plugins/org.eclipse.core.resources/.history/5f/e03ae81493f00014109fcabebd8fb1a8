@@ -1,0 +1,49 @@
+package main.java;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.table.AbstractTableModel;
+
+import main.helper.FileUnitCript;
+
+public class TableModel extends AbstractTableModel {
+
+	private static final int COL_NOME_SECRETO = 0; 
+	private static final int COL_NOME_CODIGO  = 1; 
+	private static final int COL_STATUS       = 2;
+
+	private String[] colunas = new String[]{"Nome secreto", "Nome código", "Status"}; 
+	List<FileUnitCript> linhas;
+	
+	@Override
+	public int getColumnCount() {
+		return this.colunas.length;
+	}
+
+	@Override
+	public int getRowCount() {
+		return 0;
+	}
+
+	@Override
+	public String getValueAt(int row, int col) {
+		FileUnitCript item = this.linhas.get(row);
+		if (col == COL_NOME_CODIGO) {
+			return item.getNomeCodigo();
+		}
+		if (col == COL_NOME_SECRETO) {
+			return item.getNomeSecreto();
+		}
+		if (col == COL_STATUS) {
+			return item.getStatus();
+		}		
+		return "";
+	}
+
+	public void addValue(FileUnitCript item){
+		this.linhas.add(item);
+	}
+
+	
+}

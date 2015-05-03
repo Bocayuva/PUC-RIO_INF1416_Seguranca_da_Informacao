@@ -1,0 +1,11 @@
+1430619217137	Delete element
+1430674619783	Rename type 'ConfigBase'
+1430674634862	Rename type 'ConfigBaseDao'
+1430674990547	Encapsulate field 'num_controle'
+1430676032963	Encapsulate field 'mensagem'
+1430676712584	Encapsulate field 'login_name'
+1430676716511	Encapsulate field 'arq_name'
+1430676811345	Encapsulate field 'msg_full'
+1430677392529	Encapsulate field 'itens_data'
+1430677666130	Encapsulate field 'id_msg'
+1430680190243	Delete element

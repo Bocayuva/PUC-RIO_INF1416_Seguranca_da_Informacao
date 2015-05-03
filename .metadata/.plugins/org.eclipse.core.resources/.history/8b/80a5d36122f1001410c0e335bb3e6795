@@ -1,0 +1,57 @@
+package main.business;
+
+import main.dao.RegistrosDao;
+import main.dao.UsuarioDao;
+
+public class Registros {
+
+	private int Id;
+	private Mensagem msg_fk;
+	private Usuario user_fk;
+	private String arq_name;
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
+	public int getMsg_fk() {
+		return msg_fk.getId();
+	}
+	public void setMsg_fk(Mensagem msg_fk) {
+		this.msg_fk = msg_fk;
+	}
+	public int getUser_fk() {
+		if (user_fk == null) {
+			return 0;
+		}else{
+			return user_fk.getId();
+		}		
+	}
+	public void setUser_fk(Usuario user_fk) {
+		this.user_fk = user_fk;
+	}
+	public String getArq_name() {
+		return arq_name;
+	}
+	public void setArq_name(String arq_name) {
+		this.arq_name = arq_name;
+	}
+	public static void incluir(Registros registro) {
+		RegistrosDao regDao = new RegistrosDao();
+		regDao.CriaRegistro(registro);
+	}
+	public static void adicionarRegistro(int id_msg_fk, Usuario usuario, String file_name) {
+		Registros regIncluir = new Registros();
+		regIncluir.setArq_name(file_name);
+		
+		Mensagem msgItem = new Mensagem();
+		msgItem.setId(id_msg_fk);
+		regIncluir.setMsg_fk(msgItem);
+		msgItem = null;
+		
+		regIncluir.setUser_fk(usuario);
+		incluir(regIncluir);
+	}	
+	
+}

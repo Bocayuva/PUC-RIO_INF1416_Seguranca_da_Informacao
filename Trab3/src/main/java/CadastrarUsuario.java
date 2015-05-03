@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
 import main.business.Grupo;
+import main.business.Registros;
 import main.business.TanList;
 import main.business.Usuario;
 import main.dao.GrupoDao;
@@ -44,6 +45,8 @@ public class CadastrarUsuario{
 		
 		frame.setBounds(100,100,600, 510);
 		frame.getContentPane().removeAll();		
+		
+		Registros.adicionarRegistro(new int[]{6001} , new Usuario[]{usuario}, new String[]{null});
 		
 		allPane = new JPanel();
 		frame.setContentPane(allPane);
@@ -182,6 +185,9 @@ public class CadastrarUsuario{
 		btnCadastrar.setBounds(12, 263, 147, 25);
 		btnCadastrar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				
+				Registros.adicionarRegistro(new int[]{6002} , new Usuario[]{usuario}, new String[]{null});
+				
 				if (txtUserName.getText().equals("")) {
 					lbMsgErro.setText("Forneça o nome do usuário!");
 					return;
@@ -215,6 +221,15 @@ public class CadastrarUsuario{
 				}
 				String senha_pessoal  = new String(pwdSenhaPessoal.getPassword());
 				String senha_confirma = new String(pwdConfirmaSenha.getPassword());
+				try {
+				     Integer.parseInt(senha_pessoal);
+				}
+				catch (NumberFormatException e) {
+					lbMsgErro.setText("Senha pessoal só deve conter números!");					
+					pwdConfirmaSenha.setText("");
+					pwdSenhaPessoal.setText("");
+					return;
+				}
 				if (!senha_pessoal.equals(senha_confirma)) {
 					lbMsgErro.setText("Senha de confirmação não válida!");
 					pwdConfirmaSenha.setText("");
@@ -290,6 +305,7 @@ public class CadastrarUsuario{
 		btnMenu.setBounds(403, 263, 154, 25);
 		btnMenu.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				Registros.adicionarRegistro(new int[]{6003} , new Usuario[]{usuario}, new String[]{null});
 				MenuPrincipal menu = new MenuPrincipal(usuario, frame);
 				return;
 			}

@@ -1,0 +1,43 @@
+package main.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import main.business.Grupo;
+import main.business.Usuario;
+import main.jdbc.ConnectionFactory;
+
+public class ConfigBaseDao {
+
+	private Connection connection;
+	
+    public ConfigBaseDao() {
+		   this.connection = new ConnectionFactory().getConnection();
+	}
+    
+	public int totalUsuarios() {
+			
+		String sql = "select count(*) as total from usuarios";
+		int total_usuarios = 0;
+		try {
+            // prepared statement para inserção
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet res = stmt.executeQuery();
+            
+            while (res.next()) {
+            	
+            	total_usuarios = res.getInt("total");
+				
+			}
+            
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+		return total_usuarios;
+		
+	}
+	
+}

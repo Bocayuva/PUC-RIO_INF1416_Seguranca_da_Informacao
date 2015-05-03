@@ -8,6 +8,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import main.business.Grupo;
+import main.business.Registros;
 import main.business.Usuario;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
@@ -35,6 +36,8 @@ public class MenuPrincipal{
 		
 		frame.setBounds(100,100,600, 510);
 		frame.getContentPane().removeAll();		
+		
+		Registros.adicionarRegistro(new int[]{5001} , new Usuario[]{usuario}, new String[]{null});
 		
 		allPane = new JPanel();
 		frame.setContentPane(allPane);
@@ -83,6 +86,7 @@ public class MenuPrincipal{
 		btnNovoUsuario.setBounds(12, 40, 247, 25);
 		btnNovoUsuario.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				Registros.adicionarRegistro(new int[]{5002} , new Usuario[]{usuario}, new String[]{null});
 				CadastrarUsuario cadUsuario = new CadastrarUsuario(usuario, frame);
 				cadUsuario.montaFormCadastro();
 				return;
@@ -97,6 +101,7 @@ public class MenuPrincipal{
 		btnConsultaPasta.setBounds(12, 77, 396, 25);
 		btnConsultaPasta.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				Registros.adicionarRegistro(new int[]{5003} , new Usuario[]{usuario}, new String[]{null});
 				usuario.setNum_consultas(usuario.getNum_consultas() + 1);
 				Usuario.update(usuario);
 				ConsultaPasta conPasta = new ConsultaPasta(usuario, frame);
@@ -111,6 +116,7 @@ public class MenuPrincipal{
 		btnSair.setBounds(12, 114, 165, 25);
 		btnSair.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				Registros.adicionarRegistro(new int[]{5004} , new Usuario[]{usuario}, new String[]{null});
 				SairSistema saida = new SairSistema(usuario, frame);
 				saida.montaFormCadastro();
 				return;

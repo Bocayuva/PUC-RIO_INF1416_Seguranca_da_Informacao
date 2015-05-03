@@ -83,8 +83,8 @@ public class UsuarioDao {
 				
 				GrupoDao grDao = new GrupoDao();
 				Grupo gr = new Grupo();
-				
 				grDao.buscar(res.getInt("user_group_fk"), gr);
+				
 				usuario.setUser_group_fk(gr);
 				
 			}
@@ -195,6 +195,35 @@ public class UsuarioDao {
         }
 		return total_usuarios;
 		
+	}
+
+	public void apagarTodos() {
+		
+		String sql = "delete from usuarios";
+		try {
+            
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.execute();
+            stmt.close();
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+		
+	}
+
+	public void apagarUsuario(int id) {
+		String sql = "delete from usuarios where id = ?";
+		try {
+            
+            PreparedStatement stmt = connection.prepareStatement(sql);            
+            stmt.setInt(1, id);           
+            stmt.execute();
+            stmt.close();
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 	}
 	
 }

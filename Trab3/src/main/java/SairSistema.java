@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
+import main.business.Registros;
 import main.business.Usuario;
 
 public class SairSistema{
@@ -25,6 +26,8 @@ public class SairSistema{
 		
 		frame.setBounds(100,100,600, 510);
 		frame.getContentPane().removeAll();		
+		
+		Registros.adicionarRegistro(new int[]{8001} , new Usuario[]{usuario}, new String[]{null});
 		
 		allPane = new JPanel();
 		frame.setContentPane(allPane);
@@ -78,6 +81,7 @@ public class SairSistema{
 		JButton btnCadastrar = new JButton("Sair");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Registros.adicionarRegistro(new int[]{8002,1002} , new Usuario[]{usuario,null}, new String[]{null,null});	
 				System.exit(0);
 			}
 		});
@@ -88,6 +92,7 @@ public class SairSistema{
 		btnMenu.setBounds(403, 271, 154, 25);
 		btnMenu.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
+				Registros.adicionarRegistro(new int[]{8003} , new Usuario[]{usuario}, new String[]{null});
 				MenuPrincipal menu = new MenuPrincipal(usuario, frame);
 				return;
 			}
