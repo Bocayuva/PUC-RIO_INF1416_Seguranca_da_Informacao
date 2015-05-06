@@ -75,8 +75,8 @@ public class SairSistema{
 		lbSaida.setBounds(12, 12, 545, 15);
 		formCadastro.add(lbSaida);
 		
-		JLabel lbMsgSaida = new JLabel("Mensagem de saída. ");
-		lbMsgSaida.setBounds(12, 105, 402, 15);
+		JLabel lbMsgSaida = new JLabel("Mensagem de saída: ");
+		lbMsgSaida.setBounds(12, 50, 402, 15);
 		formCadastro.add(lbMsgSaida);
 		
 		JButton btnCadastrar = new JButton("Sair");

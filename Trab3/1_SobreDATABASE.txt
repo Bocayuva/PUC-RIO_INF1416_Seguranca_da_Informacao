@@ -1,0 +1,30 @@
+---- GRUPO 1 - SEGURANÇA DA INFORMAÇÃO ----
+Informações sobre DATABASE
+Autores - Alexandre Werneck
+          Carlos Fernando Bocayuva
+-------------------------------------------
+COMO CONFIGURAR A BASE DE DADOS PARA A APLICAÇÃO
+
+Estamos utilizando o SGBD PostgreSql para armazenar
+as informações do programa, os passos para criação
+do database e das tabelas são:
+
+1 - Rode no terminal do SGBD o script contido no arquivo:
+
+script_create_db.sql
+
+2 - Abra o terminal a partir do banco de dados criado e rode
+o script contido no arquivo:
+
+script_create_tables.sql
+
+3 - Execute o script contido no arquivo, isto carregará as tabelas
+de grupo e mensagem, necessárias ao funcionamento do programa:
+
+script_populate_base.sql 
+
+
+* Obs: Caso precise eliminar as tabelas utilize o script contido
+no arquivo:
+
+script_drop_columns.sql

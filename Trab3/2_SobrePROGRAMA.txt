@@ -1,0 +1,23 @@
+---- GRUPO 1 - SEGURANÇA DA INFORMAÇÃO ----
+Informações sobre PRIMEIRA EXECUÇÃO
+Autores - Alexandre Werneck
+          Carlos Fernando Bocayuva
+-------------------------------------------
+COMO RODAR A APLICAÇÃO PELA PRIMEIRA VEZ
+
+1 - Ao rodar os scripts de teste através do JUnit
+a partir da camada test.dao é possível zerar as tabelas
+de usuarios, registros e tan_lists e iniciar uma configuração
+inicial para rodar o programa pela primeira vez, após
+isso será criado um usuário com perfil de administrador com
+as seguintes configurações:
+- Login name : joaosilva
+- Senha pessoal : 13131313
+- TanList : 
+	1 - AAAAA
+	2 - BBBBB
+	3 - CCCCC
+	4 - DDDDD
+	5 - EEEEE
+(O arquivo com essas senhas fica armazenado na pasta do projeto 
+em src/tan/joaosilva.tan)
